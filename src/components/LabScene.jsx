@@ -91,9 +91,9 @@ const Fumes = () => {
 };
 
 export default function LabScene() {
-    // Crystals (Radioactive Debris)
+    // Crystals (Radioactive Debris) - INCREASED DENSITY
     const crystals = useMemo(() => {
-        return Array.from({ length: 25 }).map((_, i) => ({
+        return Array.from({ length: 60 }).map((_, i) => ({
             position: [
                 (Math.random() - 0.5) * 18,
                 (Math.random() - 0.5) * 18,
@@ -113,9 +113,9 @@ export default function LabScene() {
         }));
     }, []);
 
-    // Benzene Rings
+    // Benzene Rings - INCREASED DENSITY
     const rings = useMemo(() => {
-        return Array.from({ length: 8 }).map((_, i) => ({
+        return Array.from({ length: 20 }).map((_, i) => ({
             position: [
                 (Math.random() - 0.5) * 20,
                 (Math.random() - 0.5) * 20,
@@ -126,9 +126,9 @@ export default function LabScene() {
         }));
     }, []);
 
-    // Floating Bond Signs
+    // Floating Bond Signs - INCREASED DENSITY
     const bonds = useMemo(() => {
-        return Array.from({ length: 12 }).map((_, i) => ({
+        return Array.from({ length: 30 }).map((_, i) => ({
             position: [
                 (Math.random() - 0.5) * 25,
                 (Math.random() - 0.5) * 25,
@@ -140,7 +140,7 @@ export default function LabScene() {
     }, []);
 
     return (
-        <div className="lab-scene-container" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1, pointerEvents: 'none' }}>
+        <div className="lab-scene-container" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100%', zIndex: -1, pointerEvents: 'none' }}>
             <Canvas dpr={[1, 2]}>
                 <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={45} />
 

@@ -4,13 +4,14 @@ const FalloutParticles = () => {
     // Generate random positions for purely decorative particles
     // Memoize or static if possible, but for simple array it's fine. 
     // We use a fixed seed concept or just random is fine for visual noise.
-    const particles = Array.from({ length: 25 }).map((_, i) => ({
+    // Higher density for mobile visibility
+    const particles = Array.from({ length: 50 }).map((_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
-        animationDuration: `${15 + Math.random() * 25}s`,
+        animationDuration: `${10 + Math.random() * 20}s`, // Faster
         animationDelay: `-${Math.random() * 20}s`,
-        opacity: 0.1 + Math.random() * 0.4,
-        size: 2 + Math.random() * 5
+        opacity: 0.3 + Math.random() * 0.5, // Brighter (0.3 - 0.8)
+        size: 3 + Math.random() * 6 // Larger
     }));
 
     return (
@@ -18,11 +19,11 @@ const FalloutParticles = () => {
             position: 'fixed',
             top: 0,
             left: 0,
-            width: '100vw',
-            height: '100vh',
+            width: '100%',
+            height: '100%', // Better for mobile browsers
             overflow: 'hidden',
             pointerEvents: 'none',
-            zIndex: 0 // Render behind main content but providing atmosphere
+            zIndex: 0
         }}>
             {particles.map(p => (
                 <div key={p.id} style={{
