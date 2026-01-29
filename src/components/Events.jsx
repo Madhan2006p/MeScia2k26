@@ -3,49 +3,53 @@ import HTMLFlipBook from 'react-pageflip';
 // Custom Page Component for the flipbook
 import React, { forwardRef, useState, memo, useEffect } from 'react';
 
+// Extracted Card Content for reuse
+const DossierCard = ({ event, number }) => (
+    <div className="dossier-content">
+        <div className="dossier-header">
+            <span className="confidential-stamp">CONFIDENTIAL</span>
+            <span className="file-id">FILE #{event.id.toString().padStart(3, '0')}</span>
+        </div>
+        
+        <div className="dossier-body">
+            <h3 className="dossier-title">{event.title}</h3>
+            <div className="dossier-divider"></div>
+            
+            <div className="dossier-section">
+                <h4>DESCRIPTION</h4>
+                <p>{event.description}</p>
+            </div>
+
+            <div className="dossier-grid">
+                <div className="dossier-item">
+                    <span className="label">TIMING</span>
+                    <span className="value">{event.time}</span>
+                </div>
+                <div className="dossier-item">
+                    <span className="label">PERSONNEL</span>
+                    <span className="value">{event.teamSize}</span>
+                </div>
+                <div className="dossier-item">
+                    <span className="label">CLASS</span>
+                    <span className="value">{event.type.toUpperCase()}</span>
+                </div>
+            </div>
+        </div>
+
+        <div className="dossier-footer">
+            <span className="auth-sig">AUTHORIZED BY: OPPENHEIMER</span>
+            <span className="page-num">PG {number}</span>
+        </div>
+        
+        {/* Paper texture and aging effects */}
+        <div className="paper-texture"></div>
+    </div>
+);
+
 const Page = memo(forwardRef((props, ref) => {
-    // ... (rest of Page component)
     return (
         <div className="dossier-page" ref={ref}>
-            <div className="dossier-content">
-                <div className="dossier-header">
-                    <span className="confidential-stamp">CONFIDENTIAL</span>
-                    <span className="file-id">FILE #{props.event.id.toString().padStart(3, '0')}</span>
-                </div>
-                
-                <div className="dossier-body">
-                    <h3 className="dossier-title">{props.event.title}</h3>
-                    <div className="dossier-divider"></div>
-                    
-                    <div className="dossier-section">
-                        <h4>DESCRIPTION</h4>
-                        <p>{props.event.description}</p>
-                    </div>
-
-                    <div className="dossier-grid">
-                        <div className="dossier-item">
-                            <span className="label">TIMING</span>
-                            <span className="value">{props.event.time}</span>
-                        </div>
-                        <div className="dossier-item">
-                            <span className="label">PERSONNEL</span>
-                            <span className="value">{props.event.teamSize}</span>
-                        </div>
-                        <div className="dossier-item">
-                            <span className="label">CLASS</span>
-                            <span className="value">{props.event.type.toUpperCase()}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="dossier-footer">
-                    <span className="auth-sig">AUTHORIZED BY: OPPENHEIMER</span>
-                    <span className="page-num">PG {props.number}</span>
-                </div>
-                
-                {/* Paper texture and aging effects */}
-                <div className="paper-texture"></div>
-            </div>
+            <DossierCard event={props.event} number={props.number} />
         </div>
     );
 }));
@@ -59,8 +63,6 @@ function Events() {
             const width = window.innerWidth;
             if (width < 768) {
                 // Mobile View
-                const newWidth = Math.min(width - 40, 350);
-                setBookDimensions({ width: newWidth, height: newWidth * 1.4 });
                 setIsMobile(true);
             } else {
                 // Desktop View
@@ -73,6 +75,7 @@ function Events() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
     const events = [
         {
             id: 1,
@@ -148,53 +151,80 @@ function Events() {
                     Access Granted. Flip through the technical dossiers.
                 </p>
 
-                <div className="dossier-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '600px', perspective: '1500px', margin: '0 auto', maxWidth: '1000px' }}>
-                    <HTMLFlipBook
-                        width={bookDimensions.width}
-                        height={bookDimensions.height}
-                        size="fixed"
-                        minWidth={300}
-                        maxWidth={500}
-                        minHeight={400}
-                        maxHeight={700}
-                        maxShadowOpacity={0.5}
-                        showCover={true}
-                        mobileScrollSupport={false}
-                        flippingTime={800}
-                        usePortrait={isMobile}
-                        startZIndex={0}
-                        autoSize={true}
-                        clickEventForward={true}
-                        useMouseEvents={true}
-                        swipeDistance={30}
-                        showPageCorners={true}
-                        disableFlipByClick={false}
-                        drawShadow={false}
-                        className="dossier-book"
-                    >
-                        <div className="dossier-cover">
-                            <div className="cover-content">
-                                <h1>TOP SECRET</h1>
-                                <h2>PROJECT: MESCIA</h2>
-                                <div className="logo-stamp">CLASSIFIED</div>
-                                <p>EYES ONLY</p>
-                            </div>
-                        </div>
-
+                {isMobile ? (
+                    /* Mobile View: Horizontal Scroll Snap */
+                    <div className="mobile-dossier-stack" style={{
+                        display: 'flex',
+                        overflowX: 'auto',
+                        scrollSnapType: 'x mandatory',
+                        gap: '1rem',
+                        padding: '1rem 0 2rem',
+                        WebkitOverflowScrolling: 'touch'
+                    }}>
                         {events.map((event, index) => (
-                            <Page key={event.id} number={index + 1} event={event} />
-                        ))}
-
-                        <div className="dossier-cover back">
-                            <div className="cover-content">
-                                <h2>END OF FILE</h2>
+                            <div key={event.id} style={{
+                                flex: '0 0 85%',
+                                maxWidth: '350px',
+                                scrollSnapAlign: 'center',
+                                height: '520px',
+                                perspective: '1000px'
+                            }}>
+                                <div className="dossier-page" style={{ height: '100%', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
+                                    <DossierCard event={event} number={index + 1} />
+                                </div>
                             </div>
-                        </div>
-                    </HTMLFlipBook>
-                </div>
+                        ))}
+                    </div>
+                ) : (
+                    /* Desktop View: Flipbook */
+                    <div className="dossier-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '600px', perspective: '1500px', margin: '0 auto', maxWidth: '1000px' }}>
+                        <HTMLFlipBook
+                            width={bookDimensions.width}
+                            height={bookDimensions.height}
+                            size="fixed"
+                            minWidth={300}
+                            maxWidth={500}
+                            minHeight={400}
+                            maxHeight={700}
+                            maxShadowOpacity={0.5}
+                            showCover={true}
+                            mobileScrollSupport={false}
+                            flippingTime={800}
+                            usePortrait={false}
+                            startZIndex={0}
+                            autoSize={true}
+                            clickEventForward={true}
+                            useMouseEvents={false}
+                            swipeDistance={0}
+                            showPageCorners={true}
+                            disableFlipByClick={false}
+                            drawShadow={false}
+                            className="dossier-book"
+                        >
+                            <div className="dossier-cover">
+                                <div className="cover-content">
+                                    <h1>TOP SECRET</h1>
+                                    <h2>PROJECT: MESCIA</h2>
+                                    <div className="logo-stamp">CLASSIFIED</div>
+                                    <p>EYES ONLY</p>
+                                </div>
+                            </div>
+
+                            {events.map((event, index) => (
+                                <Page key={event.id} number={index + 1} event={event} />
+                            ))}
+
+                            <div className="dossier-cover back">
+                                <div className="cover-content">
+                                    <h2>END OF FILE</h2>
+                                </div>
+                            </div>
+                        </HTMLFlipBook>
+                    </div>
+                )}
                 
                 <p style={{ textAlign: 'center', color: '#666', marginTop: '1rem', fontFamily: 'Courier New' }}>
-                    [ MOUSE INTERACTION ENABLED: DRAG OR CLICK CORNERS TO FLIP ]
+                    {isMobile ? '[ SWIPE TO EXPLORE FILES ]' : '[ CLICK CORNERS TO FLIP ]'}
                 </p>
             </div>
         </section>
