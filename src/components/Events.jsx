@@ -49,21 +49,69 @@ const Page = memo(forwardRef((props, ref) => {
         </div>
     );
 }));
-// SVG Atom Icon for Oppenheimer Theme
-const AtomIcon = () => (
-    <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2" style={{ opacity: 0.8 }}>
-        <circle cx="50" cy="50" r="6" fill="currentColor" opacity="0.8" />
-        <ellipse cx="50" cy="50" rx="30" ry="8" transform="rotate(0 50 50)" />
-        <ellipse cx="50" cy="50" rx="30" ry="8" transform="rotate(60 50 50)" />
-        <ellipse cx="50" cy="50" rx="30" ry="8" transform="rotate(120 50 50)" />
+
+
+// SVG Radiation Icon (Oppenheimer Theme)
+const RadiationIcon = () => (
+    <svg viewBox="0 0 100 100" width="60" height="60" fill="none" style={{ opacity: 0.9 }}>
+        <circle cx="50" cy="50" r="48" stroke="var(--accent-primary)" strokeWidth="2" opacity="0.5" strokeDasharray="10 5" />
+        <circle cx="50" cy="50" r="8" fill="var(--accent-primary)" />
+        <path d="M50 25 L50 5 A45 45 0 0 1 89 27.5 L69.5 38.75 A22.5 22.5 0 0 0 50 25 Z" fill="var(--accent-primary)" />
+        <path d="M71.65 62.5 L91.15 73.75 A45 45 0 0 1 50 95 L50 72.5 A22.5 22.5 0 0 0 71.65 62.5 Z" fill="var(--accent-primary)" />
+        <path d="M28.35 62.5 L8.85 73.75 A45 45 0 0 0 50 5 L50 25 A22.5 22.5 0 0 1 28.35 62.5 Z" transform="rotate(240 50 50)" fill="var(--accent-primary)" />
+        <circle cx="50" cy="50" r="40" stroke="var(--accent-primary)" strokeWidth="1" opacity="0.2" />
     </svg>
 );
+
+// Floating Fallout Particles for Mobile
+const FalloutParticles = () => {
+    // Generate random positions for purely decorative particles
+    const particles = Array.from({ length: 15 }).map((_, i) => ({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        animationDuration: `${10 + Math.random() * 20}s`,
+        animationDelay: `-${Math.random() * 20}s`,
+        opacity: 0.1 + Math.random() * 0.3,
+        size: 2 + Math.random() * 4
+    }));
+
+    return (
+        <div className="fallout-container" style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
+            pointerEvents: 'none',
+            zIndex: 0
+        }}>
+            {particles.map(p => (
+                <div key={p.id} style={{
+                    position: 'absolute',
+                    left: p.left,
+                    top: '-10%',
+                    width: `${p.size}px`,
+                    height: `${p.size}px`,
+                    background: 'var(--accent-primary)',
+                    borderRadius: '50%',
+                    opacity: p.opacity,
+                    boxShadow: `0 0 ${p.size * 2}px var(--accent-primary)`,
+                    animation: `fallout-drop ${p.animationDuration} linear infinite`,
+                    animationDelay: p.animationDelay
+                }} />
+            ))}
+        </div>
+    );
+};
 
 const WeaponRack = ({ events }) => {
     const [selectedEvent, setSelectedEvent] = useState(null);
 
     return (
-        <div className="weapon-rack-container">
+        <div className="weapon-rack-container" style={{ position: 'relative' }}>
+             {/* Particles for Mobile Background */}
+             <FalloutParticles /> 
             {selectedEvent ? (
                 <div className="weapon-details-panel">
                     <button className="back-btn" onClick={() => setSelectedEvent(null)}>
@@ -106,7 +154,7 @@ const WeaponRack = ({ events }) => {
                             onClick={() => setSelectedEvent(event)}
                         >
                             <div className="gun-silhoutte">
-                                <AtomIcon />
+                                <RadiationIcon />
                             </div>
                             <div className="weapon-label">
                                 <span className="wpn-code">PRJ-{event.id}</span>
