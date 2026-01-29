@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function Hero() {
+    const [isHovered, setIsHovered] = useState(false);
     const [countdown, setCountdown] = useState({
         days: 0,
         hours: 0,
@@ -46,31 +47,29 @@ function Hero() {
                         MeScia – 26
                     </div>
 
-                    <div className="say-my-name-container" style={{ margin: '1rem 0 2rem', height: '3rem' }}>
+                    <div 
+                        className="say-my-name-container" 
+                        style={{ margin: '1rem 0 2rem', height: '3rem', width: '100%', display: 'flex', justifyContent: 'center' }}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                    >
                         <span
-                            className="say-my-name glitch"
+                            className={`say-my-name ${isHovered ? 'glitch' : ''}`}
                             data-text="OPPENHEIMER"
                             style={{
                                 fontFamily: "'Bebas Neue', sans-serif",
                                 fontSize: '2rem',
                                 letterSpacing: '8px',
-                                color: 'var(--text-muted)',
+                                color: isHovered ? "var(--accent-primary)" : "var(--text-muted)",
                                 textTransform: 'uppercase',
                                 cursor: 'pointer',
-                                transition: 'all 0.3s ease'
-                            }}
-                            onMouseOver={(e) => {
-                                e.target.innerText = "OPPENHEIMER";
-                                e.target.style.color = "var(--accent-primary)";
-                                e.target.style.textShadow = "0 0 20px var(--accent-primary)";
-                            }}
-                            onMouseOut={(e) => {
-                                e.target.innerText = '"Theory Will Only Take You So Far"';
-                                e.target.style.color = "var(--text-muted)";
-                                e.target.style.textShadow = "none";
+                                transition: 'all 0.3s ease',
+                                textShadow: isHovered ? "0 0 20px var(--accent-primary)" : "none",
+                                display: 'inline-block',
+                                minWidth: '400px' // Prevent layout shift jitter
                             }}
                         >
-                            "Theory Will Only Take You So Far"
+                            {isHovered ? "OPPENHEIMER" : '"Theory Will Only Take You So Far"'}
                         </span>
                     </div>
 

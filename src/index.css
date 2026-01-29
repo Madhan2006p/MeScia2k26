@@ -1402,10 +1402,12 @@ h3 {
 
 .dossier-cover.back {
   background-color: #2c241b;
+  transform: rotateY(180deg);
 }
 
 .dossier-cover.back .cover-content {
-  /* Transformations removed */
+  transform: rotateY(180deg);
+  /* Un-mirror the text */
 }
 
 .cover-content {
