@@ -54,47 +54,7 @@ const Page = memo(forwardRef((props, ref) => {
 // SVG Radiation Icon (Oppenheimer Theme)
 
 
-// Floating Fallout Particles for Mobile
-const FalloutParticles = () => {
-    // Generate random positions for purely decorative particles
-    const particles = Array.from({ length: 15 }).map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        animationDuration: `${10 + Math.random() * 20}s`,
-        animationDelay: `-${Math.random() * 20}s`,
-        opacity: 0.1 + Math.random() * 0.3,
-        size: 2 + Math.random() * 4
-    }));
 
-    return (
-        <div className="fallout-container" style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            overflow: 'hidden',
-            pointerEvents: 'none',
-            zIndex: 0
-        }}>
-            {particles.map(p => (
-                <div key={p.id} style={{
-                    position: 'absolute',
-                    left: p.left,
-                    top: '-10%',
-                    width: `${p.size}px`,
-                    height: `${p.size}px`,
-                    background: 'var(--accent-primary)',
-                    borderRadius: '50%',
-                    opacity: p.opacity,
-                    boxShadow: `0 0 ${p.size * 2}px var(--accent-primary)`,
-                    animation: `fallout-drop ${p.animationDuration} linear infinite`,
-                    animationDelay: p.animationDelay
-                }} />
-            ))}
-        </div>
-    );
-};
 
 
 
@@ -198,7 +158,6 @@ function Events() {
 
                 {isMobile ? (
                     <div className="mobile-dossier-container" style={{ position: 'relative' }}>
-                        <FalloutParticles />
                         {events.map((event, index) => (
                             <div key={event.id} className="mobile-dossier-wrapper">
                                 <Page number={index + 1} event={event} />

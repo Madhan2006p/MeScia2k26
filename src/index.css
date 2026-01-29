@@ -1883,3 +1883,23 @@ h3 {
 .mobile-dossier-wrapper .file-id {
   font-size: 0.7rem !important;
 }
+
+@keyframes fallout-drop {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--opacity, 1);
+  }
+
+  90% {
+    opacity: var(--opacity, 1);
+  }
+
+  100% {
+    transform: translateY(120vh);
+    opacity: 0;
+  }
+}
