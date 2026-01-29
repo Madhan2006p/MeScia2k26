@@ -1,7 +1,7 @@
 function Registration() {
     const handleRegister = () => {
         // Replace with actual Google Form URL
-        window.open('https://forms.google.com/your-form-url', '_blank');
+        window.open('https://forms.gle/JfgkzXoAZqTEXuGz8', '_blank');
     };
 
     return (

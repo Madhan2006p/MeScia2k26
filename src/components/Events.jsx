@@ -1,9 +1,10 @@
 import HTMLFlipBook from 'react-pageflip';
 
 // Custom Page Component for the flipbook
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useState, memo, useEffect } from 'react';
 
-const Page = forwardRef((props, ref) => {
+const Page = memo(forwardRef((props, ref) => {
+    // ... (rest of Page component)
     return (
         <div className="dossier-page" ref={ref}>
             <div className="dossier-content">
@@ -47,11 +48,31 @@ const Page = forwardRef((props, ref) => {
             </div>
         </div>
     );
-});
+}));
 
 function Events() {
-    const [filter, setFilter] = useState('all');
+    const [bookDimensions, setBookDimensions] = useState({ width: 400, height: 550 });
+    const [isMobile, setIsMobile] = useState(false);
 
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (width < 768) {
+                // Mobile View
+                const newWidth = Math.min(width - 40, 350);
+                setBookDimensions({ width: newWidth, height: newWidth * 1.4 });
+                setIsMobile(true);
+            } else {
+                // Desktop View
+                setBookDimensions({ width: 400, height: 550 });
+                setIsMobile(false);
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     const events = [
         {
             id: 1,
@@ -119,10 +140,6 @@ function Events() {
         }
     ];
 
-    const filteredEvents = filter === 'all'
-        ? events
-        : events.filter(event => event.type === filter);
-
     return (
         <section id="events" className="section">
             <div className="container" style={{ overflow: 'visible' }}>
@@ -131,31 +148,10 @@ function Events() {
                     Access Granted. Flip through the technical dossiers.
                 </p>
 
-                <div className="event-filters">
-                    <button
-                        className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
-                        onClick={() => setFilter('all')}
-                    >
-                        Index
-                    </button>
-                    <button
-                        className={`filter-btn ${filter === 'technical' ? 'active' : ''}`}
-                        onClick={() => setFilter('technical')}
-                    >
-                        Technical
-                    </button>
-                    <button
-                        className={`filter-btn ${filter === 'non-technical' ? 'active' : ''}`}
-                        onClick={() => setFilter('non-technical')}
-                    >
-                        Non-Technical
-                    </button>
-                </div>
-
                 <div className="dossier-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '600px', perspective: '1500px', margin: '0 auto', maxWidth: '1000px' }}>
                     <HTMLFlipBook
-                        width={400}
-                        height={550}
+                        width={bookDimensions.width}
+                        height={bookDimensions.height}
                         size="fixed"
                         minWidth={300}
                         maxWidth={500}
@@ -163,7 +159,17 @@ function Events() {
                         maxHeight={700}
                         maxShadowOpacity={0.5}
                         showCover={true}
-                        mobileScrollSupport={true}
+                        mobileScrollSupport={false}
+                        flippingTime={800}
+                        usePortrait={isMobile}
+                        startZIndex={0}
+                        autoSize={true}
+                        clickEventForward={true}
+                        useMouseEvents={true}
+                        swipeDistance={30}
+                        showPageCorners={true}
+                        disableFlipByClick={false}
+                        drawShadow={false}
                         className="dossier-book"
                     >
                         <div className="dossier-cover">
@@ -175,7 +181,7 @@ function Events() {
                             </div>
                         </div>
 
-                        {filteredEvents.map((event, index) => (
+                        {events.map((event, index) => (
                             <Page key={event.id} number={index + 1} event={event} />
                         ))}
 

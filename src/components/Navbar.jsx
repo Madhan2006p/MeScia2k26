@@ -40,7 +40,7 @@ function Navbar() {
                         <li><a className="nav-link" onClick={() => scrollToSection('schedule')}>Schedule</a></li>
                         <li><a className="nav-link" onClick={() => scrollToSection('team')}>Team</a></li>
                         <li><a className="nav-link" onClick={() => scrollToSection('guidelines')}>Guidelines</a></li>
-                        <li><a className="nav-link" onClick={() => scrollToSection('register')}>Register</a></li>
+                        <li><a className="nav-link" href="https://forms.gle/JfgkzXoAZqTEXuGz8" target="_blank" rel="noopener noreferrer">Register</a></li>
                     </ul>
                 </div>
             </div>

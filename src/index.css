@@ -1252,12 +1252,19 @@ h3 {
   /* Vintage Paper */
   width: 100%;
   height: 100%;
-  box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  /* Removed expensive inset shadow for drag performance */
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   font-family: 'Courier New', Courier, monospace;
   overflow: hidden;
   position: relative;
+  will-change: transform;
+  /* Hardware Acceleration */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  contain: strict;
+  /* Isolated rendering context */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .dossier-content {
@@ -1269,14 +1276,19 @@ h3 {
   flex-direction: column;
 }
 
-/* Paper Texture Overlay */
+/* Paper Texture Overlay - Optimized (No heavy SVG filters) */
 .paper-texture {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  /* Simple noise-like gradient instead of expensive filter */
+  background-image: repeating-linear-gradient(45deg,
+      rgba(0, 0, 0, 0.02) 0px,
+      rgba(0, 0, 0, 0.02) 2px,
+      transparent 2px,
+      transparent 4px);
   pointer-events: none;
   mix-blend-mode: multiply;
   z-index: 10;
@@ -1554,4 +1566,82 @@ h3 {
   opacity: 0.1;
   border: 1px solid var(--accent-primary);
   /* Expand to full border on hover */
+}
+
+/* Registration Section Styling */
+.registration {
+  position: relative;
+  z-index: 5;
+  padding: 4rem 0;
+  /* Add padding to section */
+}
+
+.registration-content {
+  background: rgba(5, 4, 4, 0.95);
+  /* Darker opacity for better contrast */
+  border: 1px solid var(--accent-primary);
+  box-shadow: 0 0 30px rgba(255, 103, 0, 0.15);
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Corner Accents */
+.registration-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-top: 3px solid var(--accent-primary);
+  border-left: 3px solid var(--accent-primary);
+}
+
+.registration-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-bottom: 3px solid var(--accent-primary);
+  border-right: 3px solid var(--accent-primary);
+}
+
+.registration-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Enhancing the CTA button in this context */
+.registration-content .cta-button {
+  background: transparent;
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  font-family: 'Orbitron', sans-serif;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 103, 0, 0.2);
+  cursor: pointer;
+}
+
+.registration-content .cta-button:hover {
+  background: var(--accent-primary);
+  color: #000;
+  box-shadow: 0 0 30px rgba(255, 103, 0, 0.6);
+  transform: translateY(-2px);
 }
