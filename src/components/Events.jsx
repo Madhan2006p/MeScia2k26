@@ -3,56 +3,121 @@ import HTMLFlipBook from 'react-pageflip';
 // Custom Page Component for the flipbook
 import React, { forwardRef, useState, memo, useEffect } from 'react';
 
-// Extracted Card Content for reuse
-const DossierCard = ({ event, number }) => (
-    <div className="dossier-content">
-        <div className="dossier-header">
-            <span className="confidential-stamp">CONFIDENTIAL</span>
-            <span className="file-id">FILE #{event.id.toString().padStart(3, '0')}</span>
-        </div>
-        
-        <div className="dossier-body">
-            <h3 className="dossier-title">{event.title}</h3>
-            <div className="dossier-divider"></div>
-            
-            <div className="dossier-section">
-                <h4>DESCRIPTION</h4>
-                <p>{event.description}</p>
-            </div>
-
-            <div className="dossier-grid">
-                <div className="dossier-item">
-                    <span className="label">TIMING</span>
-                    <span className="value">{event.time}</span>
-                </div>
-                <div className="dossier-item">
-                    <span className="label">PERSONNEL</span>
-                    <span className="value">{event.teamSize}</span>
-                </div>
-                <div className="dossier-item">
-                    <span className="label">CLASS</span>
-                    <span className="value">{event.type.toUpperCase()}</span>
-                </div>
-            </div>
-        </div>
-
-        <div className="dossier-footer">
-            <span className="auth-sig">AUTHORIZED BY: OPPENHEIMER</span>
-            <span className="page-num">PG {number}</span>
-        </div>
-        
-        {/* Paper texture and aging effects */}
-        <div className="paper-texture"></div>
-    </div>
-);
-
 const Page = memo(forwardRef((props, ref) => {
+    // ... (rest of Page component)
     return (
         <div className="dossier-page" ref={ref}>
-            <DossierCard event={props.event} number={props.number} />
+            <div className="dossier-content">
+                <div className="dossier-header">
+                    <span className="confidential-stamp">CONFIDENTIAL</span>
+                    <span className="file-id">FILE #{props.event.id.toString().padStart(3, '0')}</span>
+                </div>
+                
+                <div className="dossier-body">
+                    <h3 className="dossier-title">{props.event.title}</h3>
+                    <div className="dossier-divider"></div>
+                    
+                    <div className="dossier-section">
+                        <h4>DESCRIPTION</h4>
+                        <p>{props.event.description}</p>
+                    </div>
+
+                    <div className="dossier-grid">
+                        <div className="dossier-item">
+                            <span className="label">TIMING</span>
+                            <span className="value">{props.event.time}</span>
+                        </div>
+                        <div className="dossier-item">
+                            <span className="label">PERSONNEL</span>
+                            <span className="value">{props.event.teamSize}</span>
+                        </div>
+                        <div className="dossier-item">
+                            <span className="label">CLASS</span>
+                            <span className="value">{props.event.type.toUpperCase()}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="dossier-footer">
+                    <span className="auth-sig">AUTHORIZED BY: OPPENHEIMER</span>
+                    <span className="page-num">PG {props.number}</span>
+                </div>
+                
+                {/* Paper texture and aging effects */}
+                <div className="paper-texture"></div>
+            </div>
         </div>
     );
-}));
+// SVG Gun Icon
+const GunIcon = () => (
+    <svg viewBox="0 0 100 60" width="60" height="36" fill="currentColor" style={{ opacity: 0.8 }}>
+        <path d="M10,20 L30,20 L30,10 L80,10 L90,20 L90,25 L80,25 L75,35 L50,35 L45,25 L10,25 Z M15,25 L25,40 L35,40 L30,25 Z" />
+        <rect x="35" y="12" width="40" height="4" opacity="0.5" />
+        <circle cx="85" cy="18" r="2" />
+    </svg>
+);
+
+const WeaponRack = ({ events }) => {
+    const [selectedEvent, setSelectedEvent] = useState(null);
+
+    return (
+        <div className="weapon-rack-container">
+            {selectedEvent ? (
+                <div className="weapon-details-panel">
+                    <button className="back-btn" onClick={() => setSelectedEvent(null)}>
+                        ← BACK TO ARMORY
+                    </button>
+                    <div className="weapon-card-detail">
+                        <div className="weapon-header">
+                            <h3 className="weapon-title-detail">{selectedEvent.title}</h3>
+                            <div className="weapon-id">WPN-{selectedEvent.id.toString().padStart(3, '0')}</div>
+                        </div>
+                        <div className="weapon-body-detail">
+                             <div className="weapon-info-grid">
+                                <div className="info-cell">
+                                    <label>TYPE</label>
+                                    <span>{selectedEvent.type.toUpperCase()}</span>
+                                </div>
+                                <div className="info-cell">
+                                    <label>TIME</label>
+                                    <span>{selectedEvent.time}</span>
+                                </div>
+                                <div className="info-cell">
+                                    <label>SQUAD</label>
+                                    <span>{selectedEvent.teamSize}</span>
+                                </div>
+                            </div>
+                            
+                            <div className="weapon-desc-box">
+                                <h4>TACTICAL BRIEF</h4>
+                                <p>{selectedEvent.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className="rack-grid">
+                    {events.map((event) => (
+                        <div 
+                            key={event.id} 
+                            className="weapon-slot"
+                            onClick={() => setSelectedEvent(event)}
+                        >
+                            <div className="gun-silhoutte">
+                                <GunIcon />
+                            </div>
+                            <div className="weapon-label">
+                                <span className="wpn-code">MK-{event.id}</span>
+                                <span className="wpn-name">{event.title}</span>
+                            </div>
+                            <div className="wpn-status">READY</div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
 
 function Events() {
     const [bookDimensions, setBookDimensions] = useState({ width: 400, height: 550 });
@@ -148,35 +213,12 @@ function Events() {
             <div className="container" style={{ overflow: 'visible' }}>
                 <h2 className="section-title glitch" data-text="Classified Files">Classified Files</h2>
                 <p className="section-subtitle">
-                    Access Granted. Flip through the technical dossiers.
+                    Access Granted. {isMobile ? 'Select a Weapon from the Armory.' : 'Flip through the technical dossiers.'}
                 </p>
 
                 {isMobile ? (
-                    /* Mobile View: Horizontal Scroll Snap */
-                    <div className="mobile-dossier-stack" style={{
-                        display: 'flex',
-                        overflowX: 'auto',
-                        scrollSnapType: 'x mandatory',
-                        gap: '1rem',
-                        padding: '1rem 0 2rem',
-                        WebkitOverflowScrolling: 'touch'
-                    }}>
-                        {events.map((event, index) => (
-                            <div key={event.id} style={{
-                                flex: '0 0 85%',
-                                maxWidth: '350px',
-                                scrollSnapAlign: 'center',
-                                height: '520px',
-                                perspective: '1000px'
-                            }}>
-                                <div className="dossier-page" style={{ height: '100%', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
-                                    <DossierCard event={event} number={index + 1} />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <WeaponRack events={events} />
                 ) : (
-                    /* Desktop View: Flipbook */
                     <div className="dossier-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '600px', perspective: '1500px', margin: '0 auto', maxWidth: '1000px' }}>
                         <HTMLFlipBook
                             width={bookDimensions.width}
@@ -220,12 +262,11 @@ function Events() {
                                 </div>
                             </div>
                         </HTMLFlipBook>
+                        <p style={{ textAlign: 'center', color: '#666', marginTop: '1rem', fontFamily: 'Courier New' }}>
+                            [ CLICK CORNERS TO FLIP ]
+                        </p>
                     </div>
                 )}
-                
-                <p style={{ textAlign: 'center', color: '#666', marginTop: '1rem', fontFamily: 'Courier New' }}>
-                    {isMobile ? '[ SWIPE TO EXPLORE FILES ]' : '[ CLICK CORNERS TO FLIP ]'}
-                </p>
             </div>
         </section>
     );
