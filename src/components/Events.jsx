@@ -48,6 +48,7 @@ const Page = memo(forwardRef((props, ref) => {
             </div>
         </div>
     );
+}));
 // SVG Gun Icon
 const GunIcon = () => (
     <svg viewBox="0 0 100 60" width="60" height="36" fill="currentColor" style={{ opacity: 0.8 }}>
