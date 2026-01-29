@@ -19,36 +19,28 @@ function Guidelines() {
             <div className="container">
                 <h2 className="section-title glitch" data-text="System Guidelines">System Guidelines</h2>
 
-                <div className="terminal-window" style={{
-                    background: 'rgba(10, 10, 10, 0.9)',
-                    border: '1px solid var(--accent-primary)',
-                    padding: '2rem',
-                    fontFamily: "'Fira Code', monospace",
-                    maxWidth: '900px',
-                    margin: '0 auto',
-                    boxShadow: '0 0 20px rgba(0, 255, 65, 0.1)'
-                }}>
-                    <div className="terminal-header" style={{ display: 'flex', gap: '8px', marginBottom: '20px', borderBottom: '1px solid #333', paddingBottom: '10px' }}>
-                        <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff5f56' }}></div>
-                        <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ffbd2e' }}></div>
-                        <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27c93f' }}></div>
+                <div className="terminal-window glass-panel">
+                    <div className="terminal-controls">
+                        <div className="control red"></div>
+                        <div className="control yellow"></div>
+                        <div className="control green"></div>
                     </div>
 
                     <div className="terminal-content">
                         {guidelines.map((item, index) => (
-                            <div key={index} className="terminal-line" style={{ marginBottom: '1.5rem' }}>
-                                <div className="cmd-line" style={{ color: 'var(--accent-primary)', marginBottom: '0.2rem' }}>
-                                    <span style={{ color: '#ffbd2e' }}>root@mescia:~#</span> ./run_rule_{item.code}
+                            <div key={index} className="terminal-line">
+                                <div className="cmd-line">
+                                    <span className="prompt">root@mescia:~#</span> <span className="cmd">./run_rule_{item.code}</span>
                                 </div>
                                 <div className="typing-container">
-                                    <div className="typing-text" style={{ color: '#ccc', fontSize: '0.9rem' }}>
+                                    <div className="typing-text output">
                                         {`> ${item.output}`}
                                     </div>
                                 </div>
                             </div>
                         ))}
-                        <div className="terminal-line">
-                            <span style={{ color: '#ffbd2e' }}>root@mescia:~#</span> <span className="cursor-blink">_</span>
+                        <div className="terminal-line active-line">
+                            <span className="prompt">root@mescia:~#</span> <span className="cursor-blink">_</span>
                         </div>
                     </div>
                 </div>
