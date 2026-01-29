@@ -49,12 +49,13 @@ const Page = memo(forwardRef((props, ref) => {
         </div>
     );
 }));
-// SVG Gun Icon
-const GunIcon = () => (
-    <svg viewBox="0 0 100 60" width="60" height="36" fill="currentColor" style={{ opacity: 0.8 }}>
-        <path d="M10,20 L30,20 L30,10 L80,10 L90,20 L90,25 L80,25 L75,35 L50,35 L45,25 L10,25 Z M15,25 L25,40 L35,40 L30,25 Z" />
-        <rect x="35" y="12" width="40" height="4" opacity="0.5" />
-        <circle cx="85" cy="18" r="2" />
+// SVG Atom Icon for Oppenheimer Theme
+const AtomIcon = () => (
+    <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2" style={{ opacity: 0.8 }}>
+        <circle cx="50" cy="50" r="6" fill="currentColor" opacity="0.8" />
+        <ellipse cx="50" cy="50" rx="30" ry="8" transform="rotate(0 50 50)" />
+        <ellipse cx="50" cy="50" rx="30" ry="8" transform="rotate(60 50 50)" />
+        <ellipse cx="50" cy="50" rx="30" ry="8" transform="rotate(120 50 50)" />
     </svg>
 );
 
@@ -66,12 +67,12 @@ const WeaponRack = ({ events }) => {
             {selectedEvent ? (
                 <div className="weapon-details-panel">
                     <button className="back-btn" onClick={() => setSelectedEvent(null)}>
-                        ← BACK TO ARMORY
+                        ← BACK TO ARCHIVES
                     </button>
                     <div className="weapon-card-detail">
                         <div className="weapon-header">
                             <h3 className="weapon-title-detail">{selectedEvent.title}</h3>
-                            <div className="weapon-id">WPN-{selectedEvent.id.toString().padStart(3, '0')}</div>
+                            <div className="weapon-id">PROJ-{selectedEvent.id.toString().padStart(3, '0')}</div>
                         </div>
                         <div className="weapon-body-detail">
                              <div className="weapon-info-grid">
@@ -105,10 +106,10 @@ const WeaponRack = ({ events }) => {
                             onClick={() => setSelectedEvent(event)}
                         >
                             <div className="gun-silhoutte">
-                                <GunIcon />
+                                <AtomIcon />
                             </div>
                             <div className="weapon-label">
-                                <span className="wpn-code">MK-{event.id}</span>
+                                <span className="wpn-code">PRJ-{event.id}</span>
                                 <span className="wpn-name">{event.title}</span>
                             </div>
                             <div className="wpn-status">READY</div>
@@ -214,7 +215,7 @@ function Events() {
             <div className="container" style={{ overflow: 'visible' }}>
                 <h2 className="section-title glitch" data-text="Classified Files">Classified Files</h2>
                 <p className="section-subtitle">
-                    Access Granted. {isMobile ? 'Select a Weapon from the Armory.' : 'Flip through the technical dossiers.'}
+                    Access Granted. {isMobile ? 'Select a Project from the Archives.' : 'Flip through the technical dossiers.'}
                 </p>
 
                 {isMobile ? (
