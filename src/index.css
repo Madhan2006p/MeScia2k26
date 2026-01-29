@@ -1821,3 +1821,65 @@ h3 {
     transform: translateY(0);
   }
 }
+
+/* Mobile Dossier View - Scroll Snap */
+.mobile-dossier-container {
+  height: 75vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  padding: 0;
+  perspective: 1000px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-dossier-container::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-dossier-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: center;
+  padding: 1rem;
+}
+
+/* Force the dossier page to behave like a card in mobile view */
+.mobile-dossier-wrapper .dossier-page {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 350px !important;
+  height: auto !important;
+  aspect-ratio: 400/550;
+  background-color: #f0f0e0;
+  color: #333;
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid #d4cbb8;
+  display: block !important;
+  overflow: hidden;
+  margin: 0;
+}
+
+.mobile-dossier-wrapper .dossier-content {
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-dossier-wrapper .dossier-title {
+  font-size: 1.5rem !important;
+}
+
+.mobile-dossier-wrapper .dossier-body {
+  flex: 1;
+}
+
+.mobile-dossier-wrapper .file-id {
+  font-size: 0.7rem !important;
+}

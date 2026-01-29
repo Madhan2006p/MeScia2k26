@@ -52,16 +52,7 @@ const Page = memo(forwardRef((props, ref) => {
 
 
 // SVG Radiation Icon (Oppenheimer Theme)
-const RadiationIcon = () => (
-    <svg viewBox="0 0 100 100" width="60" height="60" fill="none" style={{ opacity: 0.9 }}>
-        <circle cx="50" cy="50" r="48" stroke="var(--accent-primary)" strokeWidth="2" opacity="0.5" strokeDasharray="10 5" />
-        <circle cx="50" cy="50" r="8" fill="var(--accent-primary)" />
-        <path d="M50 25 L50 5 A45 45 0 0 1 89 27.5 L69.5 38.75 A22.5 22.5 0 0 0 50 25 Z" fill="var(--accent-primary)" />
-        <path d="M71.65 62.5 L91.15 73.75 A45 45 0 0 1 50 95 L50 72.5 A22.5 22.5 0 0 0 71.65 62.5 Z" fill="var(--accent-primary)" />
-        <path d="M28.35 62.5 L8.85 73.75 A45 45 0 0 0 50 5 L50 25 A22.5 22.5 0 0 1 28.35 62.5 Z" transform="rotate(240 50 50)" fill="var(--accent-primary)" />
-        <circle cx="50" cy="50" r="40" stroke="var(--accent-primary)" strokeWidth="1" opacity="0.2" />
-    </svg>
-);
+
 
 // Floating Fallout Particles for Mobile
 const FalloutParticles = () => {
@@ -105,69 +96,7 @@ const FalloutParticles = () => {
     );
 };
 
-const WeaponRack = ({ events }) => {
-    const [selectedEvent, setSelectedEvent] = useState(null);
 
-    return (
-        <div className="weapon-rack-container" style={{ position: 'relative' }}>
-             {/* Particles for Mobile Background */}
-             <FalloutParticles /> 
-            {selectedEvent ? (
-                <div className="weapon-details-panel">
-                    <button className="back-btn" onClick={() => setSelectedEvent(null)}>
-                        ← BACK TO ARCHIVES
-                    </button>
-                    <div className="weapon-card-detail">
-                        <div className="weapon-header">
-                            <h3 className="weapon-title-detail">{selectedEvent.title}</h3>
-                            <div className="weapon-id">PROJ-{selectedEvent.id.toString().padStart(3, '0')}</div>
-                        </div>
-                        <div className="weapon-body-detail">
-                             <div className="weapon-info-grid">
-                                <div className="info-cell">
-                                    <label>TYPE</label>
-                                    <span>{selectedEvent.type.toUpperCase()}</span>
-                                </div>
-                                <div className="info-cell">
-                                    <label>TIME</label>
-                                    <span>{selectedEvent.time}</span>
-                                </div>
-                                <div className="info-cell">
-                                    <label>SQUAD</label>
-                                    <span>{selectedEvent.teamSize}</span>
-                                </div>
-                            </div>
-                            
-                            <div className="weapon-desc-box">
-                                <h4>TACTICAL BRIEF</h4>
-                                <p>{selectedEvent.description}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            ) : (
-                <div className="rack-grid">
-                    {events.map((event) => (
-                        <div 
-                            key={event.id} 
-                            className="weapon-slot"
-                            onClick={() => setSelectedEvent(event)}
-                        >
-                            <div className="gun-silhoutte">
-                                <RadiationIcon />
-                            </div>
-                            <div className="weapon-label">
-                                <span className="wpn-code">PRJ-{event.id}</span>
-                                <span className="wpn-name">{event.title}</span>
-                            </div>
-                            <div className="wpn-status">READY</div>
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
-    );
-};
 
 function Events() {
     const [bookDimensions, setBookDimensions] = useState({ width: 400, height: 550 });
@@ -262,12 +191,20 @@ function Events() {
         <section id="events" className="section">
             <div className="container" style={{ overflow: 'visible' }}>
                 <h2 className="section-title glitch" data-text="Classified Files">Classified Files</h2>
+
                 <p className="section-subtitle">
-                    Access Granted. {isMobile ? 'Select a Project from the Archives.' : 'Flip through the technical dossiers.'}
+                    Access Granted. {isMobile ? 'Swipe vertically to view the files.' : 'Flip through the technical dossiers.'}
                 </p>
 
                 {isMobile ? (
-                    <WeaponRack events={events} />
+                    <div className="mobile-dossier-container" style={{ position: 'relative' }}>
+                        <FalloutParticles />
+                        {events.map((event, index) => (
+                            <div key={event.id} className="mobile-dossier-wrapper">
+                                <Page number={index + 1} event={event} />
+                            </div>
+                        ))}
+                    </div>
                 ) : (
                     <div className="dossier-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '600px', perspective: '1500px', margin: '0 auto', maxWidth: '1000px' }}>
                         <HTMLFlipBook
