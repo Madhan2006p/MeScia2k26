@@ -1,19 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  /* Premium Dark Science Palette */
-  --bg-dark: #050505;
-  --bg-panel: rgba(20, 20, 20, 0.6);
-  --accent-primary: #00ff41;
-  /* Terminal Green */
-  --accent-secondary: #0bda51;
-  /* Chemical Green */
-  --accent-dim: rgba(0, 255, 65, 0.1);
-  --text-main: #ffffff;
-  --text-muted: #888888;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.05);
-  --neon-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+  /* Oppenheimer / Nuclear Palette */
+  --bg-dark: #050404;
+  /* Deep, slightly warm black */
+  --bg-panel: rgba(20, 15, 10, 0.6);
+  /* Warm tint for panels */
+  --accent-primary: #ff6700;
+  /* Explosion Orange */
+  /* Fission Gold */
+  --accent-secondary: #ffb700;
+  /* Radiation Glow */
+  --accent-dim: rgba(255, 103, 0, 0.1);
+  --text-main: #f0f0e0;
+  /* Vintage Paper / Off-white */
+  --text-muted: #887766;
+  /* Sepia/Gray muted */
+  --border-color: rgba(255, 165, 0, 0.15);
+  --glass-border: 1px solid rgba(255, 165, 0, 0.1);
+  --neon-shadow: 0 0 15px rgba(255, 103, 0, 0.3);
 }
 
 * {
@@ -64,15 +69,15 @@ body::after {
 
 @keyframes pulse-glow {
   0% {
-    box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4);
+    box-shadow: 0 0 0 0 rgba(255, 103, 0, 0.4);
   }
 
   70% {
-    box-shadow: 0 0 0 20px rgba(0, 255, 65, 0);
+    box-shadow: 0 0 0 20px rgba(255, 103, 0, 0);
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgba(0, 255, 65, 0);
+    box-shadow: 0 0 0 0 rgba(255, 103, 0, 0);
   }
 }
 
@@ -284,8 +289,7 @@ h3 {
   color: var(--text-main);
   margin-bottom: 1rem;
   letter-spacing: 5px;
-  mix-blend-mode: overlay;
-  /* Keep overlay for cinematic effect */
+  /* mix-blend-mode removed for better visibility */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -308,7 +312,7 @@ h3 {
   font-weight: 800;
   line-height: 1;
   position: relative;
-  box-shadow: 0 0 25px rgba(11, 218, 81, 0.6);
+  box-shadow: 0 0 25px rgba(255, 183, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.2);
   margin-right: 5px;
   transform: translateY(5px);
@@ -408,7 +412,7 @@ h3 {
 .cta-button:hover {
   background: var(--accent-primary);
   color: black;
-  box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+  box-shadow: 0 0 30px rgba(255, 103, 0, 0.4);
 }
 
 /* Marquee - Animated */
@@ -460,7 +464,7 @@ h3 {
   font-size: 1.1rem;
   margin-left: 5px;
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(11, 218, 81, 0.4);
+  box-shadow: 0 0 10px rgba(255, 183, 0, 0.4);
 }
 
 @keyframes scrollMarquee {
@@ -512,8 +516,8 @@ h3 {
 .filter-btn.active {
   border-color: var(--accent-primary);
   color: var(--accent-primary);
-  background: rgba(0, 255, 65, 0.05);
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+  background: rgba(255, 103, 0, 0.05);
+  box-shadow: 0 0 15px rgba(255, 103, 0, 0.2);
 }
 
 .filter-btn.active::before {
@@ -610,13 +614,13 @@ h3 {
 
   0%,
   100% {
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.1), inset 0 0 0 rgba(0, 255, 65, 0);
+    box-shadow: 0 0 10px rgba(255, 103, 0, 0.1), inset 0 0 0 rgba(255, 103, 0, 0);
     border-color: rgba(255, 255, 255, 0.1);
   }
 
   50% {
-    box-shadow: 0 0 25px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.05);
-    border-color: rgba(0, 255, 65, 0.5);
+    box-shadow: 0 0 25px rgba(255, 103, 0, 0.3), inset 0 0 20px rgba(255, 103, 0, 0.05);
+    border-color: rgba(255, 103, 0, 0.5);
   }
 }
 
@@ -804,14 +808,14 @@ h3 {
 
 .glitch::before {
   left: 2px;
-  text-shadow: -1px 0 #ff00c1;
+  text-shadow: -1px 0 #ff4500;
   clip: rect(44px, 450px, 56px, 0);
   animation: glitch-anim-1 5s infinite linear alternate-reverse;
 }
 
 .glitch::after {
   left: -2px;
-  text-shadow: -1px 0 #00fff9;
+  text-shadow: -1px 0 #ffb700;
   clip: rect(44px, 450px, 56px, 0);
   animation: glitch-anim-2 5s infinite linear alternate-reverse;
 }
@@ -1013,4 +1017,539 @@ h3 {
     transform: scale(1.5);
     opacity: 0.8;
   }
+}
+
+/* Book Event Cards (Oppenheimer Classified Files) */
+.book-container {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.75;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.book:hover {
+  transform: rotateY(-30deg) translateX(10px);
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* Front Cover */
+.book-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1a1510;
+  /* Deep textured black/brown */
+  background-image:
+    linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(20, 15, 10, 0.8)),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+  border-radius: 2px 8px 8px 2px;
+  transform-origin: left;
+  z-index: 2;
+  display: flex;
+  border: 1px solid #332211;
+  backface-visibility: hidden;
+  /* Ensure cover hides content until rotated significantly if using real flip, but here we just want a 3D block look */
+}
+
+/* Spine */
+.book-binding {
+  width: 40px;
+  height: 100%;
+  background:
+    linear-gradient(90deg,
+      #8b4500 0%,
+      #ff6700 30%,
+      #8b4500 60%,
+      #331500 100%);
+  /* Leather Spine look */
+  border-right: 2px solid #000;
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 5;
+}
+
+.book-binding::after {
+  /* Spine ridges */
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 50px 0 rgba(0, 0, 0, 0.4), 0 200px 0 rgba(0, 0, 0, 0.4), 0 250px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Cover Content */
+.book-skin {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border: 1px solid rgba(255, 103, 0, 0.1);
+  margin: 5px 5px 5px 0;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.book-title-panel {
+  border: 2px solid var(--accent-secondary);
+  padding: 1rem;
+  background: #000;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  box-shadow: 0 0 10px rgba(255, 183, 0, 0.2);
+}
+
+.book-title {
+  font-family: 'Bebas Neue', sans-serif;
+  color: var(--accent-secondary);
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.book-icon {
+  font-size: 4rem;
+  color: rgba(255, 103, 0, 0.2);
+  filter: drop-shadow(0 0 10px var(--accent-primary));
+}
+
+.book-classification {
+  font-family: 'Orbitron', sans-serif;
+  color: #ff3300;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  border-top: 1px solid #ff3300;
+  border-bottom: 1px solid #ff3300;
+  padding: 0.5rem 1rem;
+  transform: rotate(-5deg);
+  opacity: 0.8;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Pages (The visual thickness) */
+.book::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: -15px;
+  width: 15px;
+  height: calc(100% - 10px);
+  background:
+    repeating-linear-gradient(90deg,
+      #dcdcdc 0px,
+      #c0c0c0 1px,
+      #dcdcdc 2px);
+  transform: skewY(15deg) translateY(-2px);
+  transform-origin: left;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+.book:hover::after {
+  transform: skewY(0) translateX(0);
+  right: -25px;
+  width: 25px;
+}
+
+/* Inner Page (Visible on hover/interaction - simulated) */
+.book-page {
+  position: absolute;
+  top: 5px;
+  left: 45px;
+  width: calc(100% - 50px);
+  height: calc(100% - 10px);
+  background: #f0f0e0;
+  z-index: 1;
+  transition: transform 0.6s ease;
+  transform: translateX(0);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.book:hover .book-page {
+  transform: translateX(100px) rotateY(-10deg);
+  opacity: 1;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+}
+
+/* Page Content Styling */
+.page-content {
+  border: 1px dashed #999;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  font-family: 'Rajdhani', sans-serif;
+  color: #333;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.2rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.page-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  color: #222;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.page-footer {
+  margin-top: auto;
+  border-top: 1px solid #ccc;
+  padding-top: 0.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  color: #555;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.meta-label {
+  font-weight: 700;
+  color: #000;
+}
+
+
+/* Dossier Flipbook Styles */
+.dossier-page {
+  background-color: #f7f3e8;
+  /* Vintage Paper */
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+  position: relative;
+}
+
+.dossier-content {
+  border: 1px solid #d4cbb8;
+  height: 100%;
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Paper Texture Overlay */
+.paper-texture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  z-index: 10;
+}
+
+/* Header */
+.dossier-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.confidential-stamp {
+  color: #c00;
+  font-weight: 700;
+  border: 2px solid #c00;
+  padding: 0.2rem 0.6rem;
+  transform: rotate(-3deg);
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.file-id {
+  font-family: 'Orbitron', sans-serif;
+  color: #333;
+}
+
+/* Body */
+.dossier-body {
+  flex: 1;
+}
+
+.dossier-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.dossier-divider {
+  height: 4px;
+  background: repeating-linear-gradient(45deg,
+      #000,
+      #000 5px,
+      transparent 5px,
+      transparent 10px);
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.dossier-section h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: 0.5rem;
+  text-decoration: underline;
+}
+
+.dossier-section p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #222;
+  margin-bottom: 2rem;
+}
+
+/* Grid Info */
+.dossier-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+}
+
+.dossier-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 0.2rem;
+}
+
+.dossier-item .label {
+  font-weight: 700;
+  color: #444;
+}
+
+.dossier-item .value {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Footer */
+.dossier-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 2px solid #000;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #555;
+  text-transform: uppercase;
+}
+
+/* Cover Styling */
+.dossier-cover {
+  background-color: #2c241b;
+  color: #d4cbb8;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #4a3e2f;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8), 5px 0 15px rgba(0, 0, 0, 0.4);
+  position: relative;
+  margin: 0 auto;
+  /* Center the cover itself if needed */
+}
+
+.dossier-cover.back {
+  background-color: #2c241b;
+}
+
+.dossier-cover.back .cover-content {
+  /* Transformations removed */
+}
+
+.cover-content {
+  text-align: center;
+  border: 4px double #d4cbb8;
+  padding: 3rem 2rem;
+  width: 80%;
+}
+
+.cover-content h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  letter-spacing: 5px;
+  color: #c00;
+  margin-bottom: 1rem;
+}
+
+.cover-content h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  color: #d4cbb8;
+}
+
+.logo-stamp {
+  border: 4px solid #c00;
+  color: #c00;
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  transform: rotate(-15deg);
+  opacity: 0.6;
+}
+
+.atomic-module {
+  background: rgba(10, 8, 5, 0.85);
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  padding: 2rem;
+  position: relative;
+  transition: all 0.4s ease;
+  clip-path: polygon(0 0,
+      100% 0,
+      100% calc(100% - 20px),
+      calc(100% - 20px) 100%,
+      0 100%);
+  /* Tactical cut corner */
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header line with ID and Status */
+.module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px dashed rgba(255, 103, 0, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.module-id {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  opacity: 0.7;
+}
+
+.module-status {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  background: rgba(255, 103, 0, 0.1);
+  color: var(--accent-primary);
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--accent-primary);
+  letter-spacing: 1px;
+}
+
+/* Animated Scanline Overlay */
+.atomic-module::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 103, 0, 0.1),
+      transparent);
+  transform: skewX(-20deg);
+  transition: none;
+  pointer-events: none;
+}
+
+.atomic-module:hover::before {
+  animation: moduleScan 1s linear forwards;
+}
+
+@keyframes moduleScan {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
+}
+
+/* Hover Effects */
+.atomic-module:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 20px rgba(255, 103, 0, 0.15);
+  transform: translateY(-5px);
+  background: rgba(15, 10, 5, 0.95);
+}
+
+.atomic-module:hover .module-status {
+  background: var(--accent-primary);
+  color: #000;
+  box-shadow: 0 0 10px rgba(255, 103, 0, 0.5);
+}
+
+/* Corner Accent */
+.atomic-module::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid var(--accent-primary);
+  border-right: 2px solid var(--accent-primary);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.atomic-module:hover::after {
+  width: 98%;
+  height: 98%;
+  opacity: 0.1;
+  border: 1px solid var(--accent-primary);
+  /* Expand to full border on hover */
 }

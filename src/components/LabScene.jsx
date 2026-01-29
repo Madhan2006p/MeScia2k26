@@ -32,7 +32,7 @@ const BenzeneRing = ({ position, rotation, scale }) => {
             <mesh position={position} rotation={rotation} scale={scale}>
                 {/* Radius 1.5, Tube 0.04, RadialSegments 8, TubularSegments 6 (Hexagon) */}
                 <torusGeometry args={[1.5, 0.04, 8, 6]} />
-                <meshBasicMaterial color="#0bda51" transparent opacity={0.3} side={THREE.DoubleSide} />
+                <meshBasicMaterial color="#ffb700" transparent opacity={0.3} side={THREE.DoubleSide} />
             </mesh>
         </Float>
     );
@@ -45,11 +45,11 @@ const BondSign = ({ position, rotation, scale }) => {
             <group position={position} rotation={rotation} scale={scale}>
                 <mesh>
                     <boxGeometry args={[1, 0.1, 0.1]} />
-                    <meshBasicMaterial color="#ffffff" transparent opacity={0.2} />
+                    <meshBasicMaterial color="#ff6700" transparent opacity={0.2} />
                 </mesh>
                 <mesh rotation={[0, 0, Math.PI / 2]}>
                     <boxGeometry args={[1, 0.1, 0.1]} />
-                    <meshBasicMaterial color="#ffffff" transparent opacity={0.2} />
+                    <meshBasicMaterial color="#ff6700" transparent opacity={0.2} />
                 </mesh>
             </group>
         </Float>
@@ -77,7 +77,7 @@ const Fumes = () => {
                     <mesh position={data.position}>
                         <sphereGeometry args={[data.scale, 16, 16]} />
                         <meshBasicMaterial
-                            color="#0bda51"
+                            color="#ff4500"
                             transparent
                             opacity={0.05}
                             depthWrite={false}
@@ -91,7 +91,7 @@ const Fumes = () => {
 };
 
 export default function LabScene() {
-    // Crystals (Blue Meth)
+    // Crystals (Radioactive Debris)
     const crystals = useMemo(() => {
         return Array.from({ length: 25 }).map((_, i) => ({
             position: [
@@ -109,7 +109,7 @@ export default function LabScene() {
                 Math.random() * 0.6 + 0.2,
                 Math.random() * 0.4 + 0.2
             ],
-            color: '#00eaff' // Blue Sky
+            color: '#ffaa00' // Radioactive Orange
         }));
     }, []);
 
@@ -145,8 +145,8 @@ export default function LabScene() {
                 <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={45} />
 
                 <ambientLight intensity={0.4} />
-                <pointLight position={[10, 10, 10]} intensity={1.5} color="#00eaff" />
-                <pointLight position={[-10, -5, -10]} intensity={1} color="#00ff41" />
+                <pointLight position={[10, 10, 10]} intensity={1.5} color="#ff8c00" />
+                <pointLight position={[-10, -5, -10]} intensity={1} color="#ff4500" />
 
                 {/* Render Crystals */}
                 {crystals.map((crystal, i) => (
@@ -165,10 +165,10 @@ export default function LabScene() {
 
                 <Fumes />
 
-                <Sparkles count={60} scale={15} size={2} speed={0.4} opacity={0.4} color="#00ff41" />
+                <Sparkles count={60} scale={15} size={2} speed={0.4} opacity={0.4} color="#ff6700" />
 
                 <Environment preset="night" />
-                <fog attach="fog" args={['#050505', 8, 30]} />
+                <fog attach="fog" args={['#050404', 8, 30]} />
             </Canvas>
         </div>
     );

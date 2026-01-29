@@ -1,5 +1,53 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import HTMLFlipBook from 'react-pageflip';
+
+// Custom Page Component for the flipbook
+import React, { forwardRef, useState } from 'react';
+
+const Page = forwardRef((props, ref) => {
+    return (
+        <div className="dossier-page" ref={ref}>
+            <div className="dossier-content">
+                <div className="dossier-header">
+                    <span className="confidential-stamp">CONFIDENTIAL</span>
+                    <span className="file-id">FILE #{props.event.id.toString().padStart(3, '0')}</span>
+                </div>
+                
+                <div className="dossier-body">
+                    <h3 className="dossier-title">{props.event.title}</h3>
+                    <div className="dossier-divider"></div>
+                    
+                    <div className="dossier-section">
+                        <h4>DESCRIPTION</h4>
+                        <p>{props.event.description}</p>
+                    </div>
+
+                    <div className="dossier-grid">
+                        <div className="dossier-item">
+                            <span className="label">TIMING</span>
+                            <span className="value">{props.event.time}</span>
+                        </div>
+                        <div className="dossier-item">
+                            <span className="label">PERSONNEL</span>
+                            <span className="value">{props.event.teamSize}</span>
+                        </div>
+                        <div className="dossier-item">
+                            <span className="label">CLASS</span>
+                            <span className="value">{props.event.type.toUpperCase()}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="dossier-footer">
+                    <span className="auth-sig">AUTHORIZED BY: OPPENHEIMER</span>
+                    <span className="page-num">PG {props.number}</span>
+                </div>
+                
+                {/* Paper texture and aging effects */}
+                <div className="paper-texture"></div>
+            </div>
+        </div>
+    );
+});
 
 function Events() {
     const [filter, setFilter] = useState('all');
@@ -77,10 +125,10 @@ function Events() {
 
     return (
         <section id="events" className="section">
-            <div className="container">
-                <h2 className="section-title glitch" data-text="Symposium Events">Symposium Events</h2>
+            <div className="container" style={{ overflow: 'visible' }}>
+                <h2 className="section-title glitch" data-text="Classified Files">Classified Files</h2>
                 <p className="section-subtitle">
-                    Choose your battleground – Technical prowess or Strategic gaming
+                    Access Granted. Flip through the technical dossiers.
                 </p>
 
                 <div className="event-filters">
@@ -88,7 +136,7 @@ function Events() {
                         className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
                         onClick={() => setFilter('all')}
                     >
-                        All Events
+                        Index
                     </button>
                     <button
                         className={`filter-btn ${filter === 'technical' ? 'active' : ''}`}
@@ -104,36 +152,44 @@ function Events() {
                     </button>
                 </div>
 
-                <motion.div layout className="cards-grid event-grid">
-                    <AnimatePresence>
-                        {filteredEvents.map((event) => (
-                            <motion.div
-                                layout
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.8 }}
-                                key={event.id}
-                                className="event-card bubbling-container"
-                                transition={{ duration: 0.3 }}
-                            >
-                                <span className="event-badge">🔴 LIVE</span>
-                                <h3 className="event-title">{event.title}</h3>
-                                <p className="card-text">{event.description}</p>
-                                <div className="event-meta">
-                                    <div className="event-meta-item">
-                                        <strong>⏰</strong> {event.time}
-                                    </div>
-                                    <div className="event-meta-item">
-                                        <strong>👥</strong> {event.teamSize}
-                                    </div>
-                                    <div className="event-meta-item">
-                                        <strong>📌</strong> {event.type === 'technical' ? 'Technical' : 'Non-Technical'}
-                                    </div>
-                                </div>
-                            </motion.div>
+                <div className="dossier-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '600px', perspective: '1500px', margin: '0 auto', maxWidth: '1000px' }}>
+                    <HTMLFlipBook
+                        width={400}
+                        height={550}
+                        size="fixed"
+                        minWidth={300}
+                        maxWidth={500}
+                        minHeight={400}
+                        maxHeight={700}
+                        maxShadowOpacity={0.5}
+                        showCover={true}
+                        mobileScrollSupport={true}
+                        className="dossier-book"
+                    >
+                        <div className="dossier-cover">
+                            <div className="cover-content">
+                                <h1>TOP SECRET</h1>
+                                <h2>PROJECT: MESCIA</h2>
+                                <div className="logo-stamp">CLASSIFIED</div>
+                                <p>EYES ONLY</p>
+                            </div>
+                        </div>
+
+                        {filteredEvents.map((event, index) => (
+                            <Page key={event.id} number={index + 1} event={event} />
                         ))}
-                    </AnimatePresence>
-                </motion.div>
+
+                        <div className="dossier-cover back">
+                            <div className="cover-content">
+                                <h2>END OF FILE</h2>
+                            </div>
+                        </div>
+                    </HTMLFlipBook>
+                </div>
+                
+                <p style={{ textAlign: 'center', color: '#666', marginTop: '1rem', fontFamily: 'Courier New' }}>
+                    [ MOUSE INTERACTION ENABLED: DRAG OR CLICK CORNERS TO FLIP ]
+                </p>
             </div>
         </section>
     );

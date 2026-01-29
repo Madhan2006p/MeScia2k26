@@ -43,17 +43,13 @@ function Hero() {
             <div className="container">
                 <div className="hero-content">
                     <div className="hero-title glitch" data-text="MeScia – 26">
-                        <span className="chemical-element" title="Meitnerium?">
-                            <span className="chemical-number">109</span>
-                            <span className="chemical-symbol">Me</span>
-                        </span>
-                        <span>Scia – 26</span>
+                        MeScia – 26
                     </div>
 
                     <div className="say-my-name-container" style={{ margin: '1rem 0 2rem', height: '3rem' }}>
                         <span
                             className="say-my-name glitch"
-                            data-text="HEISENBERG"
+                            data-text="OPPENHEIMER"
                             style={{
                                 fontFamily: "'Bebas Neue', sans-serif",
                                 fontSize: '2rem',
@@ -64,17 +60,17 @@ function Hero() {
                                 transition: 'all 0.3s ease'
                             }}
                             onMouseOver={(e) => {
-                                e.target.innerText = "HEISENBERG";
+                                e.target.innerText = "OPPENHEIMER";
                                 e.target.style.color = "var(--accent-primary)";
                                 e.target.style.textShadow = "0 0 20px var(--accent-primary)";
                             }}
                             onMouseOut={(e) => {
-                                e.target.innerText = '"Say My Name"';
+                                e.target.innerText = '"Theory Will Only Take You So Far"';
                                 e.target.style.color = "var(--text-muted)";
                                 e.target.style.textShadow = "none";
                             }}
                         >
-                            "Say My Name"
+                            "Theory Will Only Take You So Far"
                         </span>
                     </div>
 

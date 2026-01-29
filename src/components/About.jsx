@@ -47,30 +47,39 @@ function About() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
                 >
-                    <motion.div className="card about-card-pulse" variants={itemVariants}>
-                        <h3 className="card-title">🎯 Purpose & Goals</h3>
+                    <motion.div className="atomic-module" variants={itemVariants}>
+                        <div className="module-header">
+                            <span className="module-id">001</span>
+                            <div className="module-status">ACTIVE</div>
+                        </div>
+                        <h3 className="card-title">PURPOSE & GOALS</h3>
                         <p className="card-text">
-                            MeScia 26 is designed to foster innovation, encourage technical excellence,
-                            and provide a platform for students to showcase their skills in various
-                            technical and non-technical domains.
+                            Designed to foster innovation and technical excellence. A platform for showcasing
+                            skills in high-stakes environments.
                         </p>
                     </motion.div>
 
-                    <motion.div className="card about-card-pulse" variants={itemVariants}>
-                        <h3 className="card-title">👥 Who Can Participate</h3>
+                    <motion.div className="atomic-module" variants={itemVariants}>
+                        <div className="module-header">
+                            <span className="module-id">002</span>
+                            <div className="module-status">OPEN</div>
+                        </div>
+                        <h3 className="card-title">PERSONNEL</h3>
                         <p className="card-text">
-                            Open to all college students passionate about technology, innovation,
-                            and competition. Whether you're a coder, presenter, gamer, or creative
-                            thinker – there's something for everyone!
+                            Clearance granted to all college students. Coders, presenters, and strategists
+                            required for immediate deployment.
                         </p>
                     </motion.div>
 
-                    <motion.div className="card about-card-pulse" variants={itemVariants}>
-                        <h3 className="card-title">✨ What to Expect</h3>
+                    <motion.div className="atomic-module" variants={itemVariants}>
+                        <div className="module-header">
+                            <span className="module-id">003</span>
+                            <div className="module-status">CLASSIFIED</div>
+                        </div>
+                        <h3 className="card-title">OPERATIONS</h3>
                         <p className="card-text">
-                            Exciting technical challenges, engaging presentations, competitive gaming,
-                            networking opportunities, prizes for winners, certificates for all participants,
-                            and an unforgettable experience!
+                            Technical challenges, high-level presentations, and competitive simulations.
+                            Awards allocated for superior performance.
                         </p>
                     </motion.div>
                 </motion.div>
@@ -83,24 +92,36 @@ function About() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
                 >
-                    <motion.div className="card" variants={itemVariants}>
-                        <h3 className="card-title">🏛️ Organized By</h3>
+                    <motion.div className="atomic-module" variants={itemVariants}>
+                        <div className="module-header">
+                            <span className="module-id">ORG</span>
+                            <div className="module-status">CMD</div>
+                        </div>
+                        <h3 className="card-title">DEPARTMENT</h3>
                         <p className="card-text">
-                            Department of Computer Technology – PG
+                            Computer Technology – PG
                         </p>
                     </motion.div>
 
-                    <motion.div className="card" variants={itemVariants}>
-                        <h3 className="card-title">📅 Event Date</h3>
+                    <motion.div className="atomic-module" variants={itemVariants}>
+                        <div className="module-header">
+                            <span className="module-id">T-MINUS</span>
+                            <div className="module-status">SYNC</div>
+                        </div>
+                        <h3 className="card-title">DATE</h3>
                         <p className="card-text">
                             February 27, 2026
                         </p>
                     </motion.div>
 
-                    <motion.div className="card" variants={itemVariants}>
-                        <h3 className="card-title">⏰ Duration</h3>
+                    <motion.div className="atomic-module" variants={itemVariants}>
+                        <div className="module-header">
+                            <span className="module-id">DUR</span>
+                            <div className="module-status">FULL</div>
+                        </div>
+                        <h3 className="card-title">TIMEFRAME</h3>
                         <p className="card-text">
-                            Full Day Event (08:45 AM - 05:00 PM)
+                            08:45 AM - 05:00 PM
                         </p>
                     </motion.div>
                 </motion.div>

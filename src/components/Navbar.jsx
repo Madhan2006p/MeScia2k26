@@ -25,7 +25,9 @@ function Navbar() {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="container">
                 <div className="nav-content">
-                    <div className="nav-logo glitch" data-text="MeScia 26">MeScia 26</div>
+                    <div className="nav-logo">
+                        <img src="/logo.png" alt="MeScia 26" style={{ height: '50px', width: 'auto' }} />
+                    </div>
 
                     <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
                         <span></span>
