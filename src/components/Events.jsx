@@ -95,6 +95,7 @@ const MobileFileStack = ({ events }) => {
                                 <span className="file-status">STATUS: CLASSIFIED</span>
                             </div>
                             <h3 className="file-title">{event.title}</h3>
+                            {!isExpanded && <p className="file-hint">Click to see details</p>}
                             <div className="file-indicator">
                                 {isExpanded ? '[-]' : '[+]'}
                             </div>
@@ -208,7 +209,7 @@ function Events() {
         },
         {
             id: 8,
-            title: 'Free Fire',
+            title: 'Esport(Battle royal)',
             type: 'non-technical',
             time: '02:30 PM – 03:15 PM',
             teamSize: '4 members',
