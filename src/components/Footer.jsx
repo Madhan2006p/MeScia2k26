@@ -14,37 +14,46 @@ function Footer() {
                     </div>
 
                     <div className="footer-section">
-                        <h3>Quick Links</h3>
-                        <ul className="footer-links" style={{ listStyle: 'none' }}>
-                            <li style={{ marginBottom: '0.8rem' }}><a href="#home" className="nav-link">Home</a></li>
-                            <li style={{ marginBottom: '0.8rem' }}><a href="#about" className="nav-link">About</a></li>
-                            <li style={{ marginBottom: '0.8rem' }}><a href="#events" className="nav-link">Events</a></li>
-                            <li style={{ marginBottom: '0.8rem' }}><a href="#schedule" className="nav-link">Schedule</a></li>
-                            <li style={{ marginBottom: '0.8rem' }}><a href="#team" className="nav-link">Team</a></li>
-                        </ul>
-                    </div>
-
-                    <div className="footer-section">
                         <h3>Contact</h3>
-                        <p style={{ marginBottom: '0.5rem' }}>📧 mescia26@example.com</p>
-                        <p style={{ marginBottom: '0.5rem' }}>📞 +91 98765 43210</p>
-                        <p style={{ marginBottom: '0.5rem' }}>📍 Dept. of Computer Technology – PG</p>
-
-                        <div style={{ marginTop: '1.5rem', borderTop: '1px dashed #333', paddingTop: '1.5rem' }}>
-                            <h4 style={{ color: '#f5c518', fontFamily: 'Bebas Neue', letterSpacing: '2px' }}>Legal Counsel</h4>
-                            <p style={{ color: '#fff', fontStyle: 'italic' }}>"Better Call Saul!"</p>
-                            <a href="https://www.google.com/search?q=better+call+saul" target="_blank" rel="noreferrer" style={{ color: '#f5c518', textDecoration: 'none', fontSize: '0.9rem', marginTop: '0.5rem', display: 'inline-block' }}>
-                                SG & Associates ⚖️
-                            </a>
+                        <p className="contact-item">📧 mescia26@kongu.ac.in</p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.5rem' }}>
+                            <p className="contact-item">📞 Rithanya : +91 93457 48455</p>
+                            <p className="contact-item">📞 Naveen Kumar : +91 824 878 8729</p>
+                            <p className="contact-item">📞 Arumugam : +91 98427 78152</p>
                         </div>
+                        <p className="contact-item" style={{ marginTop: '1rem' }}>📍 Dept. of Computer Technology – PG</p>
                     </div>
 
                     <div className="footer-section">
                         <h3>Connect</h3>
-                        <div className="social-links" style={{ display: 'flex', gap: '1rem' }}>
-                            <a href="#" className="social-icon" style={{ fontSize: '1.5rem', filter: 'grayscale(100%)', transition: 'all 0.3s' }} onMouseOver={e => e.target.style.filter = 'none'} onMouseOut={e => e.target.style.filter = 'grayscale(100%)'}>📘</a>
-                            <a href="#" className="social-icon" style={{ fontSize: '1.5rem', filter: 'grayscale(100%)', transition: 'all 0.3s' }} onMouseOver={e => e.target.style.filter = 'none'} onMouseOut={e => e.target.style.filter = 'grayscale(100%)'}>📷</a>
-                            <a href="#" className="social-icon" style={{ fontSize: '1.5rem', filter: 'grayscale(100%)', transition: 'all 0.3s' }} onMouseOver={e => e.target.style.filter = 'none'} onMouseOut={e => e.target.style.filter = 'grayscale(100%)'}>💼</a>
+                        <div className="social-links" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <a 
+                                href="https://www.linkedin.com/in/kec-msc-ctpg/overlay/about-this-profile/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bl67%2BYKoDRwqhJDn%2FFrV7QQ%3D%3D" 
+                                target="_blank" 
+                                rel="noreferrer" 
+                                className="nav-link social-glitch-link" 
+                                style={{ display: 'flex', alignItems: 'center', gap: '10px', width: 'fit-content' }}
+                            >
+                                <span>💼</span> LinkedIn
+                            </a>
+                            <a 
+                                href="https://www.instagram.com/msc_ss_kec?igsh=MWd2a3V2Z3E1b2RrNQ==" 
+                                target="_blank" 
+                                rel="noreferrer" 
+                                className="nav-link social-glitch-link" 
+                                style={{ display: 'flex', alignItems: 'center', gap: '10px', width: 'fit-content' }}
+                            >
+                                <span>📷</span> Instagram
+                            </a>
+                             <a 
+                                href="https://kongu.ac.in/" 
+                                target="_blank" 
+                                rel="noreferrer" 
+                                className="nav-link social-glitch-link" 
+                                style={{ display: 'flex', alignItems: 'center', gap: '10px', width: 'fit-content' }}
+                            >
+                                <span>🏫</span> KEC
+                            </a>
                         </div>
                         <p style={{ marginTop: '2rem', fontSize: '0.8rem', opacity: 0.5 }}>
                             No Meth was cooked in the making of this site.
@@ -53,7 +62,7 @@ function Footer() {
                 </div>
 
                 <div className="footer-bottom" style={{ textAlign: 'center', marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>© {currentYear} MeScia – 26. Designed with 🧪 by DCT-PG</p>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>© {currentYear} MeScia – 26. Designed with 🧪 by <span className="designer-name">Madhan P</span></p>
                 </div>
             </div>
         </footer>

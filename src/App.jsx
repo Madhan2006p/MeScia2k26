@@ -9,8 +9,6 @@ import Guidelines from './components/Guidelines';
 import Team from './components/Team';
 import Registration from './components/Registration';
 import Footer from './components/Footer';
-import LabScene from './components/LabScene';
-import FalloutParticles from './components/FalloutParticles';
 import Lenis from '@studio-freight/lenis';
 
 function App() {
@@ -82,8 +80,6 @@ function App() {
 
   return (
     <div className="app">
-      <FalloutParticles />
-      <LabScene />
       <Navbar />
       <Hero />
       <Marquee />

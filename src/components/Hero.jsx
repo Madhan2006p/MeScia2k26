@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ThreeScene from './ThreeScene';
 
 function Hero() {
     const [isHovered, setIsHovered] = useState(false);
@@ -40,8 +41,9 @@ function Hero() {
     };
 
     return (
-        <section id="home" className="hero">
-            <div className="container">
+        <section id="home" className="hero" style={{ overflow: 'hidden', position: 'relative' }}>
+            <ThreeScene />
+            <div className="container" style={{ position: 'relative', zIndex: 2 }}>
                 <div className="hero-content">
                     <div className="hero-title glitch" data-text="MeScia – 26">
                         MeScia – 26

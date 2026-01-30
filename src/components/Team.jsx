@@ -41,22 +41,22 @@ function Team() {
             name: 'Rithanya Paramashivam',
             role: 'Student Coordinator',
             initial: 'R',
-            email: 'rithanya@example.com',
-            phone: '+91 98765 43210'
+            email: 'mescia26@kongu.ac.in',
+            phone: '+91 93457 48455'
         },
         {
             name: 'Naveen Kumar',
             role: 'Student Coordinator',
             initial: 'N',
-            email: 'naveen@example.com',
-            phone: '+91 98765 43211'
+            email: 'mescia26@kongu.ac.in',
+            phone: '+91 824 878 8729'
         },
         {
             name: 'Prof. Arumugam',
             role: 'Faculty Mentor & Event Convenor',
             initial: 'A',
-            email: 'arumugam@example.com',
-            phone: '+91 98765 43212'
+            email: 'mescia26@kongu.ac.in',
+            phone: '+91 98427 78152'
         }
     ];
 
@@ -71,15 +71,15 @@ function Team() {
                 <div className="team-grid">
                     {teamMembers.map((member, index) => (
                         <TiltCard key={index}>
-                            <div className="team-avatar">{member.initial}</div>
+
                             <h3 className="team-name">{member.name}</h3>
                             <p className="team-role">{member.role}</p>
                             <div className="team-contact">
-                                <a href={`mailto:${member.email}`} className="contact-icon" title="Email">
+                                <a href={`mailto:${member.email}`} className="contact-icon" title="Email" style={{ marginRight: '1rem' }}>
                                     ✉️
                                 </a>
-                                <a href={`tel:${member.phone}`} className="contact-icon" title="Phone">
-                                    📞
+                                <a href={`tel:${member.phone}`} className="contact-date" title="Phone" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontSize: '0.9rem' }}>
+                                    📞 {member.phone}
                                 </a>
                             </div>
                         </TiltCard>

@@ -2,12 +2,17 @@ import { motion } from 'framer-motion';
 
 function Schedule() {
     const scheduleItems = [
-        { time: '08:45 – 09:30', title: 'Registration', description: 'Check-in and badge collection' },
-        { time: '09:30 – 10:00', title: 'Inauguration', description: 'Opening ceremony and welcome address' },
-        { time: '10:00 – 01:00', title: 'Technical Track', description: 'Coding, Paper Presentation, Tech Quiz' },
-        { time: '01:00 – 02:00', title: 'Lunch Break', description: 'Refreshments and networking' },
-        { time: '02:00 – 04:00', title: 'Skills & Innovation Track', description: 'Project Presentation, Gaming Events' },
-        { time: '04:00 – 05:00', title: 'Valedictory', description: 'Prize distribution and closing ceremony' }
+        { time: '09:00 AM – 09:45 AM', title: 'Inaugural', description: 'Opening Ceremony' },
+        { time: '09:45 AM – 11:30 AM', title: 'Project Pitch', description: 'Project Presentation' },
+        { time: '09:45 AM – 11:30 AM', title: 'Paper Parade', description: 'Paper Presentation' },
+        { time: '11:30 AM – 12:00 PM', title: 'Tech Clash', description: 'Technical Debate' },
+        { time: '11:30 AM – 12:30 PM', title: 'Marketing Insights', description: 'Marketing Event' },
+        { time: '12:00 PM – 12:30 PM', title: 'Code Combat', description: 'Coding Competition' },
+        { time: '12:30 PM – 01:30 PM', title: 'Lunch', description: 'Refreshments' },
+        { time: '01:50 PM – 03:20 PM', title: 'IPL Auction', description: 'Bidding War' },
+        { time: '01:50 PM – 02:30 PM', title: 'Chaos Carnival', description: 'Fun Event' },
+        { time: '02:30 PM – 03:15 PM', title: 'Free Fire', description: 'Gaming Tournament' },
+        { time: '03:30 PM – 04:30 PM', title: 'Valedictory', description: 'Closing Ceremony & Prize Distribution' }
     ];
 
     return (

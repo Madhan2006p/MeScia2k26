@@ -1,12 +1,12 @@
 import HTMLFlipBook from 'react-pageflip';
 
 // Custom Page Component for the flipbook
+// Custom Page Component for the flipbook
 import React, { forwardRef, useState, memo, useEffect } from 'react';
 
 const Page = memo(forwardRef((props, ref) => {
-    // ... (rest of Page component)
     return (
-        <div className="dossier-page" ref={ref}>
+        <div className="dossier-page" ref={ref} data-density="soft" {...props}>
             <div className="dossier-content">
                 <div className="dossier-header">
                     <span className="confidential-stamp">CONFIDENTIAL</span>
@@ -50,6 +50,16 @@ const Page = memo(forwardRef((props, ref) => {
     );
 }));
 
+const Cover = forwardRef((props, ref) => {
+    return (
+        <div className="dossier-cover" ref={ref} data-density="hard" {...props}>
+            <div className="cover-content">
+                {props.children}
+            </div>
+        </div>
+    );
+});
+
 
 // SVG Radiation Icon (Oppenheimer Theme)
 
@@ -58,28 +68,8 @@ const Page = memo(forwardRef((props, ref) => {
 
 
 
+
 function Events() {
-    const [bookDimensions, setBookDimensions] = useState({ width: 400, height: 550 });
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            if (width < 768) {
-                // Mobile View
-                setIsMobile(true);
-            } else {
-                // Desktop View
-                setBookDimensions({ width: 400, height: 550 });
-                setIsMobile(false);
-            }
-        };
-
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     const events = [
         {
             id: 1,
@@ -147,13 +137,42 @@ function Events() {
         }
     ];
 
+    // State for the custom JS/CSS book
+    const [currentPage, setCurrentPage] = useState(0);
+    const totalPages = events.length; 
+    
+    const flipPage = (index) => {
+        if (index === currentPage) {
+             setCurrentPage(currentPage + 1);
+        } else if (index === currentPage - 1) {
+             setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (width < 768) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <section id="events" className="section">
             <div className="container" style={{ overflow: 'visible' }}>
                 <h2 className="section-title glitch" data-text="Classified Files">Classified Files</h2>
 
                 <p className="section-subtitle">
-                    Access Granted. {isMobile ? 'Swipe vertically to view the files.' : 'Flip through the technical dossiers.'}
+                    {isMobile ? 'Swipe vertically to view the files.' : 'Click to flip through the classified dossiers.'}
                 </p>
 
                 {isMobile ? (
@@ -165,51 +184,64 @@ function Events() {
                         ))}
                     </div>
                 ) : (
-                    <div className="dossier-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '600px', perspective: '1500px', margin: '0 auto', maxWidth: '1000px' }}>
-                        <HTMLFlipBook
-                            width={bookDimensions.width}
-                            height={bookDimensions.height}
-                            size="fixed"
-                            minWidth={300}
-                            maxWidth={500}
-                            minHeight={400}
-                            maxHeight={700}
-                            maxShadowOpacity={0.5}
-                            showCover={true}
-                            mobileScrollSupport={false}
-                            flippingTime={800}
-                            usePortrait={false}
-                            startZIndex={0}
-                            autoSize={true}
-                            clickEventForward={true}
-                            useMouseEvents={false}
-                            swipeDistance={0}
-                            showPageCorners={true}
-                            disableFlipByClick={false}
-                            drawShadow={false}
-                            className="dossier-book"
-                        >
-                            <div className="dossier-cover">
-                                <div className="cover-content">
-                                    <h1>TOP SECRET</h1>
-                                    <h2>PROJECT: MESCIA</h2>
-                                    <div className="logo-stamp">CLASSIFIED</div>
-                                    <p>EYES ONLY</p>
+                    <div className="custom-book-scene">
+                        <div className="custom-book">
+                            {/* Front Cover - Index 0 */}
+                            <div 
+                                className={`custom-page-wrapper ${currentPage > 0 ? 'flipped' : ''}`}
+                                style={{ zIndex: currentPage > 0 ? 0 : 100 }}
+                                onClick={() => flipPage(0)}
+                            >
+                                <div className="custom-page-front">
+                                    <Cover>
+                                        <h1>TOP SECRET</h1>
+                                        <h2>PROJECT: MESCIA</h2>
+                                        <div className="logo-stamp">CLASSIFIED</div>
+                                        <p>EYES ONLY</p>
+                                    </Cover>
+                                </div>
+                                <div className="custom-page-back">
+                                    <div className="dossier-back-texture"></div>
                                 </div>
                             </div>
 
-                            {events.map((event, index) => (
-                                <Page key={event.id} number={index + 1} event={event} />
-                            ))}
+                            {/* Event Pages - Indices 1 to N */}
+                            {events.map((event, index) => {
+                                const pageIndex = index + 1;
+                                const zIndex = currentPage > pageIndex ? pageIndex : (100 - pageIndex);
+                                return (
+                                    <div 
+                                        key={event.id}
+                                        className={`custom-page-wrapper ${currentPage > pageIndex ? 'flipped' : ''}`}
+                                        style={{ zIndex: zIndex }}
+                                        onClick={() => flipPage(pageIndex)}
+                                    >
+                                        <div className="custom-page-front">
+                                            <Page number={pageIndex} event={event} />
+                                        </div>
+                                        <div className="custom-page-back">
+                                            <div className="dossier-back-texture">
+                                                <span className="file-id">FILE #{event.id}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
 
-                            <div className="dossier-cover back">
-                                <div className="cover-content">
-                                    <h2>END OF FILE</h2>
+                            {/* Back Cover - Index N + 1 */}
+                             <div 
+                                className={`custom-page-wrapper ${currentPage > totalPages + 1 ? 'flipped' : ''}`}
+                                style={{ zIndex: 0 }}
+                            >
+                                <div className="custom-page-front">
+                                     <Cover className="dossier-cover back">
+                                        <h2>END OF FILE</h2>
+                                    </Cover>
                                 </div>
                             </div>
-                        </HTMLFlipBook>
-                        <p style={{ textAlign: 'center', color: '#666', marginTop: '1rem', fontFamily: 'Courier New' }}>
-                            [ CLICK CORNERS TO FLIP ]
+                        </div>
+                         <p style={{ textAlign: 'center', color: '#666', marginTop: '3rem', fontFamily: 'Courier New', textTransform: 'uppercase', fontSize: '0.8rem' }}>
+                            // SYSTEM READY // CLICK TO ACKNOWLEDGE
                         </p>
                     </div>
                 )}
