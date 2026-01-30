@@ -6,12 +6,10 @@ function Guidelines() {
         { code: '02', cmd: 'verify_identity', output: 'Valid college ID card includes mandatory access clearance.' },
         { code: '03', cmd: 'mount_devices', output: 'External coding units (laptops) required for technical operations.' },
         { code: '04', cmd: 'silence_comms', output: 'Communication devices must remain in silent mode.' },
-        { code: '05', cmd: 'protocol_conduct', output: 'Maintain professional behavior. Harassment = immediate ejection.' },
-        { code: '06', cmd: 'wear_clearance', output: 'Registration pass must be visible at all times.' },
-        { code: '07', cmd: 'visual_check', output: 'Formal or semi-formal attire is recommended.' },
-        { code: '08', cmd: 'replenish_energy', output: 'Complimentary lunch and refreshments provided.' },
-        { code: '09', cmd: 'cert_distribution', output: 'Participation certificates awarded to all active nodes.' },
-        { code: '10', cmd: 'tech_support', output: 'Technical assistance available on constant standby.' }
+        { code: '05', cmd: 'visual_check', output: 'Formal or semi-formal attire is recommended.' },
+        { code: '06', cmd: 'replenish_energy', output: 'Complimentary lunch and refreshments provided.' },
+        { code: '07', cmd: 'cert_distribution', output: 'Participation certificates awarded to all active nodes.' },
+        { code: '08', cmd: 'tech_support', output: 'Technical assistance available on constant standby.' }
     ];
 
     return (
