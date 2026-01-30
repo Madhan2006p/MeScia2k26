@@ -2320,18 +2320,22 @@ h3 {
 }
 
 .file-body-wrapper {
+  max-height: 0;
   overflow: hidden;
   background: #121212;
   border-top: 1px dashed #333;
-  /* Performance optimizations */
-  will-change: max-height, opacity;
+  /* Pure CSS transition - much faster than JS */
+  transition: max-height 0.2s ease-out;
   transform: translateZ(0);
-  backface-visibility: hidden;
+}
+
+/* Expanded state */
+.file-dossier-card.expanded .file-body-wrapper {
+  max-height: 400px;
 }
 
 .file-content-inner {
   padding: 1.5rem;
-  position: relative;
 }
 
 .file-stamp {

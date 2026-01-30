@@ -69,8 +69,7 @@ const Cover = forwardRef((props, ref) => {
 
 
 
-import { motion, AnimatePresence } from 'framer-motion';
-
+// Pure CSS Accordion - No Framer Motion for maximum performance
 const MobileFileStack = ({ events }) => {
     const [expandedId, setExpandedId] = useState(null);
 
@@ -88,60 +87,48 @@ const MobileFileStack = ({ events }) => {
                         className={`file-dossier-card ${isExpanded ? 'expanded' : ''}`}
                         onClick={() => toggleFile(event.id)}
                     >
-                        {/* Dossier Header / Spine */}
+                        {/* Header */}
                         <div className="file-header">
                             <div className="file-meta-row">
                                 <span className="file-id-badge">FILE #{event.id.toString().padStart(3, '0')}</span>
-                                <span className="file-status">STATUS: CLASSIFIED</span>
+                                <span className="file-status">CLASSIFIED</span>
                             </div>
                             <h3 className="file-title">{event.title}</h3>
-                            {!isExpanded && <p className="file-hint">Click to see details</p>}
+                            {!isExpanded && <p className="file-hint">Tap to view</p>}
                             <div className="file-indicator">
-                                {isExpanded ? '[-]' : '[+]'}
+                                {isExpanded ? '−' : '+'}
                             </div>
                         </div>
 
-                        {/* Expandable Content */}
-                        <AnimatePresence initial={false}>
-                            {isExpanded && (
-                                <motion.div
-                                    initial={{ maxHeight: 0, opacity: 0 }}
-                                    animate={{ maxHeight: 500, opacity: 1 }}
-                                    exit={{ maxHeight: 0, opacity: 0 }}
-                                    transition={{ duration: 0.25, ease: [0.4, 0.0, 0.2, 1] }}
-                                    className="file-body-wrapper"
-                                    style={{ overflow: 'hidden' }}
-                                >
-                                    <div className="file-content-inner">
-                                        
-                                        <div className="file-section">
-                                            <h4 className="file-label">MISSION BRIEF</h4>
-                                            <p className="file-text">{event.description}</p>
-                                        </div>
+                        {/* Content - Always rendered, visibility controlled by CSS */}
+                        <div className="file-body-wrapper">
+                            <div className="file-content-inner">
+                                <div className="file-section">
+                                    <h4 className="file-label">MISSION BRIEF</h4>
+                                    <p className="file-text">{event.description}</p>
+                                </div>
 
-                                        <div className="file-data-grid">
-                                            <div className="data-cell">
-                                                <span className="data-label">TIMING</span>
-                                                <span className="data-value">{event.time}</span>
-                                            </div>
-                                            <div className="data-cell">
-                                                <span className="data-label">PERSONNEL</span>
-                                                <span className="data-value">{event.teamSize}</span>
-                                            </div>
-                                            <div className="data-cell">
-                                                <span className="data-label">CLASS</span>
-                                                <span className="data-value highlight">{event.type.toUpperCase()}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="file-footer">
-                                            <span className="auth-signature">Auth: Oppenheimer</span>
-                                            <span className="clearance-level">LEVEL 5 CLEARANCE</span>
-                                        </div>
+                                <div className="file-data-grid">
+                                    <div className="data-cell">
+                                        <span className="data-label">TIMING</span>
+                                        <span className="data-value">{event.time}</span>
                                     </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                                    <div className="data-cell">
+                                        <span className="data-label">PERSONNEL</span>
+                                        <span className="data-value">{event.teamSize}</span>
+                                    </div>
+                                    <div className="data-cell">
+                                        <span className="data-label">CLASS</span>
+                                        <span className="data-value highlight">{event.type.toUpperCase()}</span>
+                                    </div>
+                                </div>
+
+                                <div className="file-footer">
+                                    <span className="auth-signature">Auth: Oppenheimer</span>
+                                    <span className="clearance-level">LEVEL 5</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 );
             })}
