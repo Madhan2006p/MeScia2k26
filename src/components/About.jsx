@@ -1,130 +1,124 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 function About() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i;
+            const isMobileUA = mobileRegex.test(userAgent.toLowerCase());
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const isSmallScreen = window.innerWidth < 768;
+            setIsMobile(isMobileUA || (isTouchDevice && isSmallScreen));
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Simple card component for mobile (no animations)
+    const SimpleCard = ({ id, status, title, text }) => (
+        <div className="atomic-module">
+            <div className="module-header">
+                <span className="module-id">{id}</span>
+                <div className="module-status">{status}</div>
+            </div>
+            <h3 className="card-title">{title}</h3>
+            <p className="card-text">{text}</p>
+        </div>
+    );
+
+    // Animated card for desktop
+    const AnimatedCard = ({ id, status, title, text, variants }) => (
+        <motion.div className="atomic-module" variants={variants}>
+            <div className="module-header">
+                <span className="module-id">{id}</span>
+                <div className="module-status">{status}</div>
+            </div>
+            <h3 className="card-title">{title}</h3>
+            <p className="card-text">{text}</p>
+        </motion.div>
+    );
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.3
-            }
+            transition: { staggerChildren: 0.2 }
         }
     };
 
     const itemVariants = {
-        hidden: { x: -100, opacity: 0, skewX: 20 },
+        hidden: { y: 20, opacity: 0 },
         visible: {
-            x: 0,
+            y: 0,
             opacity: 1,
-            skewX: 0,
-            transition: {
-                type: "spring",
-                stiffness: 400,
-                damping: 20,
-                mass: 0.8
-            }
+            transition: { duration: 0.4 }
         }
     };
+
+    const cards = [
+        { id: '001', status: 'ACTIVE', title: 'PURPOSE & GOALS', text: 'Designed to foster innovation and technical excellence. A platform for showcasing skills in high-stakes environments.' },
+        { id: '002', status: 'OPEN', title: 'PERSONNEL', text: 'Clearance granted to all college students. Coders, presenters, and strategists required for immediate deployment.' },
+        { id: '003', status: 'CLASSIFIED', title: 'OPERATIONS', text: 'Technical challenges, high-level presentations, and competitive simulations. Awards allocated for superior performance.' }
+    ];
+
+    const infoCards = [
+        { id: 'ORG', status: 'CMD', title: 'DEPARTMENT', text: 'Computer Technology – PG' },
+        { id: 'T-MINUS', status: 'SYNC', title: 'DATE', text: 'February 27, 2026' },
+        { id: 'DUR', status: 'FULL', title: 'TIMEFRAME', text: '08:45 AM - 05:00 PM' }
+    ];
 
     return (
         <section id="about" className="section">
             <div className="container">
-                <h2 className="section-title glitch" data-text="About MeScia – 26">About MeScia – 26</h2>
-                <motion.p
-                    className="section-subtitle"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2, duration: 0.8 }}
-                >
+                <h2 className="section-title" data-text="About MeScia – 26">About MeScia – 26</h2>
+                <p className="section-subtitle">
                     A one-day technical symposium that brings together innovation, creativity, and competition
-                </motion.p>
+                </p>
 
-                <motion.div
-                    className="cards-grid"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                >
-                    <motion.div className="atomic-module" variants={itemVariants}>
-                        <div className="module-header">
-                            <span className="module-id">001</span>
-                            <div className="module-status">ACTIVE</div>
+                {isMobile ? (
+                    <>
+                        <div className="cards-grid">
+                            {cards.map(card => (
+                                <SimpleCard key={card.id} {...card} />
+                            ))}
                         </div>
-                        <h3 className="card-title">PURPOSE & GOALS</h3>
-                        <p className="card-text">
-                            Designed to foster innovation and technical excellence. A platform for showcasing
-                            skills in high-stakes environments.
-                        </p>
-                    </motion.div>
-
-                    <motion.div className="atomic-module" variants={itemVariants}>
-                        <div className="module-header">
-                            <span className="module-id">002</span>
-                            <div className="module-status">OPEN</div>
+                        <div className="cards-grid" style={{ marginTop: '2rem' }}>
+                            {infoCards.map(card => (
+                                <SimpleCard key={card.id} {...card} />
+                            ))}
                         </div>
-                        <h3 className="card-title">PERSONNEL</h3>
-                        <p className="card-text">
-                            Clearance granted to all college students. Coders, presenters, and strategists
-                            required for immediate deployment.
-                        </p>
-                    </motion.div>
-
-                    <motion.div className="atomic-module" variants={itemVariants}>
-                        <div className="module-header">
-                            <span className="module-id">003</span>
-                            <div className="module-status">CLASSIFIED</div>
-                        </div>
-                        <h3 className="card-title">OPERATIONS</h3>
-                        <p className="card-text">
-                            Technical challenges, high-level presentations, and competitive simulations.
-                            Awards allocated for superior performance.
-                        </p>
-                    </motion.div>
-                </motion.div>
-
-                <motion.div
-                    className="cards-grid"
-                    style={{ marginTop: '2rem' }}
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                >
-                    <motion.div className="atomic-module" variants={itemVariants}>
-                        <div className="module-header">
-                            <span className="module-id">ORG</span>
-                            <div className="module-status">CMD</div>
-                        </div>
-                        <h3 className="card-title">DEPARTMENT</h3>
-                        <p className="card-text">
-                            Computer Technology – PG
-                        </p>
-                    </motion.div>
-
-                    <motion.div className="atomic-module" variants={itemVariants}>
-                        <div className="module-header">
-                            <span className="module-id">T-MINUS</span>
-                            <div className="module-status">SYNC</div>
-                        </div>
-                        <h3 className="card-title">DATE</h3>
-                        <p className="card-text">
-                            February 27, 2026
-                        </p>
-                    </motion.div>
-
-                    <motion.div className="atomic-module" variants={itemVariants}>
-                        <div className="module-header">
-                            <span className="module-id">DUR</span>
-                            <div className="module-status">FULL</div>
-                        </div>
-                        <h3 className="card-title">TIMEFRAME</h3>
-                        <p className="card-text">
-                            08:45 AM - 05:00 PM
-                        </p>
-                    </motion.div>
-                </motion.div>
+                    </>
+                ) : (
+                    <>
+                        <motion.div
+                            className="cards-grid"
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                        >
+                            {cards.map(card => (
+                                <AnimatedCard key={card.id} {...card} variants={itemVariants} />
+                            ))}
+                        </motion.div>
+                        <motion.div
+                            className="cards-grid"
+                            style={{ marginTop: '2rem' }}
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                        >
+                            {infoCards.map(card => (
+                                <AnimatedCard key={card.id} {...card} variants={itemVariants} />
+                            ))}
+                        </motion.div>
+                    </>
+                )}
             </div>
         </section>
     );

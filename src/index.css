@@ -920,6 +920,49 @@ h3 {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+
+  /* DISABLE EXPENSIVE ANIMATIONS ON MOBILE */
+  body::after {
+    display: none !important;
+    /* Remove moving grid - major performance saver */
+  }
+
+  /* Disable backdrop blur - very expensive on mobile */
+  .glass-panel,
+  .navbar,
+  .registration-content {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Disable neon pulse animation on about cards */
+  .about-card-pulse {
+    animation: none !important;
+  }
+
+  /* Disable glitch effect on mobile */
+  .glitch::before,
+  .glitch::after {
+    display: none !important;
+  }
+
+  .glitch {
+    animation: none !important;
+  }
+
+  /* Simplify card hover effects */
+  .card:hover,
+  .event-card:hover,
+  .terminal-card:hover,
+  .team-card:hover {
+    transform: none;
+  }
+
+  /* Reduce transition times */
+  * {
+    transition-duration: 0.15s !important;
+  }
+
   .hero-title {
     font-size: 4rem;
   }
@@ -937,13 +980,31 @@ h3 {
     display: none;
   }
 
-  /* Add mobile menu logic if needed, simplify for now */
   .timeline {
     margin-left: 20px;
   }
 
   .timeline-dot {
     left: -5.5px;
+  }
+
+  /* Simplify section title */
+  .section-title::after {
+    display: none;
+  }
+
+  /* Disable marquee animation - use static text */
+  .marquee-track {
+    animation: none;
+  }
+
+  /* Simplify atomic module effects */
+  .atomic-module::before {
+    display: none !important;
+  }
+
+  .atomic-module:hover::before {
+    animation: none !important;
   }
 }
 
