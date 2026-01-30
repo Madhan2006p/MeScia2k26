@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, Points, PointMaterial, PresentationControls, ContactShadows, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
-const NuclearCore = () => {
+const NuclearCore = ({ isMobile }) => {
     const meshRef = useRef();
 
     useFrame((state) => {
@@ -18,7 +18,8 @@ const NuclearCore = () => {
     return (
         <Float speed={5} rotationIntensity={2} floatIntensity={2}>
             <mesh ref={meshRef}>
-                <icosahedronGeometry args={[1, 15]} />
+                {/* Reduce geometry detail on mobile */}
+                <icosahedronGeometry args={[1, isMobile ? 4 : 15]} />
                 {/* Nuclear Orange Core */}
                 <MeshDistortMaterial
                     color="#ff6700"
@@ -86,16 +87,19 @@ const ThreeScene = () => {
     }, []);
 
     // Adjust position and scale based on device
-    const groupPosition = isMobile ? [0, 0.5, 0] : [2, 0, 0];
-    const groupScale = isMobile ? 0.6 : 1;
+    const groupPosition = isMobile ? [0, 0, 0] : [2, 0, 0];
+    const groupScale = isMobile ? 0.55 : 1;
+
+    // Mobile Optimization: Lower pixel ratio, fewer shadows, fewer particles
+    const dpr = isMobile ? [1, 1] : [1, 2];
 
     return (
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0, pointerEvents: 'none' }}>
-            <Canvas shadows dpr={[1, 2]}>
+            <Canvas shadows={!isMobile} dpr={dpr}>
                 <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
 
                 <ambientLight intensity={0.2} />
-                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
+                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow={!isMobile} />
                 {/* Nuclear Theme Lights */}
                 <pointLight position={[-10, -10, -10]} intensity={1} color="#ffb700" />
                 <pointLight position={[10, 10, 10]} intensity={2} color="#ff6700" />
@@ -108,12 +112,13 @@ const ThreeScene = () => {
                         rotation={[0, 0, 0]}
                         polar={[-Math.PI / 4, Math.PI / 4]}
                         azimuth={[-Math.PI / 4, Math.PI / 4]}
+                        enabled={!isMobile} // Disable rotation on mobile for performance
                     >
                         <group position={groupPosition} scale={groupScale}>
-                            <NuclearCore />
+                            <NuclearCore isMobile={isMobile} />
                         </group>
                     </PresentationControls>
-                    <Particles />
+                    <Particles count={isMobile ? 150 : 500} />
                      <ContactShadows
                         position={[isMobile ? 0 : 2, -2.5, 0]}
                         opacity={0.4}
@@ -121,6 +126,7 @@ const ThreeScene = () => {
                         blur={2}
                         far={4.5}
                         color="#ff6700"
+                        frames={isMobile ? 1 : Infinity} // Static shadow on mobile
                     />
                 </Suspense>
             </Canvas>

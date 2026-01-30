@@ -14,24 +14,29 @@ import Lenis from '@studio-freight/lenis';
 
 function App() {
   useEffect(() => {
-    // Lenis Smooth Scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-    });
+    // Lenis Smooth Scroll - Disable on mobile
+    const isMobile = window.innerWidth < 768;
+    let lenis;
+    
+    if (!isMobile) {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+      });
 
-    function raf(time) {
-      lenis.raf(time);
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
       requestAnimationFrame(raf);
     }
-
-    requestAnimationFrame(raf);
 
     // Intersection Observer for scroll animations
     const observerOptions = {
@@ -75,7 +80,7 @@ function App() {
 
     return () => {
       observer.disconnect();
-      lenis.destroy();
+      if (lenis) lenis.destroy();
     };
   }, []);
 

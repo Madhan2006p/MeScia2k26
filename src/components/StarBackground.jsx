@@ -43,6 +43,15 @@ const StarParticles = ({ count = 2000 }) => {
 };
 
 const StarBackground = () => {
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    React.useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
         <div style={{ 
             position: 'fixed', 
@@ -54,9 +63,9 @@ const StarBackground = () => {
             pointerEvents: 'none',
             background: 'transparent' // Let the CSS gradient show through
         }}>
-            <Canvas camera={{ position: [0, 0, 1] }}>
+            <Canvas camera={{ position: [0, 0, 1] }} dpr={isMobile ? [1, 1] : [1, 2]}>
                 <Suspense fallback={null}>
-                    <StarParticles />
+                    <StarParticles count={isMobile ? 500 : 2000} />
                 </Suspense>
             </Canvas>
         </div>
