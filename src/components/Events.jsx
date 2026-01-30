@@ -68,73 +68,50 @@ const Cover = forwardRef((props, ref) => {
 
 
 
-
-// Pure CSS Accordion - No Framer Motion for maximum performance
+// Sticky Stacking Cards - No interaction needed, scroll to reveal
 const MobileFileStack = ({ events }) => {
-    const [expandedId, setExpandedId] = useState(null);
-
-    const toggleFile = (id) => {
-        setExpandedId(expandedId === id ? null : id);
-    };
-
     return (
-        <div className="mobile-file-stack">
-            {events.map((event) => {
-                const isExpanded = expandedId === event.id;
-                return (
-                    <div 
-                        key={event.id} 
-                        className={`file-dossier-card ${isExpanded ? 'expanded' : ''}`}
-                        onClick={() => toggleFile(event.id)}
-                    >
-                        {/* Header */}
-                        <div className="file-header">
-                            <div className="file-meta-row">
-                                <span className="file-id-badge">FILE #{event.id.toString().padStart(3, '0')}</span>
-                                <span className="file-status">CLASSIFIED</span>
-                            </div>
-                            <h3 className="file-title">{event.title}</h3>
-                            {!isExpanded && <p className="file-hint">Tap to view</p>}
-                            <div className="file-indicator">
-                                {isExpanded ? '−' : '+'}
-                            </div>
+        <div className="mobile-stack-container">
+            {events.map((event, index) => (
+                <div 
+                    key={event.id} 
+                    className="stack-card"
+                    style={{ '--card-index': index }}
+                >
+                    {/* Header */}
+                    <div className="stack-card-header">
+                        <div className="stack-meta">
+                            <span className="stack-id">FILE #{event.id.toString().padStart(3, '0')}</span>
+                            <span className="stack-status">CLASSIFIED</span>
                         </div>
+                        <h3 className="stack-title">{event.title}</h3>
+                    </div>
 
-                        {/* Content - Always rendered, visibility controlled by CSS */}
-                        <div className="file-body-wrapper">
-                            <div className="file-content-inner">
-                                <div className="file-section">
-                                    <h4 className="file-label">MISSION BRIEF</h4>
-                                    <p className="file-text">{event.description}</p>
-                                </div>
-
-                                <div className="file-data-grid">
-                                    <div className="data-cell">
-                                        <span className="data-label">TIMING</span>
-                                        <span className="data-value">{event.time}</span>
-                                    </div>
-                                    <div className="data-cell">
-                                        <span className="data-label">PERSONNEL</span>
-                                        <span className="data-value">{event.teamSize}</span>
-                                    </div>
-                                    <div className="data-cell">
-                                        <span className="data-label">CLASS</span>
-                                        <span className="data-value highlight">{event.type.toUpperCase()}</span>
-                                    </div>
-                                </div>
-
-                                <div className="file-footer">
-                                    <span className="auth-signature">Auth: Oppenheimer</span>
-                                    <span className="clearance-level">LEVEL 5</span>
-                                </div>
+                    {/* Content - Always visible */}
+                    <div className="stack-card-body">
+                        <p className="stack-desc">{event.description}</p>
+                        
+                        <div className="stack-info">
+                            <div className="info-item">
+                                <span className="info-label">TIME</span>
+                                <span className="info-value">{event.time}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="info-label">TEAM</span>
+                                <span className="info-value">{event.teamSize}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="info-label">TYPE</span>
+                                <span className="info-value accent">{event.type.toUpperCase()}</span>
                             </div>
                         </div>
                     </div>
-                );
-            })}
+                </div>
+            ))}
         </div>
     );
 };
+
 
 function Events() {
     const events = [
