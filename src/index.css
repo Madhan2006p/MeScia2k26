@@ -2236,6 +2236,10 @@ h3 {
   overflow: hidden;
   position: relative;
   transition: all 0.3s ease;
+  /* Performance optimizations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .file-dossier-card.expanded {
@@ -2252,6 +2256,8 @@ h3 {
   flex-direction: column;
   gap: 0.5rem;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), transparent);
+  /* Performance hint */
+  will-change: auto;
 }
 
 .file-meta-row {
@@ -2317,6 +2323,10 @@ h3 {
   overflow: hidden;
   background: #121212;
   border-top: 1px dashed #333;
+  /* Performance optimizations */
+  will-change: max-height, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .file-content-inner {

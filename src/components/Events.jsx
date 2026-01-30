@@ -102,17 +102,17 @@ const MobileFileStack = ({ events }) => {
                         </div>
 
                         {/* Expandable Content */}
-                        <AnimatePresence>
+                        <AnimatePresence initial={false}>
                             {isExpanded && (
                                 <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: 'auto', opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                    initial={{ maxHeight: 0, opacity: 0 }}
+                                    animate={{ maxHeight: 500, opacity: 1 }}
+                                    exit={{ maxHeight: 0, opacity: 0 }}
+                                    transition={{ duration: 0.25, ease: [0.4, 0.0, 0.2, 1] }}
                                     className="file-body-wrapper"
+                                    style={{ overflow: 'hidden' }}
                                 >
                                     <div className="file-content-inner">
-                                        <div className="file-stamp">TOP SECRET</div>
                                         
                                         <div className="file-section">
                                             <h4 className="file-label">MISSION BRIEF</h4>
