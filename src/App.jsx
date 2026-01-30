@@ -15,7 +15,7 @@ import Lenis from '@studio-freight/lenis';
 function App() {
   useEffect(() => {
     // Lenis Smooth Scroll - Disable on mobile
-    const isMobile = window.innerWidth < 768;
+    const isMobile = window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent);
     let lenis;
     
     if (!isMobile) {

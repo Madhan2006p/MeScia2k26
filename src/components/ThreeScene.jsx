@@ -80,7 +80,7 @@ const ThreeScene = () => {
     const [isMobile, setIsMobile] = React.useState(false);
 
     React.useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        const checkMobile = () => setIsMobile(window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent));
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
@@ -88,8 +88,8 @@ const ThreeScene = () => {
 
     // Adjust position and scale based on device
     // On mobile, lift it up slightly centered [0, 0.5, 0] to avoid being hidden behind bottom text
-    const groupPosition = isMobile ? [0, 0.5, 0] : [2, 0, 0];
-    const groupScale = isMobile ? 0.45 : 1;
+    const groupPosition = isMobile ? [0, 1, 0] : [2, 0, 0];
+    const groupScale = isMobile ? 0.4 : 1;
 
     // Mobile Optimization: Lower pixel ratio, fewer shadows, fewer particles
     const dpr = isMobile ? [1, 1] : [1, 2];
@@ -97,7 +97,7 @@ const ThreeScene = () => {
     return (
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0, pointerEvents: 'none' }}>
             <Canvas shadows={!isMobile} dpr={dpr}>
-                <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
+                <PerspectiveCamera makeDefault position={[0, 0, isMobile ? 7 : 5]} fov={50} />
 
                 <ambientLight intensity={0.2} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow={!isMobile} />
