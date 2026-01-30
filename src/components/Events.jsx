@@ -69,6 +69,85 @@ const Cover = forwardRef((props, ref) => {
 
 
 
+import { motion, AnimatePresence } from 'framer-motion';
+
+const MobileFileStack = ({ events }) => {
+    const [expandedId, setExpandedId] = useState(null);
+
+    const toggleFile = (id) => {
+        setExpandedId(expandedId === id ? null : id);
+    };
+
+    return (
+        <div className="mobile-file-stack">
+            {events.map((event) => {
+                const isExpanded = expandedId === event.id;
+                return (
+                    <div 
+                        key={event.id} 
+                        className={`file-dossier-card ${isExpanded ? 'expanded' : ''}`}
+                        onClick={() => toggleFile(event.id)}
+                    >
+                        {/* Dossier Header / Spine */}
+                        <div className="file-header">
+                            <div className="file-meta-row">
+                                <span className="file-id-badge">FILE #{event.id.toString().padStart(3, '0')}</span>
+                                <span className="file-status">STATUS: CLASSIFIED</span>
+                            </div>
+                            <h3 className="file-title">{event.title}</h3>
+                            <div className="file-indicator">
+                                {isExpanded ? '[-]' : '[+]'}
+                            </div>
+                        </div>
+
+                        {/* Expandable Content */}
+                        <AnimatePresence>
+                            {isExpanded && (
+                                <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                    className="file-body-wrapper"
+                                >
+                                    <div className="file-content-inner">
+                                        <div className="file-stamp">TOP SECRET</div>
+                                        
+                                        <div className="file-section">
+                                            <h4 className="file-label">MISSION BRIEF</h4>
+                                            <p className="file-text">{event.description}</p>
+                                        </div>
+
+                                        <div className="file-data-grid">
+                                            <div className="data-cell">
+                                                <span className="data-label">TIMING</span>
+                                                <span className="data-value">{event.time}</span>
+                                            </div>
+                                            <div className="data-cell">
+                                                <span className="data-label">PERSONNEL</span>
+                                                <span className="data-value">{event.teamSize}</span>
+                                            </div>
+                                            <div className="data-cell">
+                                                <span className="data-label">CLASS</span>
+                                                <span className="data-value highlight">{event.type.toUpperCase()}</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="file-footer">
+                                            <span className="auth-signature">Auth: Oppenheimer</span>
+                                            <span className="clearance-level">LEVEL 5 CLEARANCE</span>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                );
+            })}
+        </div>
+    );
+};
+
 function Events() {
     const events = [
         {
@@ -176,13 +255,7 @@ function Events() {
                 </p>
 
                 {isMobile ? (
-                    <div className="mobile-dossier-container" style={{ position: 'relative' }}>
-                        {events.map((event, index) => (
-                            <div key={event.id} className="mobile-dossier-wrapper">
-                                <Page number={index + 1} event={event} />
-                            </div>
-                        ))}
-                    </div>
+                    <MobileFileStack events={events} />
                 ) : (
                     <div className="custom-book-scene">
                         <div className="custom-book">
