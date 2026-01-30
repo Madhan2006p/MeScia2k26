@@ -15,7 +15,7 @@ function Footer() {
 
                     <div className="footer-section">
                         <h3>Contact</h3>
-                        <p className="contact-item">📧 mescia26@kongu.ac.in</p>
+
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.5rem' }}>
                             <p className="contact-item">📞 Rithanya : +91 93457 48455</p>
                             <p className="contact-item">📞 Naveen Kumar : +91 824 878 8729</p>

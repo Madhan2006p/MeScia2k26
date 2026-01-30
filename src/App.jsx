@@ -9,6 +9,7 @@ import Guidelines from './components/Guidelines';
 import Team from './components/Team';
 import Registration from './components/Registration';
 import Footer from './components/Footer';
+import StarBackground from './components/StarBackground';
 import Lenis from '@studio-freight/lenis';
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
 
   return (
     <div className="app">
+      <StarBackground />
       <Navbar />
       <Hero />
       <Marquee />

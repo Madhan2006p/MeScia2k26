@@ -73,67 +73,67 @@ function Events() {
     const events = [
         {
             id: 1,
-            title: 'Paper Presentation',
+            title: 'Project Pitch',
             type: 'technical',
-            time: '11:00 AM',
-            teamSize: '1-2 members',
-            description: 'Present your research and innovative ideas on cutting-edge technologies'
+            time: '09:45 AM – 11:30 AM',
+            teamSize: '1-3 members',
+            description: 'Showcase your innovative projects and technical implementations.'
         },
         {
             id: 2,
-            title: 'Project Presentation',
+            title: 'Paper Parade',
             type: 'technical',
-            time: '01:30 PM',
-            teamSize: '2-4 members',
-            description: 'Showcase your technical projects and implementations'
+            time: '09:45 AM – 11:30 AM',
+            teamSize: '1-2 members',
+            description: 'Present your research papers on cutting-edge technologies.'
         },
         {
             id: 3,
-            title: 'Coding Challenge',
+            title: 'Tech Clash',
             type: 'technical',
-            time: '10:00 AM',
-            teamSize: 'Individual',
-            description: 'Test your programming skills in C / C++ / Java / Python'
+            time: '11:30 AM – 12:00 PM',
+            teamSize: '2 members',
+            description: 'A debate on trending technical topics while facing opposing views.'
         },
         {
             id: 4,
-            title: 'Marketing Talks',
+            title: 'Marketing Insights',
             type: 'technical',
-            time: '11:30 AM',
+            time: '11:30 AM – 12:30 PM',
             teamSize: '1-2 members',
-            description: 'Present innovative marketing strategies and business ideas'
+            description: 'Pitch your product and marketing strategies to the judges.'
         },
         {
             id: 5,
-            title: 'Tech Quiz',
+            title: 'Code Combat',
             type: 'technical',
-            time: '02:00 PM',
-            teamSize: '2 members',
-            description: 'Challenge your technical knowledge across various domains'
+            time: '12:00 PM – 12:30 PM',
+            teamSize: 'Individual',
+            description: 'Solve algorithmic challenges in a high-pressure coding battle.'
         },
         {
             id: 6,
-            title: 'FreeFire Tournament',
+            title: 'IPL Auction',
             type: 'non-technical',
-            time: '10:30 AM',
-            teamSize: '4 members',
-            description: 'Battle royale gaming competition'
+            time: '01:50 PM – 03:20 PM',
+            teamSize: '3-5 members',
+            description: 'Bid for players and build the strongest cricket team.'
         },
         {
             id: 7,
-            title: 'IPL Auction',
+            title: 'Chaos Carnival',
             type: 'non-technical',
-            time: '01:00 PM',
-            teamSize: '3-5 members',
-            description: 'Strategic team building and auction simulation'
+            time: '01:50 PM – 02:30 PM',
+            teamSize: '2-4 members',
+            description: 'Fun-filled carnival games and chaotic challenges.'
         },
         {
             id: 8,
-            title: 'Carnival Chaos',
+            title: 'Free Fire',
             type: 'non-technical',
-            time: '02:00 PM',
-            teamSize: '2-4 members',
-            description: 'Fun-filled carnival games and challenges'
+            time: '02:30 PM – 03:15 PM',
+            teamSize: '4 members',
+            description: 'Classic Battle Royale tournament for mobile gamers.'
         }
     ];
 
