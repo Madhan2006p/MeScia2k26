@@ -231,18 +231,27 @@ function Events() {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            if (width < 768) {
-                setIsMobile(true);
-            } else {
-                setIsMobile(false);
-            }
+        const checkMobile = () => {
+            // Check 1: User Agent
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i;
+            const isMobileUA = mobileRegex.test(userAgent.toLowerCase());
+            
+            // Check 2: Touch capability
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            
+            // Check 3: Screen width
+            const isSmallScreen = window.innerWidth < 768;
+            
+            // Consider it mobile if ANY of these conditions are true
+            const mobile = isMobileUA || (isTouchDevice && isSmallScreen);
+            
+            setIsMobile(mobile);
         };
 
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     return (
