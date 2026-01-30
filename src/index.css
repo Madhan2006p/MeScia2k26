@@ -2296,18 +2296,20 @@ h3 {
   border-radius: 4px;
   overflow: hidden;
   position: relative;
-  transition: all 0.3s ease;
-  /* Performance optimizations */
+
+  /* GPU Layer - prevents repaints */
   transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  contain: layout style;
 }
 
 .file-dossier-card.expanded {
   border-color: var(--accent-primary);
   border-left-color: var(--accent-primary);
-  box-shadow: 0 5px 20px rgba(255, 103, 0, 0.15);
   background: #0f0f0f;
+  /* No shadow - too expensive */
 }
 
 .file-header {
@@ -2353,7 +2355,7 @@ h3 {
   margin: 0;
   line-height: 1;
   letter-spacing: 1px;
-  transition: color 0.3s ease;
+  /* No transition - instant color change is fine */
 }
 
 .file-hint {
@@ -2367,7 +2369,7 @@ h3 {
 
 .file-dossier-card.expanded .file-title {
   color: var(--accent-primary);
-  text-shadow: 0 0 10px rgba(255, 103, 0, 0.3);
+  /* No text-shadow - expensive */
 }
 
 .file-indicator {
@@ -2381,22 +2383,49 @@ h3 {
 }
 
 .file-body-wrapper {
-  max-height: 0;
+  /* CSS Grid Animation - Runs on compositor thread */
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
   background: #121212;
   border-top: 1px dashed #333;
-  /* Pure CSS transition - much faster than JS */
-  transition: max-height 0.2s ease-out;
+
+  /* GPU Acceleration */
+  transition: grid-template-rows 0.2s ease-out;
+  will-change: grid-template-rows;
+  contain: layout paint;
   transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
-/* Expanded state */
+/* Expanded state - GPU animated */
 .file-dossier-card.expanded .file-body-wrapper {
-  max-height: 400px;
+  grid-template-rows: 1fr;
 }
 
+/* Inner content wrapper - required for grid animation */
 .file-content-inner {
+  min-height: 0;
+  /* Critical for grid animation to work */
   padding: 1.5rem;
+
+  /* Fade in content for smoother feel */
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+
+.file-dossier-card.expanded .file-content-inner {
+  opacity: 1;
+}
+
+/* Disable shadows during animation for performance */
+.file-dossier-card {
+  transition: border-color 0.2s ease-out;
+}
+
+.file-dossier-card.expanded {
+  /* Shadow only appears after animation settles */
+  box-shadow: none;
 }
 
 .file-stamp {
