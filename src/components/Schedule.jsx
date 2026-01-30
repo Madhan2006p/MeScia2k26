@@ -11,7 +11,7 @@ function Schedule() {
         { time: '12:30 PM – 01:30 PM', title: 'Lunch', description: 'Refreshments' },
         { time: '01:50 PM – 03:20 PM', title: 'IPL Auction', description: 'Bidding War' },
         { time: '01:50 PM – 02:30 PM', title: 'Chaos Carnival', description: 'Fun Event' },
-        { time: '02:30 PM – 03:15 PM', title: 'Free Fire', description: 'Gaming Tournament' },
+        { time: '02:30 PM – 03:15 PM', title: 'Esports(Battle royal)', description: 'Gaming Tournament' },
         { time: '03:30 PM – 04:30 PM', title: 'Valedictory', description: 'Closing Ceremony & Prize Distribution' }
     ];
 
