@@ -41,7 +41,7 @@ function Hero() {
     };
 
     return (
-        <section id="home" className="hero" style={{ overflow: 'hidden', position: 'relative' }}>
+        <section id="home" className="hero" style={{ overflow: 'hidden', position: 'relative', minHeight: '100vh' }}>
             <ThreeScene />
             <div className="container" style={{ position: 'relative', zIndex: 2 }}>
                 <div className="hero-content">

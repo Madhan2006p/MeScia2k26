@@ -87,8 +87,9 @@ const ThreeScene = () => {
     }, []);
 
     // Adjust position and scale based on device
-    const groupPosition = isMobile ? [0, 0, 0] : [2, 0, 0];
-    const groupScale = isMobile ? 0.55 : 1;
+    // On mobile, lift it up slightly centered [0, 0.5, 0] to avoid being hidden behind bottom text
+    const groupPosition = isMobile ? [0, 0.5, 0] : [2, 0, 0];
+    const groupScale = isMobile ? 0.45 : 1;
 
     // Mobile Optimization: Lower pixel ratio, fewer shadows, fewer particles
     const dpr = isMobile ? [1, 1] : [1, 2];
