@@ -190,7 +190,7 @@ function Events() {
         },
         {
             id: 8,
-            title: 'Free Fire',
+            title: 'Esports(Battle royal)',
             type: 'non-technical',
             time: '02:30 PM – 03:15 PM',
             teamSize: 'Duo or Squad',
