@@ -2509,22 +2509,19 @@ h3 {
 
 .event-modal-content {
   background-color: #f7f3e8;
-  width: 100%;
-  max-width: 600px;
-  max-height: 90vh;
-  padding: 2.5rem;
+  width: 90%;
+  max-width: 500px;
+  /* Reduced from 600px */
+  max-height: 85vh;
+  /* Capped height */
+  padding: 2rem;
   position: relative;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.8),
-    5px 5px 0px #d4cbb8,
-    10px 10px 0px #bcb2a2;
-  /* Paper stack effect */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 5px 5px 0px #d4cbb8, 10px 10px 0px #bcb2a2;
   border: 1px solid #d4cbb8;
   overflow-y: auto;
   font-family: 'Courier New', Courier, monospace;
   animation: modalFloatUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   transform: rotateZ(-1deg) rotateY(2deg);
-  /* Floating tilt */
 }
 
 @keyframes modalFloatUp {
@@ -2605,27 +2602,41 @@ h3 {
 
 @media (max-width: 768px) {
   .event-modal-content {
-    padding: 1.5rem;
-    max-width: 90%;
-    max-height: 80vh;
+    padding: 1.2rem;
+    max-width: 95%;
+    max-height: 75vh;
   }
 
   .modal-header {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    align-items: center;
   }
 
   .modal-title {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    margin-top: 0;
   }
 
   .modal-stamp {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.8rem;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-width: 2px;
+  }
+
+  .modal-divider {
+    margin-bottom: 1rem;
+  }
+
+  .modal-section p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
   }
 
   .modal-details-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
   }
 }
 
