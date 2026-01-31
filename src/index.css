@@ -2514,11 +2514,15 @@ h3 {
   /* Reduced from 600px */
   max-height: 85vh;
   /* Capped height */
-  padding: 2rem;
+  padding: 0;
+  /* Remove padding from parent, move to children */
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 5px 5px 0px #d4cbb8, 10px 10px 0px #bcb2a2;
   border: 1px solid #d4cbb8;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Parent doesn't scroll */
   font-family: 'Courier New', Courier, monospace;
   animation: modalFloatUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   transform: rotateZ(-1deg) rotateY(2deg);
