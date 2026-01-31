@@ -336,6 +336,7 @@ function Events() {
             </div>
 
             {/* Event Detail Modal */}
+            {selectedEvent && (
                 <div className="event-modal-overlay" onClick={closeDetails}>
                     <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header" style={{ padding: '1.5rem 2rem 1rem', flexShrink: 0, justifyContent: 'space-between', alignItems: 'center', marginBottom: 0 }}>
