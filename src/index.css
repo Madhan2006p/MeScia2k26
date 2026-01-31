@@ -2606,9 +2606,9 @@ h3 {
 
 @media (max-width: 768px) {
   .event-modal-content {
-    padding: 1.2rem;
+    /* padding: 1.2rem;  <- Removed to preserve flex layout */
     max-width: 95%;
-    max-height: 75vh;
+    max-height: 80vh;
   }
 
   .modal-header {
@@ -2723,7 +2723,7 @@ h3 {
 /* Mobile Adjustments for Modal */
 @media (max-width: 768px) {
   .event-modal-content {
-    padding: 1.5rem;
+    /* padding: 1.5rem; <- Removed to preserve flex layout */
   }
 
   .modal-title {
@@ -2739,4 +2739,113 @@ h3 {
     width: 100%;
     padding: 1rem;
   }
+}
+
+/* Mobile Stack View Styles - ADDED */
+.mobile-stack-container {
+  padding: 1rem;
+  padding-bottom: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stack-card {
+  background: #f7f3e8;
+  border: 1px solid #d4cbb8;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: slideUp 0.5s ease forwards;
+}
+
+.stack-card-header {
+  border-bottom: 2px solid #e0d8c8;
+  padding-bottom: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.stack-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #666;
+  font-weight: bold;
+}
+
+.stack-status {
+  color: #c00;
+  border: 1px solid #c00;
+  padding: 0 0.3rem;
+  letter-spacing: 1px;
+}
+
+.stack-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  margin: 0;
+  color: #111;
+  line-height: 1;
+}
+
+.stack-desc {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  font-family: 'Courier New', monospace;
+}
+
+.stack-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  background: #f0eadd;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.info-label {
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: #888;
+  margin-bottom: 0.2rem;
+  font-family: sans-serif;
+}
+
+.info-value {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.stack-view-btn {
+  width: 100%;
+  background: #111;
+  color: #f7f3e8;
+  border: none;
+  padding: 1rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.stack-view-btn:active {
+  transform: scale(0.98);
+  background: #000;
 }
