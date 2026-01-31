@@ -18,8 +18,8 @@ const Page = memo(forwardRef((props, ref) => {
                     <div className="dossier-divider"></div>
                     
                     <div className="dossier-section">
-                        <h4>DESCRIPTION</h4>
-                        <p>{props.event.description}</p>
+                        <h4>SUMMARY</h4>
+                        <p>{props.event.shortDesc}</p>
                     </div>
 
                     <div className="dossier-grid">
@@ -39,8 +39,14 @@ const Page = memo(forwardRef((props, ref) => {
                 </div>
 
                 <div className="dossier-footer">
-                    <span className="auth-sig">AUTHORIZED BY: OPPENHEIMER</span>
-                    <span className="page-num">PG {props.number}</span>
+                    <button className="view-details-btn" onClick={(e) => {
+                        e.stopPropagation();
+                        props.onViewDetails(props.event);
+                    }}>VIEW DETAILS</button>
+                    <div className="footer-meta">
+                        <span className="auth-sig">AUTH: OPPENHEIMER</span>
+                        <span className="page-num">PG {props.number}</span>
+                    </div>
                 </div>
                 
                 {/* Paper texture and aging effects */}
@@ -69,12 +75,13 @@ const Cover = forwardRef((props, ref) => {
 
 
 // Sticky Stacking Cards - No interaction needed, scroll to reveal
-const MobileFileStack = ({ events }) => {
+const MobileFileStack = ({ events, onViewDetails }) => {
     return (
         <div className="mobile-stack-container">
             {events.map((event, index) => (
                 <div 
                     key={event.id} 
+                    id={`event-${event.id}`}
                     className="stack-card"
                     style={{ '--card-index': index }}
                 >
@@ -89,7 +96,7 @@ const MobileFileStack = ({ events }) => {
 
                     {/* Content - Always visible */}
                     <div className="stack-card-body">
-                        <p className="stack-desc">{event.description}</p>
+                        <p className="stack-desc">{event.shortDesc}</p>
                         
                         <div className="stack-info">
                             <div className="info-item">
@@ -105,6 +112,8 @@ const MobileFileStack = ({ events }) => {
                                 <span className="info-value accent">{event.type.toUpperCase()}</span>
                             </div>
                         </div>
+
+                        <button className="stack-view-btn" onClick={() => onViewDetails(event)}>VIEW GUIDELINES</button>
                     </div>
                 </div>
             ))}
@@ -117,74 +126,90 @@ function Events() {
     const events = [
         {
             id: 1,
-            title: 'Project Pitch',
+            title: 'Paper Presentation',
             type: 'technical',
             time: '09:45 AM – 11:30 AM',
-            teamSize: '1-3 members',
-            description: 'Showcase your innovative projects and technical implementations.'
+            teamSize: '3-5 members',
+            shortDesc: 'Participants present original technical papers showcasing innovative research.',
+            guidelines: 'Paper must be original and plagiarism-free. Presentation time: 5 minutes + 2 minutes Q&A. PPT format only.'
         },
         {
             id: 2,
-            title: 'Paper Parade',
+            title: 'Project Presentation',
             type: 'technical',
             time: '09:45 AM – 11:30 AM',
-            teamSize: '1-2 members',
-            description: 'Present your research papers on cutting-edge technologies.'
+            teamSize: '3-5 members',
+            shortDesc: 'Demonstrate innovative projects, prototypes, or working models.',
+            guidelines: 'Hardware / Software / Hybrid projects allowed. Working demo must be shown. Presentation time: 5 minutes + 2 minutes Q&A.'
         },
         {
             id: 3,
-            title: 'Tech Clash',
+            title: 'Technical Quiz',
             type: 'technical',
             time: '11:30 AM – 12:00 PM',
             teamSize: '2 members',
-            description: 'A debate on trending technical topics while facing opposing views.'
+            shortDesc: 'A quiz event designed to test participants technical knowledge.',
+            guidelines: 'Team size: 2 members. Single round only. No mobile phones or external help allowed.'
         },
         {
             id: 4,
-            title: 'Marketing Insights',
+            title: 'Coding Challenge',
             type: 'technical',
-            time: '11:30 AM – 12:30 PM',
-            teamSize: '1-2 members',
-            description: 'Pitch your product and marketing strategies to the judges.'
+            time: '12:00 PM – 12:30 PM',
+            teamSize: '2 members',
+            shortDesc: 'A competitive programming event focused on logic and problem-solving.',
+            guidelines: 'Team size: 2 members. Language must be known: C, C++, Java, Python. Internet access is prohibited.'
         },
         {
             id: 5,
-            title: 'Code Combat',
+            title: 'Marketing Insights',
             type: 'technical',
-            time: '12:00 PM – 12:30 PM',
-            teamSize: 'Individual',
-            description: 'Solve algorithmic challenges in a high-pressure coding battle.'
+            time: '11:30 AM – 12:30 PM',
+            teamSize: '2 members',
+            shortDesc: 'Showcase your communication, presentation, and persuasive skills.',
+            guidelines: 'Topics will be given on the spot. Time limit will be announced during the event. Focus on clarity, confidence, and content relevance.'
         },
         {
             id: 6,
-            title: 'IPL Auction',
-            type: 'non-technical',
-            time: '01:50 PM – 03:20 PM',
-            teamSize: '3-5 members',
-            description: 'Bid for players and build the strongest cricket team.'
-        },
-        {
-            id: 7,
             title: 'Chaos Carnival',
             type: 'non-technical',
             time: '01:50 PM – 02:30 PM',
-            teamSize: '2-4 members',
-            description: 'Fun-filled carnival games and chaotic challenges.'
+            teamSize: '2 members',
+            shortDesc: 'A fun-packed event with exciting games and engagement challenges.',
+            guidelines: 'Rules will be explained on the spot. Fair play is mandatory. Team size: 2 members.'
+        },
+        {
+            id: 7,
+            title: 'IPL Auction',
+            type: 'non-technical',
+            time: '01:50 PM – 03:20 PM',
+            teamSize: '2 members',
+            shortDesc: 'Experience strategic bidding and team management in an IPL-style auction.',
+            guidelines: 'Fixed virtual budget will be provided. Smart bidding and balanced team selection required. Team size: 2 members.'
         },
         {
             id: 8,
-            title: 'Esport(Battle royal)',
+            title: 'Free Fire',
             type: 'non-technical',
             time: '02:30 PM – 03:15 PM',
-            teamSize: '4 members',
-            description: 'Classic Battle Royale tournament for mobile gamers.'
+            teamSize: 'Duo or Squad',
+            shortDesc: 'A high-intensity battle royale gaming event for competitive players.',
+            guidelines: 'Mode: Duo or Squad. Players must use their own mobile devices. Use of hacks, mods, or emulators is strictly prohibited.'
         }
     ];
 
     // State for the custom JS/CSS book
     const [currentPage, setCurrentPage] = useState(0);
+    const [selectedEvent, setSelectedEvent] = useState(null);
     const totalPages = events.length; 
     
+    const handleViewDetails = (event) => {
+        setSelectedEvent(event);
+    };
+
+    const closeDetails = () => {
+        setSelectedEvent(null);
+    };
     const flipPage = (index) => {
         if (index === currentPage) {
              setCurrentPage(currentPage + 1);
@@ -194,6 +219,19 @@ function Events() {
     };
 
     const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleOpenPage = (e) => {
+            const pageIndex = e.detail.pageIndex;
+            if (pageIndex !== undefined) {
+                // Update page state for the book
+                setCurrentPage(pageIndex);
+            }
+        };
+
+        window.addEventListener('open-event-page', handleOpenPage);
+        return () => window.removeEventListener('open-event-page', handleOpenPage);
+    }, []);
 
     useEffect(() => {
         const checkMobile = () => {
@@ -229,7 +267,7 @@ function Events() {
                 </p>
 
                 {isMobile ? (
-                    <MobileFileStack events={events} />
+                    <MobileFileStack events={events} onViewDetails={handleViewDetails} />
                 ) : (
                     <div className="custom-book-scene">
                         <div className="custom-book">
@@ -264,7 +302,7 @@ function Events() {
                                         onClick={() => flipPage(pageIndex)}
                                     >
                                         <div className="custom-page-front">
-                                            <Page number={pageIndex} event={event} />
+                                            <Page number={pageIndex} event={event} onViewDetails={handleViewDetails} />
                                         </div>
                                         <div className="custom-page-back">
                                             <div className="dossier-back-texture">
@@ -293,6 +331,62 @@ function Events() {
                     </div>
                 )}
             </div>
+
+            {/* Event Detail Modal */}
+            {selectedEvent && (
+                <div className="event-modal-overlay" onClick={closeDetails}>
+                    <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span className="modal-stamp">TOP SECRET</span>
+                            <button className="modal-close" onClick={closeDetails}>&times;</button>
+                        </div>
+                        
+                        <div className="modal-body">
+                            <div className="modal-file-info">
+                                <span className="file-label">SUBJECT: </span>
+                                <h3 className="modal-title">{selectedEvent.title}</h3>
+                            </div>
+                            
+                            <div className="modal-divider"></div>
+                            
+                            <div className="modal-section">
+                                <h4>MISSION GUIDELINES</h4>
+                                <p>{selectedEvent.guidelines}</p>
+                            </div>
+
+                            <div className="modal-details-grid">
+                                <div className="modal-item">
+                                    <span className="label">MISSION TIME</span>
+                                    <span className="value">{selectedEvent.time}</span>
+                                </div>
+                                <div className="modal-item">
+                                    <span className="label">TEAM COMPOSITION</span>
+                                    <span className="value">{selectedEvent.teamSize}</span>
+                                </div>
+                                <div className="modal-item">
+                                    <span className="label">SECURITY CLEARANCE</span>
+                                    <span className="value">{selectedEvent.type.toUpperCase()}</span>
+                                </div>
+                            </div>
+                            
+                            <div className="modal-actions">
+                                <a 
+                                    href="https://forms.gle/JfgkzXoAZqTEXuGz8" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="modal-reg-btn"
+                                >
+                                    AUTHORIZE REGISTRATION
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div className="modal-footer">
+                            <span className="footer-warning">THIS DOCUMENT IS FOR DEPARTMENT EYES ONLY. UNAUTHORIZED SHARING IS STRICTLY PROHIBITED.</span>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }
