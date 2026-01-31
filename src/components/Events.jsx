@@ -202,13 +202,16 @@ function Events() {
     const [currentPage, setCurrentPage] = useState(0);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const totalPages = events.length; 
+    const [showRegisterGuide, setShowRegisterGuide] = useState(false);
     
     const handleViewDetails = (event) => {
         setSelectedEvent(event);
+        setShowRegisterGuide(false);
     };
 
     const closeDetails = () => {
         setSelectedEvent(null);
+        setShowRegisterGuide(false);
     };
     const flipPage = (index) => {
         if (index === currentPage) {
@@ -341,45 +344,83 @@ function Events() {
                             <button className="modal-close" onClick={closeDetails}>&times;</button>
                         </div>
                         
-                        <div className="modal-body">
-                            <div className="modal-file-info">
-                                <span className="file-label">SUBJECT: </span>
-                                <h3 className="modal-title">{selectedEvent.title}</h3>
-                            </div>
-                            
-                            <div className="modal-divider"></div>
-                            
-                            <div className="modal-section">
-                                <h4>MISSION GUIDELINES</h4>
-                                <p>{selectedEvent.guidelines}</p>
-                            </div>
+                        {!showRegisterGuide ? (
+                             <div className="modal-body">
+                                <div className="modal-file-info">
+                                    <span className="file-label">SUBJECT: </span>
+                                    <h3 className="modal-title">{selectedEvent.title}</h3>
+                                </div>
+                                
+                                <div className="modal-divider"></div>
+                                
+                                <div className="modal-section">
+                                    <h4>MISSION GUIDELINES</h4>
+                                    <p>{selectedEvent.guidelines}</p>
+                                </div>
 
-                            <div className="modal-details-grid">
-                                <div className="modal-item">
-                                    <span className="label">MISSION TIME</span>
-                                    <span className="value">{selectedEvent.time}</span>
+                                <div className="modal-details-grid">
+                                    <div className="modal-item">
+                                        <span className="label">MISSION TIME</span>
+                                        <span className="value">{selectedEvent.time}</span>
+                                    </div>
+                                    <div className="modal-item">
+                                        <span className="label">TEAM COMPOSITION</span>
+                                        <span className="value">{selectedEvent.teamSize}</span>
+                                    </div>
+                                    <div className="modal-item">
+                                        <span className="label">SECURITY CLEARANCE</span>
+                                        <span className="value">{selectedEvent.type.toUpperCase()}</span>
+                                    </div>
                                 </div>
-                                <div className="modal-item">
-                                    <span className="label">TEAM COMPOSITION</span>
-                                    <span className="value">{selectedEvent.teamSize}</span>
-                                </div>
-                                <div className="modal-item">
-                                    <span className="label">SECURITY CLEARANCE</span>
-                                    <span className="value">{selectedEvent.type.toUpperCase()}</span>
+                                
+                                <div className="modal-actions">
+                                    <button 
+                                        onClick={() => setShowRegisterGuide(true)}
+                                        className="modal-reg-btn"
+                                    >
+                                        HOW TO REGISTER
+                                    </button>
                                 </div>
                             </div>
-                            
-                            <div className="modal-actions">
-                                <a 
-                                    href="https://forms.gle/JfgkzXoAZqTEXuGz8" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="modal-reg-btn"
-                                >
-                                    AUTHORIZE REGISTRATION
-                                </a>
+                        ) : (
+                            <div className="modal-body">
+                                <div className="modal-file-info">
+                                    <span className="file-label">PROTOCOL: </span>
+                                    <h3 className="modal-title">REGISTRATION</h3>
+                                </div>
+                                
+                                <div className="modal-divider"></div>
+                                
+                                <div className="modal-section">
+                                    <h4>INSTRUCTIONS</h4>
+                                    <ul style={{ listStyle: 'none', padding: 0, color: '#333', fontFamily: 'Courier New', lineHeight: '1.6' }}>
+                                        <li style={{ marginBottom: '1rem', display: 'flex', gap: '10px' }}>
+                                            <span style={{ color: '#c00', fontWeight: 'bold' }}>01 //</span>
+                                            <span>Individual participation payment is <strong>MANDATORY</strong>. Team payment is not recommended.</span>
+                                        </li>
+                                        <li style={{ marginBottom: '1rem', display: 'flex', gap: '10px' }}>
+                                            <span style={{ color: '#c00', fontWeight: 'bold' }}>02 //</span>
+                                            <span>After payment, you must join the official WhatsApp group.</span>
+                                        </li>
+                                        <li style={{ marginBottom: '1rem', display: 'flex', gap: '10px' }}>
+                                            <span style={{ color: '#c00', fontWeight: 'bold' }}>03 //</span>
+                                            <span>Specific event forms will be circulated <strong>ONLY</strong> in the WhatsApp group.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div className="modal-actions" style={{ marginTop: '2rem' }}>
+                                    <a 
+                                        href="https://forms.gle/JfgkzXoAZqTEXuGz8" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="modal-reg-btn"
+                                    >
+                                        REGISTER NOW
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        )}
                         
                         <div className="modal-footer">
                             <span className="footer-warning">THIS DOCUMENT IS FOR DEPARTMENT EYES ONLY. UNAUTHORIZED SHARING IS STRICTLY PROHIBITED.</span>
