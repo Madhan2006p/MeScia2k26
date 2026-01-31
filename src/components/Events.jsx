@@ -423,11 +423,11 @@ function Events() {
                                         }}>
                                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                                 <span style={{ fontSize: '0.7rem', color: '#666', fontWeight: 'bold' }}>TIME</span>
-                                                <span style={{ fontWeight: 'bold' }}>{selectedEvent.time.split('–')[0]}</span>
+                                                <span style={{ fontWeight: 'bold', color: '#000' }}>{selectedEvent.time.split('–')[0]}</span>
                                             </div>
                                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                                 <span style={{ fontSize: '0.7rem', color: '#666', fontWeight: 'bold' }}>TYPE</span>
-                                                <span style={{ fontWeight: 'bold' }}>{selectedEvent.type.toUpperCase()}</span>
+                                                <span style={{ fontWeight: 'bold', color: '#000' }}>{selectedEvent.type.toUpperCase()}</span>
                                             </div>
                                         </div>
                                     </>
