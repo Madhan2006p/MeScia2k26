@@ -3,6 +3,7 @@ import HTMLFlipBook from 'react-pageflip';
 // Custom Page Component for the flipbook
 // Custom Page Component for the flipbook
 import React, { forwardRef, useState, memo, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 const Page = memo(forwardRef((props, ref) => {
     return (
@@ -337,7 +338,7 @@ function Events() {
 
             {/* Event Detail Modal */}
             {selectedEvent && (
-                isMobile ? (
+                isMobile ? createPortal(
                     <div className="mobile-popup-overlay" style={{
                         position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
                         backgroundColor: 'rgba(0,0,0,0.85)', zIndex: 10000,
@@ -432,22 +433,23 @@ function Events() {
                                     </>
                                 ) : (
                                     <>
-                                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', marginTop: 0 }}>REGISTRATION PROTOCOLS</h3>
+                                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', marginTop: 0, color: '#000' }}>REGISTRATION PROTOCOLS</h3>
                                         <ul style={{ 
                                             listStyle: 'none', 
                                             padding: 0, 
                                             margin: 0,
                                             display: 'flex', 
                                             flexDirection: 'column', 
-                                            gap: '1rem' 
+                                            gap: '1rem',
+                                            color: '#000'
                                         }}>
-                                            <li style={{ background: '#fff', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #c00' }}>
+                                            <li style={{ background: '#fff', color: '#000', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #c00' }}>
                                                 <strong>01.</strong> Payment is <span style={{color: '#c00'}}>Mandatory</span> for participation. Avoid team payments if possible.
                                             </li>
-                                            <li style={{ background: '#fff', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #c00' }}>
+                                            <li style={{ background: '#fff', color: '#000', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #c00' }}>
                                                 <strong>02.</strong> Join the WhatsApp group immediately after payment.
                                             </li>
-                                            <li style={{ background: '#fff', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #c00' }}>
+                                            <li style={{ background: '#fff', color: '#000', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #c00' }}>
                                                 <strong>03.</strong> Event forms will be shared ONLY in the WhatsApp group.
                                             </li>
                                         </ul>
@@ -505,7 +507,8 @@ function Events() {
                                 )}
                             </div>
                         </div>
-                    </div>
+                    </div>,
+                    document.body
                 ) : (
                     <div className="event-modal-overlay" onClick={closeDetails}>
                         <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
