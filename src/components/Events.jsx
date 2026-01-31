@@ -337,97 +337,268 @@ function Events() {
 
             {/* Event Detail Modal */}
             {selectedEvent && (
-                <div className="event-modal-overlay" onClick={closeDetails}>
-                    <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header" style={{ padding: '1.5rem 2rem 1rem', flexShrink: 0, justifyContent: 'space-between', alignItems: 'center', marginBottom: 0 }}>
-                            <span className="modal-stamp" style={{ fontSize: '1rem', padding: '0.3rem 0.8rem', borderWidth: '2px' }}>TOP SECRET</span>
-                            <button className="modal-close" onClick={closeDetails} style={{ fontSize: '2rem', lineHeight: '1' }}>&times;</button>
-                        </div>
-                        
-                        <div className="modal-body" style={{ flex: 1, overflowY: 'auto', padding: '0 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                            {!showRegisterGuide ? (
-                                <>
-                                    <div className="modal-file-info" style={{ marginBottom: '0.5rem' }}>
-                                        <span className="file-label" style={{ fontSize: '0.9rem' }}>SUBJECT: </span>
-                                        <h3 className="modal-title" style={{ fontSize: '2rem', marginTop: '0', lineHeight: 1 }}>{selectedEvent.title}</h3>
-                                    </div>
-                                    
-                                    <div className="modal-divider" style={{ margin: '0.5rem 0', height: '4px' }}></div>
-                                    
-                                    <div className="modal-section" style={{ marginBottom: '1rem' }}>
-                                        <h4 style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>MISSION GUIDELINES</h4>
-                                        <p style={{ fontSize: '1rem', lineHeight: '1.5', marginBottom: 0 }}>{selectedEvent.guidelines}</p>
-                                    </div>
+                isMobile ? (
+                    <div className="mobile-popup-overlay" style={{
+                        position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+                        backgroundColor: 'rgba(0,0,0,0.85)', zIndex: 10000,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        padding: '1.5rem'
+                    }} onClick={closeDetails}>
+                        <div className="mobile-popup-box" style={{
+                            backgroundColor: '#f7f3e8',
+                            width: '100%',
+                            maxWidth: '380px',
+                            maxHeight: '85vh',
+                            borderRadius: '16px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            animation: 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                        }} onClick={(e) => e.stopPropagation()}>
+                            
+                            {/* Mobile Header */}
+                            <div style={{
+                                padding: '1.2rem',
+                                background: '#1a1a1a',
+                                color: '#f7f3e8',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                borderBottom: '2px solid #c00'
+                            }}>
+                                <span style={{ fontFamily: 'Courier New', fontWeight: 'bold', letterSpacing: '1px' }}>
+                                    {selectedEvent.id.toString().padStart(3, '0')} // GUIDELINES
+                                </span>
+                                <button onClick={closeDetails} style={{
+                                    background: 'transparent',
+                                    border: 'none',
+                                    color: '#f7f3e8',
+                                    fontSize: '1.5rem',
+                                    cursor: 'pointer',
+                                    width: '30px',
+                                    height: '30px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>&times;</button>
+                            </div>
 
-                                    <div className="modal-details-grid" style={{ marginBottom: '0.5rem', gap: '1rem', display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-                                        <div className="modal-item">
-                                            <span className="label" style={{ fontSize: '0.7rem' }}>MISSION TIME</span>
-                                            <span className="value" style={{ fontSize: '1rem' }}>{selectedEvent.time}</span>
+                            {/* Mobile Body */}
+                            <div style={{
+                                padding: '1.5rem',
+                                overflowY: 'auto',
+                                flex: 1
+                            }}>
+                                {!showRegisterGuide ? (
+                                    <>
+                                        <h3 style={{
+                                            fontSize: '1.8rem',
+                                            margin: '0 0 1rem 0',
+                                            lineHeight: '1.1',
+                                            color: '#1a1a1a',
+                                            textTransform: 'uppercase'
+                                        }}>{selectedEvent.title}</h3>
+                                        
+                                        <div style={{
+                                            fontSize: '1rem',
+                                            lineHeight: '1.6',
+                                            color: '#444',
+                                            marginBottom: '1.5rem',
+                                            borderLeft: '3px solid #c00',
+                                            paddingLeft: '1rem'
+                                        }}>
+                                            {selectedEvent.guidelines}
                                         </div>
-                                        <div className="modal-item">
-                                            <span className="label" style={{ fontSize: '0.7rem' }}>SECURITY CLEARANCE</span>
-                                            <span className="value" style={{ fontSize: '1rem' }}>{selectedEvent.type.toUpperCase()}</span>
+
+                                        <div style={{
+                                            display: 'grid',
+                                            gridTemplateColumns: '1fr 1fr',
+                                            gap: '1rem',
+                                            background: '#e6e0d0',
+                                            padding: '1rem',
+                                            borderRadius: '8px'
+                                        }}>
+                                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                <span style={{ fontSize: '0.7rem', color: '#666', fontWeight: 'bold' }}>TIME</span>
+                                                <span style={{ fontWeight: 'bold' }}>{selectedEvent.time.split('–')[0]}</span>
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                <span style={{ fontSize: '0.7rem', color: '#666', fontWeight: 'bold' }}>TYPE</span>
+                                                <span style={{ fontWeight: 'bold' }}>{selectedEvent.type.toUpperCase()}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </>
-                            ) : (
-                                <>
-                                    <div className="modal-file-info" style={{ marginBottom: '0.5rem' }}>
-                                        <span className="file-label" style={{ fontSize: '0.9rem' }}>PROTOCOL: </span>
-                                        <h3 className="modal-title" style={{ fontSize: '2rem', marginTop: '0', lineHeight: 1 }}>REGISTRATION</h3>
-                                    </div>
-                                    
-                                    <div className="modal-divider" style={{ margin: '0.5rem 0', height: '4px' }}></div>
-                                    
-                                    <div className="modal-section" style={{ flex: 1 }}>
-                                        <h4 style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>INSTRUCTIONS</h4>
-                                        <ul style={{ listStyle: 'none', padding: 0, color: '#333', fontFamily: 'Courier New', lineHeight: '1.5', fontSize: '1rem' }}>
-                                            <li style={{ marginBottom: '0.8rem', display: 'flex', gap: '10px' }}>
-                                                <span style={{ color: '#c00', fontWeight: 'bold' }}>01</span>
-                                                <span>Individual participation payment is <strong>MANDATORY</strong>. Team payment is not recommended.</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', marginTop: 0 }}>REGISTRATION PROTOCOLS</h3>
+                                        <ul style={{ 
+                                            listStyle: 'none', 
+                                            padding: 0, 
+                                            margin: 0,
+                                            display: 'flex', 
+                                            flexDirection: 'column', 
+                                            gap: '1rem' 
+                                        }}>
+                                            <li style={{ background: '#fff', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #c00' }}>
+                                                <strong>01.</strong> Payment is <span style={{color: '#c00'}}>Mandatory</span> for participation. Avoid team payments if possible.
                                             </li>
-                                            <li style={{ marginBottom: '0.8rem', display: 'flex', gap: '10px' }}>
-                                                <span style={{ color: '#c00', fontWeight: 'bold' }}>02</span>
-                                                <span>After payment, join the official WhatsApp group.</span>
+                                            <li style={{ background: '#fff', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #c00' }}>
+                                                <strong>02.</strong> Join the WhatsApp group immediately after payment.
                                             </li>
-                                            <li style={{ marginBottom: '0.8rem', display: 'flex', gap: '10px' }}>
-                                                <span style={{ color: '#c00', fontWeight: 'bold' }}>03</span>
-                                                <span>Specific event forms will be circulated <strong>ONLY</strong> in the WhatsApp group.</span>
+                                            <li style={{ background: '#fff', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #c00' }}>
+                                                <strong>03.</strong> Event forms will be shared ONLY in the WhatsApp group.
                                             </li>
                                         </ul>
-                                    </div>
-                                </>
-                            )}
-                        </div>
+                                    </>
+                                )}
+                            </div>
 
-                        <div className="modal-fixed-footer" style={{ padding: '1.5rem 2rem', flexShrink: 0, borderTop: '1px dashed #d4cbb8', marginTop: '0', background: '#f7f3e8', zIndex: 10 }}>
-                             <div className="modal-actions" style={{ marginBottom: '1rem' }}>
+                            {/* Mobile Footer */}
+                            <div style={{
+                                padding: '1rem 1.5rem',
+                                background: '#e6e0d0',
+                                borderTop: '1px solid #d4cbb8'
+                            }}>
                                 {!showRegisterGuide ? (
                                     <button 
                                         onClick={() => setShowRegisterGuide(true)}
-                                        className="modal-reg-btn"
-                                        style={{ width: '100%', padding: '0.8rem', fontSize: '1.1rem' }}
+                                        style={{
+                                            width: '100%',
+                                            padding: '1rem',
+                                            background: '#1a1a1a',
+                                            color: '#fff',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            fontSize: '1rem',
+                                            fontWeight: 'bold',
+                                            textTransform: 'uppercase',
+                                            cursor: 'pointer'
+                                        }}
                                     >
-                                        HOW TO REGISTER
+                                        How to Register
                                     </button>
                                 ) : (
                                     <a 
                                         href="https://forms.gle/JfgkzXoAZqTEXuGz8" 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className="modal-reg-btn"
-                                        style={{ width: '100%', display: 'inline-block', textAlign: 'center', padding: '0.8rem', fontSize: '1.1rem' }}
+                                        style={{
+                                            display: 'block',
+                                            width: '100%',
+                                            padding: '1rem',
+                                            background: '#c00',
+                                            color: '#fff',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            fontSize: '1rem',
+                                            fontWeight: 'bold',
+                                            textTransform: 'uppercase',
+                                            cursor: 'pointer',
+                                            textAlign: 'center',
+                                            textDecoration: 'none'
+                                        }}
                                     >
-                                        REGISTER NOW
+                                        Register Now
                                     </a>
                                 )}
                             </div>
-                            <div className="modal-footer" style={{ padding: 0 }}>
-                                <span className="footer-warning" style={{ fontSize: '0.6rem', lineHeight: '1.2', display: 'block' }}>THIS DOCUMENT IS FOR DEPARTMENT EYES ONLY. UNAUTHORIZED SHARING IS PROHIBITED.</span>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="event-modal-overlay" onClick={closeDetails}>
+                        <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
+                            <div className="modal-header" style={{ padding: '1.5rem 2rem 1rem', flexShrink: 0, justifyContent: 'space-between', alignItems: 'center', marginBottom: 0 }}>
+                                <span className="modal-stamp" style={{ fontSize: '1rem', padding: '0.3rem 0.8rem', borderWidth: '2px' }}>TOP SECRET</span>
+                                <button className="modal-close" onClick={closeDetails} style={{ fontSize: '2rem', lineHeight: '1' }}>&times;</button>
+                            </div>
+                            
+                            <div className="modal-body" style={{ flex: 1, overflowY: 'auto', padding: '0 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                {!showRegisterGuide ? (
+                                    <>
+                                        <div className="modal-file-info" style={{ marginBottom: '0.5rem' }}>
+                                            <span className="file-label" style={{ fontSize: '0.9rem' }}>SUBJECT: </span>
+                                            <h3 className="modal-title" style={{ fontSize: '2rem', marginTop: '0', lineHeight: 1 }}>{selectedEvent.title}</h3>
+                                        </div>
+                                        
+                                        <div className="modal-divider" style={{ margin: '0.5rem 0', height: '4px' }}></div>
+                                        
+                                        <div className="modal-section" style={{ marginBottom: '1rem' }}>
+                                            <h4 style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>MISSION GUIDELINES</h4>
+                                            <p style={{ fontSize: '1rem', lineHeight: '1.5', marginBottom: 0 }}>{selectedEvent.guidelines}</p>
+                                        </div>
+
+                                        <div className="modal-details-grid" style={{ marginBottom: '0.5rem', gap: '1rem', display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+                                            <div className="modal-item">
+                                                <span className="label" style={{ fontSize: '0.7rem' }}>MISSION TIME</span>
+                                                <span className="value" style={{ fontSize: '1rem' }}>{selectedEvent.time}</span>
+                                            </div>
+                                            <div className="modal-item">
+                                                <span className="label" style={{ fontSize: '0.7rem' }}>SECURITY CLEARANCE</span>
+                                                <span className="value" style={{ fontSize: '1rem' }}>{selectedEvent.type.toUpperCase()}</span>
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="modal-file-info" style={{ marginBottom: '0.5rem' }}>
+                                            <span className="file-label" style={{ fontSize: '0.9rem' }}>PROTOCOL: </span>
+                                            <h3 className="modal-title" style={{ fontSize: '2rem', marginTop: '0', lineHeight: 1 }}>REGISTRATION</h3>
+                                        </div>
+                                        
+                                        <div className="modal-divider" style={{ margin: '0.5rem 0', height: '4px' }}></div>
+                                        
+                                        <div className="modal-section" style={{ flex: 1 }}>
+                                            <h4 style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>INSTRUCTIONS</h4>
+                                            <ul style={{ listStyle: 'none', padding: 0, color: '#333', fontFamily: 'Courier New', lineHeight: '1.5', fontSize: '1rem' }}>
+                                                <li style={{ marginBottom: '0.8rem', display: 'flex', gap: '10px' }}>
+                                                    <span style={{ color: '#c00', fontWeight: 'bold' }}>01</span>
+                                                    <span>Individual participation payment is <strong>MANDATORY</strong>. Team payment is not recommended.</span>
+                                                </li>
+                                                <li style={{ marginBottom: '0.8rem', display: 'flex', gap: '10px' }}>
+                                                    <span style={{ color: '#c00', fontWeight: 'bold' }}>02</span>
+                                                    <span>After payment, join the official WhatsApp group.</span>
+                                                </li>
+                                                <li style={{ marginBottom: '0.8rem', display: 'flex', gap: '10px' }}>
+                                                    <span style={{ color: '#c00', fontWeight: 'bold' }}>03</span>
+                                                    <span>Specific event forms will be circulated <strong>ONLY</strong> in the WhatsApp group.</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+
+                            <div className="modal-fixed-footer" style={{ padding: '1.5rem 2rem', flexShrink: 0, borderTop: '1px dashed #d4cbb8', marginTop: '0', background: '#f7f3e8', zIndex: 10 }}>
+                                 <div className="modal-actions" style={{ marginBottom: '1rem' }}>
+                                    {!showRegisterGuide ? (
+                                        <button 
+                                            onClick={() => setShowRegisterGuide(true)}
+                                            className="modal-reg-btn"
+                                            style={{ width: '100%', padding: '0.8rem', fontSize: '1.1rem' }}
+                                        >
+                                            HOW TO REGISTER
+                                        </button>
+                                    ) : (
+                                        <a 
+                                            href="https://forms.gle/JfgkzXoAZqTEXuGz8" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="modal-reg-btn"
+                                            style={{ width: '100%', display: 'inline-block', textAlign: 'center', padding: '0.8rem', fontSize: '1.1rem' }}
+                                        >
+                                            REGISTER NOW
+                                        </a>
+                                    )}
+                                </div>
+                                <div className="modal-footer" style={{ padding: 0 }}>
+                                    <span className="footer-warning" style={{ fontSize: '0.6rem', lineHeight: '1.2', display: 'block' }}>THIS DOCUMENT IS FOR DEPARTMENT EYES ONLY. UNAUTHORIZED SHARING IS PROHIBITED.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                )
             )}
         </section>
     );

@@ -2740,3 +2740,8 @@ h3 {
     padding: 1rem;
   }
 }
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
