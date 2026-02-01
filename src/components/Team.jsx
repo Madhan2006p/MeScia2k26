@@ -38,6 +38,13 @@ const TiltCard = ({ children }) => {
 function Team() {
     const teamMembers = [
         {
+            name: 'M.Arumugam',
+            role: 'Assistant Professor(SLG)',
+            initial: 'A',
+            email: 'mescia26@kongu.ac.in',
+            phone: '+91 98427 78152'
+        },
+        {
             name: 'Rithanya Paramashivam',
             role: 'Student Coordinator',
             initial: 'R',
@@ -50,13 +57,6 @@ function Team() {
             initial: 'N',
             email: 'mescia26@kongu.ac.in',
             phone: '+91 824 878 8729'
-        },
-        {
-            name: 'Prof. Arumugam',
-            role: 'Faculty Mentor & Event Convenor',
-            initial: 'A',
-            email: 'mescia26@kongu.ac.in',
-            phone: '+91 98427 78152'
         }
     ];
 

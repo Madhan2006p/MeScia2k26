@@ -78,6 +78,37 @@ function Hero() {
                     <h2 className="hero-subtitle">One-Day Inter College Technical Symposium</h2>
                     <p className="hero-tagline">Ignite Your Skills. Inspire Your Future.</p>
 
+                    <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'center', 
+                        gap: '2rem', 
+                        margin: '2.5rem 0',
+                        flexWrap: 'wrap'
+                    }}>
+                        <div style={{
+                            border: '1px solid var(--accent-primary)',
+                            padding: '0.8rem 2rem',
+                            background: 'rgba(5, 5, 5, 0.6)',
+                            backdropFilter: 'blur(4px)',
+                            minWidth: '200px',
+                            boxShadow: '0 0 15px rgba(255, 103, 0, 0.1)'
+                        }}>
+                             <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.2rem' }}>Prize Pool Worth</span>
+                             <span style={{ display: 'block', fontSize: '2.5rem', lineHeight: '1', color: '#fff', textShadow: '0 0 10px var(--accent-primary)', fontFamily: "'Bebas Neue', sans-serif" }}>₹25,000+</span>
+                        </div>
+                        <div style={{
+                            border: '1px solid var(--accent-primary)',
+                            padding: '0.8rem 2rem',
+                            background: 'rgba(5, 5, 5, 0.6)',
+                            backdropFilter: 'blur(4px)',
+                            minWidth: '200px',
+                             boxShadow: '0 0 15px rgba(255, 103, 0, 0.1)'
+                        }}>
+                             <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.2rem' }}>Registration Fee</span>
+                             <span style={{ display: 'block', fontSize: '2.5rem', lineHeight: '1', color: '#fff', textShadow: '0 0 10px var(--accent-primary)', fontFamily: "'Bebas Neue', sans-serif" }}>₹295</span>
+                        </div>
+                    </div>
+
                     <div className="countdown">
                         <div className="countdown-item">
                             <span className="countdown-value orbitron">{String(countdown.days).padStart(2, '0')}</span>

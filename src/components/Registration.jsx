@@ -13,6 +13,10 @@ function Registration() {
                         Click here to secure your spot at MeScia 26 and be part of an
                         unforgettable technical symposium experience!
                     </p>
+                    <div style={{ margin: '2rem 0', fontFamily: "'Bebas Neue', sans-serif" }}>
+                        <span style={{ fontSize: '1.5rem', color: '#ccc', letterSpacing: '1px' }}>REGISTRATION FEE : </span>
+                        <span style={{ fontSize: '2.5rem', color: 'var(--accent-primary)', marginLeft: '10px', textShadow: '0 0 10px rgba(255, 103, 0, 0.3)' }}>₹295</span>
+                    </div>
                     <button className="cta-button pulse-effect" onClick={handleRegister}>
                         <span>Register Now</span>
                     </button>
