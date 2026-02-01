@@ -428,7 +428,11 @@ function Events() {
                                             borderLeft: '3px solid #c00',
                                             paddingLeft: '1rem'
                                         }}>
-                                            {selectedEvent.guidelines}
+                                            <ul style={{ listStyleType: 'disc', paddingLeft: '1rem', margin: 0 }}>
+                                                {selectedEvent.guidelines.split('.').filter(g => g.trim()).map((guide, idx) => (
+                                                    <li key={idx} style={{ marginBottom: '0.5rem' }}>{guide.trim()}.</li>
+                                                ))}
+                                            </ul>
                                         </div>
 
                                         <div style={{
@@ -555,7 +559,11 @@ function Events() {
                                         
                                         <div className="modal-section" style={{ marginBottom: '1rem' }}>
                                             <h4 style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>MISSION GUIDELINES</h4>
-                                            <p style={{ fontSize: '1rem', lineHeight: '1.5', marginBottom: 0 }}>{selectedEvent.guidelines}</p>
+                                            <ul style={{ listStyleType: 'disc', paddingLeft: '1rem', margin: 0 }}>
+                                                {selectedEvent.guidelines.split('.').filter(g => g.trim()).map((guide, idx) => (
+                                                    <li key={idx} style={{ marginBottom: '0.5rem', fontSize: '1rem', lineHeight: '1.5', color: '#333' }}>{guide.trim()}.</li>
+                                                ))}
+                                            </ul>
                                         </div>
 
                                         <div className="modal-details-grid" style={{ marginBottom: '0.5rem', gap: '1rem', display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
