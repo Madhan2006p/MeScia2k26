@@ -703,87 +703,228 @@ h3 {
   font-weight: 300;
 }
 
-/* Timeline - Technical */
-.timeline {
+
+/* =========================
+   ZIG-ZAG TIMELINE
+========================= */
+.zigzag-timeline-section {
+  --zigzag-accent: #ff6700;
+  padding: 120px 20px;
+  text-align: center;
+  color: white;
   position: relative;
-  /* border-left removed to allow custom animation */
-  margin-left: 50px;
-  padding: 2rem 0;
+  overflow: hidden;
 }
 
-.timeline::before {
-  display: none;
+.zigzag-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  color: white;
 }
 
-/* Remove old line */
+.zigzag-sub {
+  opacity: 0.7;
+  margin-bottom: 120px;
+  font-size: 1.1rem;
+}
 
-.timeline-item {
-  margin-bottom: 4rem;
-  padding-left: 40px;
+@media (max-width: 768px) {
+  .zigzag-timeline-section {
+    padding: 60px 20px;
+  }
+
+  .zigzag-title {
+    font-size: 2.2rem;
+  }
+
+  .zigzag-sub {
+    font-size: 0.95rem;
+    margin-bottom: 60px;
+  }
+}
+
+/* WRAPPER */
+.zigzag-wrapper {
   position: relative;
-  display: block !important;
-  flex-direction: column !important;
+  max-width: 1000px;
+  margin: auto;
+  perspective: 1500px;
+  transform-style: preserve-3d;
 }
 
-.timeline-dot {
-  left: -5.5px !important;
-  /* Align with border */
+/* =========================
+   MULTI ZIG-ZAG LINES
+========================= */
+.zigzag-lines {
+  position: absolute;
   top: 0;
-  width: 11px;
-  height: 11px;
-  background: black;
-  border: 2px solid var(--accent-primary);
-  border-radius: 0;
-  /* Square for tech feel */
-  box-shadow: none;
-  animation: none;
-  transform: none !important;
+  left: 50%;
+  width: 160px;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: 0;
 }
 
-.timeline-content {
-  width: 100% !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0;
+.zigzag-lines svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.timeline-time {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--accent-primary);
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  margin-bottom: 0.5rem;
+.zigzag-path {
+  fill: none;
+  stroke: var(--zigzag-accent);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  filter: drop-shadow(0 0 10px rgba(255, 103, 0, 0.45)) drop-shadow(0 0 26px rgba(255, 103, 0, 0.25));
 }
 
-.timeline-title {
-  font-size: 1.8rem;
-  color: var(--text-main);
-  font-family: 'Bebas Neue', cursive;
+/* Depth variation */
+.zigzag-path.line-1 {
+  opacity: 1;
+  animation: flow1 6s linear infinite;
+}
+
+.zigzag-path.line-2 {
+  opacity: 0.6;
+  animation: flow2 8s linear infinite;
+}
+
+.zigzag-path.line-3 {
+  opacity: 0.35;
+  animation: flow3 10s linear infinite;
+}
+
+/* Flow illusion */
+@keyframes flow1 {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -2000;
+  }
+}
+
+@keyframes flow2 {
+  from {
+    stroke-dashoffset: 400;
+  }
+
+  to {
+    stroke-dashoffset: -1600;
+  }
+}
+
+@keyframes flow3 {
+  from {
+    stroke-dashoffset: 800;
+  }
+
+  to {
+    stroke-dashoffset: -1200;
+  }
+}
+
+/* =========================
+   TIMELINE ITEM
+========================= */
+.zigzag-item {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 150px;
+}
+
+/* =========================
+   BIG PREMIUM CARD
+========================= */
+.zigzag-card {
+  width: 560px;
+  max-width: 94%;
+  padding: 40px 46px;
+  background: #050505;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.zigzag-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--zigzag-accent);
+}
+
+/* TEXT */
+.zigzag-card h3 {
+  margin-bottom: 8px;
+  color: white;
+  font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 1px;
 }
 
-/* Terminal / Guideline Cards */
-.terminal-card {
-  border-left: 3px solid var(--border-color);
-  border-radius: 0;
+.zigzag-card p {
+  opacity: 0.7;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
 }
 
-.terminal-header {
-  background: transparent;
-  padding: 0 0 1rem 0;
-  border-bottom: 1px dashed var(--border-color);
-  margin-bottom: 1.5rem;
-}
-
-.terminal-dot {
-  display: none;
-}
-
-.terminal-title {
-  color: var(--accent-primary);
+.zigzag-card span {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  border-radius: 22px;
+  background: var(--zigzag-accent);
+  color: #000;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
+
+.time {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--zigzag-accent);
+  font-weight: 600;
+}
+
+/* Slight arrow glow */
+.zigzag-path marker path {
+  filter: drop-shadow(0 0 4px rgba(255, 103, 0, 0.4));
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .zigzag-lines {
+    width: 90px;
+  }
+
+  .zigzag-path {
+    filter: none !important;
+  }
+
+  .zigzag-card {
+    width: 94%;
+    padding: 32px 30px;
+  }
+
+  .zigzag-item {
+    margin-bottom: 80px;
+  }
+}
+
+
+
+
+
+
 
 /* Event Badges */
 .event-badge {
