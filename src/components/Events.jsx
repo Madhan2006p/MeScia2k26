@@ -129,7 +129,7 @@ function Events() {
     const events = [
         {
             id: 1,
-            title: 'Paper Presentation',
+            title: 'Paper Parade',
             type: 'technical',
             time: '09:45 AM – 11:30 AM',
             teamSize: '3-5 members',
@@ -140,7 +140,7 @@ function Events() {
         },
         {
             id: 2,
-            title: 'Project Presentation',
+            title: 'Project Pitch',
             type: 'technical',
             time: '09:45 AM – 11:30 AM',
             teamSize: '3-5 members',
@@ -151,7 +151,7 @@ function Events() {
         },
         {
             id: 3,
-            title: 'Technical Quiz',
+            title: 'Tech Clash',
             type: 'technical',
             time: '11:30 AM – 12:00 PM',
             teamSize: '2 members',
@@ -162,7 +162,7 @@ function Events() {
         },
         {
             id: 4,
-            title: 'Coding Challenge',
+            title: 'Code Combat',
             type: 'technical',
             time: '12:00 PM – 12:30 PM',
             teamSize: '2 members',
