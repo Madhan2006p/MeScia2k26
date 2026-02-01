@@ -36,6 +36,7 @@ const Page = memo(forwardRef((props, ref) => {
                             <span className="label">CLASS</span>
                             <span className="value">{props.event.type.toUpperCase()}</span>
                         </div>
+
                     </div>
                 </div>
 
@@ -112,6 +113,7 @@ const MobileFileStack = ({ events, onViewDetails }) => {
                                 <span className="info-label">TYPE</span>
                                 <span className="info-value accent">{event.type.toUpperCase()}</span>
                             </div>
+
                         </div>
 
                         <button className="stack-view-btn" onClick={() => onViewDetails(event)}>VIEW GUIDELINES</button>
@@ -132,7 +134,9 @@ function Events() {
             time: '09:45 AM – 11:30 AM',
             teamSize: '3-5 members',
             shortDesc: 'Participants present original technical papers showcasing innovative research.',
-            guidelines: 'Paper must be original and plagiarism-free. Presentation time: 5 minutes + 2 minutes Q&A. PPT format only.'
+            guidelines: 'Paper must be original and plagiarism-free. Presentation time: 5 minutes + 2 minutes Q&A. PPT format only.',
+            staffCoordinator: 'Dr.T.Maragatham, Ms.S.Varshini',
+            studentCoordinator: 'Kavya P S – 3rd Yr, Meganath V – 3rd Yr'
         },
         {
             id: 2,
@@ -141,7 +145,9 @@ function Events() {
             time: '09:45 AM – 11:30 AM',
             teamSize: '3-5 members',
             shortDesc: 'Demonstrate innovative projects, prototypes, or working models.',
-            guidelines: 'Hardware / Software / Hybrid projects allowed. Working demo must be shown. Presentation time: 5 minutes + 2 minutes Q&A.'
+            guidelines: 'Hardware / Software / Hybrid projects allowed. Working demo must be shown. Presentation time: 5 minutes + 2 minutes Q&A.',
+            staffCoordinator: 'Dr.P.Ananthi, Ms.K.Kathika',
+            studentCoordinator: 'Samyuktha K C – 3rd Yr, Sree Sedhu Madhavan D S – 3rd Yr'
         },
         {
             id: 3,
@@ -150,7 +156,9 @@ function Events() {
             time: '11:30 AM – 12:00 PM',
             teamSize: '2 members',
             shortDesc: 'A quiz event designed to test participants technical knowledge.',
-            guidelines: 'Team size: 2 members. Single round only. No mobile phones or external help allowed.'
+            guidelines: 'Team size: 2 members. Single round only. No mobile phones or external help allowed.',
+            staffCoordinator: 'Dr.C.Jamunadevi',
+            studentCoordinator: 'Samyuktha E – 3rd Yr, Akilesh G A – 3rd Yr'
         },
         {
             id: 4,
@@ -159,7 +167,9 @@ function Events() {
             time: '12:00 PM – 12:30 PM',
             teamSize: '2 members',
             shortDesc: 'A competitive programming event focused on logic and problem-solving.',
-            guidelines: 'Team size: 2 members. Language must be known: C, C++, Java, Python. Internet access is prohibited.'
+            guidelines: 'Team size: 2 members. Language must be known: C, C++, Java, Python. Internet access is prohibited.',
+            staffCoordinator: 'Ms.P.Yuvarani, Mr.C.Rukmani Khandhan',
+            studentCoordinator: 'Madhan P – 3rd Yr, Prathiksha D K – 3rd Yr'
         },
         {
             id: 5,
@@ -168,7 +178,9 @@ function Events() {
             time: '11:30 AM – 12:30 PM',
             teamSize: '2 members',
             shortDesc: 'Showcase your communication, presentation, and persuasive skills.',
-            guidelines: 'Topics will be given on the spot. Time limit will be announced during the event. Focus on clarity, confidence, and content relevance.'
+            guidelines: 'Topics will be given on the spot. Time limit will be announced during the event. Focus on clarity, confidence, and content relevance.',
+            staffCoordinator: 'Ms.S.Deepa',
+            studentCoordinator: 'Nivetha V – 3rd Yr, Tejashri P – 3rd Yr'
         },
         {
             id: 6,
@@ -177,7 +189,9 @@ function Events() {
             time: '01:50 PM – 02:30 PM',
             teamSize: '2 members',
             shortDesc: 'A fun-packed event with exciting games and engagement challenges.',
-            guidelines: 'Rules will be explained on the spot. Fair play is mandatory. Team size: 2 members.'
+            guidelines: 'Rules will be explained on the spot. Fair play is mandatory. Team size: 2 members.',
+            staffCoordinator: 'Ms.B.Sathiyapriya',
+            studentCoordinator: 'Shalini S R – 3rd Yr, Sarvesh N S – 3rd Yr'
         },
         {
             id: 7,
@@ -186,7 +200,9 @@ function Events() {
             time: '01:50 PM – 03:20 PM',
             teamSize: '2 members',
             shortDesc: 'Experience strategic bidding and team management in an IPL-style auction.',
-            guidelines: 'Fixed virtual budget will be provided. Smart bidding and balanced team selection required. Team size: 2 members.'
+            guidelines: 'Fixed virtual budget will be provided. Smart bidding and balanced team selection required. Team size: 2 members.',
+            staffCoordinator: 'Mr.A.Vijay',
+            studentCoordinator: 'Naveen Prasanth – 3rd Yr, Asishkhan A – 3rd Yr'
         },
         {
             id: 8,
@@ -195,7 +211,9 @@ function Events() {
             time: '02:30 PM – 03:15 PM',
             teamSize: 'Duo or Squad',
             shortDesc: 'A high-intensity battle royale gaming event for competitive players.',
-            guidelines: 'Mode: Duo or Squad. Players must use their own mobile devices. Use of hacks, mods, or emulators is strictly prohibited.'
+            guidelines: 'Mode: Duo or Squad. Players must use their own mobile devices. Use of hacks, mods, or emulators is strictly prohibited.',
+            staffCoordinator: 'Mr.A.Sridhar',
+            studentCoordinator: 'Akash A R – 3rd Yr, Gowthaman V M – 3rd Yr'
         }
     ];
 
@@ -348,8 +366,8 @@ function Events() {
                         <div className="mobile-popup-box" style={{
                             backgroundColor: '#f7f3e8',
                             width: '100%',
-                            maxWidth: '380px',
-                            maxHeight: '85vh',
+                            maxWidth: '550px',
+                            maxHeight: '90vh',
                             borderRadius: '16px',
                             display: 'flex',
                             flexDirection: 'column',
@@ -422,12 +440,20 @@ function Events() {
                                             borderRadius: '8px'
                                         }}>
                                             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                <span style={{ fontSize: '0.7rem', color: '#666', fontWeight: 'bold' }}>TIME</span>
+                                                <span style={{ fontSize: '1rem', color: '#666', fontWeight: 'bold' }}>TIME</span>
                                                 <span style={{ fontWeight: 'bold', color: '#000' }}>{selectedEvent.time.split('–')[0]}</span>
                                             </div>
                                             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                <span style={{ fontSize: '0.7rem', color: '#666', fontWeight: 'bold' }}>TYPE</span>
+                                                <span style={{ fontSize: '1rem', color: '#666', fontWeight: 'bold' }}>TYPE</span>
                                                 <span style={{ fontWeight: 'bold', color: '#000' }}>{selectedEvent.type.toUpperCase()}</span>
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
+                                                <span style={{ fontSize: '1rem', color: '#666', fontWeight: 'bold' }}>STAFF COORDINATOR</span>
+                                                <span style={{ fontWeight: 'bold', color: '#000' }}>{selectedEvent.staffCoordinator}</span>
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
+                                                <span style={{ fontSize: '1rem', color: '#666', fontWeight: 'bold' }}>STUDENT COORDINATOR</span>
+                                                <span style={{ fontWeight: 'bold', color: '#000' }}>{selectedEvent.studentCoordinator}</span>
                                             </div>
                                         </div>
                                     </>
@@ -534,12 +560,20 @@ function Events() {
 
                                         <div className="modal-details-grid" style={{ marginBottom: '0.5rem', gap: '1rem', display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
                                             <div className="modal-item">
-                                                <span className="label" style={{ fontSize: '0.7rem' }}>MISSION TIME</span>
+                                                <span className="label" style={{ fontSize: '1rem' }}>MISSION TIME</span>
                                                 <span className="value" style={{ fontSize: '1rem' }}>{selectedEvent.time}</span>
                                             </div>
                                             <div className="modal-item">
-                                                <span className="label" style={{ fontSize: '0.7rem' }}>SECURITY CLEARANCE</span>
+                                                <span className="label" style={{ fontSize: '1rem' }}>SECURITY CLEARANCE</span>
                                                 <span className="value" style={{ fontSize: '1rem' }}>{selectedEvent.type.toUpperCase()}</span>
+                                            </div>
+                                            <div className="modal-item" style={{ gridColumn: '1 / -1' }}>
+                                                <span className="label" style={{ fontSize: '1rem' }}>STAFF COORDINATOR</span>
+                                                <span className="value" style={{ fontSize: '1rem' }}>{selectedEvent.staffCoordinator}</span>
+                                            </div>
+                                            <div className="modal-item" style={{ gridColumn: '1 / -1' }}>
+                                                <span className="label" style={{ fontSize: '1rem' }}>STUDENT COORDINATOR</span>
+                                                <span className="value" style={{ fontSize: '1rem' }}>{selectedEvent.studentCoordinator}</span>
                                             </div>
                                         </div>
                                     </>

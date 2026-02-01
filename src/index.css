@@ -2510,9 +2510,9 @@ h3 {
 .event-modal-content {
   background-color: #f7f3e8;
   width: 90%;
-  max-width: 500px;
+  max-width: 900px;
   /* Reduced from 600px */
-  max-height: 85vh;
+  max-height: 95vh;
   /* Capped height */
   padding: 0;
   /* Remove padding from parent, move to children */
@@ -2608,7 +2608,7 @@ h3 {
   .event-modal-content {
     padding: 1.2rem;
     max-width: 95%;
-    max-height: 75vh;
+    max-height: 90vh;
   }
 
   .modal-header {
@@ -2742,6 +2742,13 @@ h3 {
 }
 
 @keyframes popIn {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
