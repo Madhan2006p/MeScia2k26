@@ -88,14 +88,14 @@ function Navbar() {
 
                             {eventsOpen && (
                                 <ul className="dropdown-menu">
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-1' : 'events', 1)}>Paper Parade</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-2' : 'events', 2)}>Project Pitch</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-3' : 'events', 3)}>Tech Clash</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-4' : 'events', 4)}>Code Combat</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-5' : 'events', 5)}>Marketing Insights</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-6' : 'events', 6)}>Chaos Carnival</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-7' : 'events', 7)}>IPL Auction</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-8' : 'events', 8)}>Esports(Battle royal)</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-1' : 'events', 1)}>PAPER PARADE</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-2' : 'events', 2)}>PROJECT PITCH</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-3' : 'events', 3)}>TECH CLASH</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-4' : 'events', 4)}>CODE COMBAT</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-5' : 'events', 5)}>MARKETING INSIGHTS</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-6' : 'events', 6)}>CHAOS CARNIVAL</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-7' : 'events', 7)}>IPL AUCTION</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-8' : 'events', 8)}>ESPORTS (BATTLE ROYAL)</li>
                                 </ul>
                             )}
                         </li>
