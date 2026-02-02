@@ -1,143 +1,170 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
-function Schedule() {
-    const scheduleItems = [
-        { time: '09:00 AM – 09:45 AM', title: 'Inaugural', description: 'Opening Ceremony' },
-        { time: '09:45 AM – 11:30 AM', title: 'Project Pitch', description: 'Project Presentation' },
-        { time: '09:45 AM – 11:30 AM', title: 'Paper Parade', description: 'Paper Presentation' },
-        { time: '11:30 AM – 12:00 PM', title: 'Tech Clash', description: 'Technical Debate' },
-        { time: '11:30 AM – 12:30 PM', title: 'Marketing Insights', description: 'Marketing Event' },
-        { time: '12:00 PM – 12:30 PM', title: 'Code Combat', description: 'Coding Competition' },
-        { time: '12:30 PM – 01:30 PM', title: 'Lunch', description: 'Refreshments' },
-        { time: '01:50 PM – 03:20 PM', title: 'IPL Auction', description: 'Bidding War' },
-        { time: '01:50 PM – 02:30 PM', title: 'Chaos Carnival', description: 'Fun Event' },
-        { time: '02:30 PM – 03:15 PM', title: 'Esports(Battle royal)', description: 'Gaming Tournament' },
-        { time: '03:30 PM – 04:30 PM', title: 'Valedictory', description: 'Closing Ceremony & Prize Distribution' }
-    ];
+export default function Schedule() {
+  const wrapperRef = useRef(null);
+  const pathsRef = useRef([]);
 
-    return (
-        <section id="schedule" className="section">
-            <div className="container">
-                <h2 className="section-title glitch" data-text="Event Schedule">Event Schedule</h2>
-                <motion.p
-                    className="section-subtitle"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
-                >
-                    The Reaction Pathway
-                </motion.p>
+  const scheduleItems = [
+    { title: "Inaugural", desc: "Opening Ceremony", tag: "CEREMONY", time: "09:00 AM – 09:45 AM" },
+    { title: "Project Pitch", desc: "Project Presentation", tag: "EVENT", time: "09:45 AM – 11:30 AM" },
+    { title: "Paper Parade", desc: "Paper Presentation", tag: "EVENT", time: "09:45 AM – 11:30 AM" },
+    { title: "Tech Clash", desc: "Technical Debate", tag: "TECH", time: "11:30 AM – 12:00 PM" },
+    { title: "Marketing Insights", desc: "Marketing Event", tag: "EVENT", time: "11:30 AM – 12:30 PM" },
+    { title: "Code Combat", desc: "Coding Competition", tag: "EVENT", time: "12:00 PM – 12:30 PM" },
+    { title: "Lunch", desc: "Refreshments", tag: "BREAK", time: "12:30 PM – 01:30 PM" },
+    { title: "IPL Auction", desc: "Bidding War", tag: "EVENT", time: "01:50 PM – 03:20 PM" },
+    { title: "Chaos Carnival", desc: "Fun Event", tag: "FUN", time: "01:50 PM – 02:30 PM" },
+    { title: "Esports", desc: "Gaming Tournament", tag: "GAME", time: "02:30 PM – 03:15 PM" },
+    { title: "Valedictory", desc: "Prize Distribution", tag: "CEREMONY", time: "03:30 PM – 04:30 PM" }
+  ];
 
-                <div className="timeline" style={{ position: 'relative', paddingLeft: '2rem' }}>
-                    {/* The Chemical Flow Line */}
-                    <motion.div
-                        className="timeline-line"
-                        initial={{ height: 0 }}
-                        whileInView={{ height: '100%' }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 2.5, ease: "easeInOut" }}
-                        style={{
-                            position: 'absolute',
-                            left: '0',
-                            top: 0,
-                            width: '4px',
-                            background: 'var(--accent-primary)',
-                            boxShadow: '0 0 15px var(--accent-primary)',
-                            borderRadius: '2px',
-                            zIndex: 1,
-                            overflow: 'hidden' // Clip the bullet inside
-                        }}
-                    >
-                        {/* The Bullet / Energy Pulse */}
-                        <motion.div
-                            animate={{ top: ['0%', '100%'] }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "linear",
-                                repeatDelay: 0.5
-                            }}
-                            style={{
-                                position: 'absolute',
-                                left: 0,
-                                width: '100%',
-                                height: '20%', // Length of the "bullet" tail
-                                background: 'linear-gradient(to bottom, transparent, #fff, transparent)',
-                                opacity: 0.8,
-                                filter: 'blur(2px)'
-                            }}
-                        />
-                    </motion.div>
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!wrapperRef.current) return;
 
-                    {/* Background Line (dim) */}
-                    <div style={{
-                        position: 'absolute',
-                        left: '0',
-                        top: 0,
-                        bottom: 0,
-                        width: '4px',
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        zIndex: 0
-                    }} />
+      const rect = wrapperRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
 
-                    {scheduleItems.map((item, index) => (
-                        <motion.div
-                            key={index}
-                            className="timeline-item"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.5, delay: index * 0.3 }} // Staggered based on index
-                            style={{
-                                marginBottom: '3rem',
-                                position: 'relative',
-                                paddingLeft: '2rem'
-                            }}
-                        >
-                            {/* The Node/Atom */}
-                            <motion.div
-                                className="timeline-node"
-                                initial={{ scale: 0, backgroundColor: '#000' }}
-                                whileInView={{ scale: 1, backgroundColor: 'var(--accent-primary)' }}
-                                transition={{ duration: 0.3, delay: index * 0.3 + 0.1 }} // Sync with item appearance
-                                style={{
-                                    position: 'absolute',
-                                    left: '-2.4rem' /* Align with line */,
-                                    top: '0.1rem',
-                                    width: '1.2rem',
-                                    height: '1.2rem',
-                                    borderRadius: '50%',
-                                    border: '2px solid var(--accent-primary)',
-                                    zIndex: 2,
-                                    boxShadow: '0 0 10px var(--accent-primary)'
-                                }}
-                            >
-                                {/* Inner Pulse */}
-                                <motion.div
-                                    animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        borderRadius: '50%',
-                                        background: 'var(--accent-primary)'
-                                    }}
-                                />
-                            </motion.div>
+      /* =========================
+         DRAW / RETRACT ALL LINES
+      ========================= */
+      let progress = (windowHeight - rect.top) / rect.height;
+      progress = Math.max(0, Math.min(1, progress));
 
-                            <div className="timeline-content glass-panel" style={{ padding: '1.5rem', borderRadius: '4px', borderLeft: '4px solid var(--accent-secondary)' }}>
-                                <div className="timeline-time" style={{ fontFamily: 'Orbitron', color: 'var(--accent-primary)', marginBottom: '0.5rem' }}>{item.time}</div>
-                                <div className="timeline-title" style={{ fontSize: '1.5rem', fontFamily: 'Bebas Neue', letterSpacing: '1px' }}>{item.title}</div>
-                                <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem', fontSize: '0.9rem' }}>
-                                    {item.description}
-                                </p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+      pathsRef.current.forEach((path) => {
+        if (!path) return;
+        const length = path.getTotalLength();
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length - length * progress;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Zigzag path calculation based on number of items
+  // Each item should roughly correspond to one curve segment (240 units high)
+  const pathData1 = `M50 0 
+    Q20 120 50 240
+    Q80 360 50 480
+    Q20 600 50 720
+    Q80 840 50 960
+    Q20 1080 50 1200
+    Q80 1320 50 1440
+    Q20 1560 50 1680
+    Q80 1800 50 1920
+    Q20 2040 50 2160
+    Q80 2280 50 2400
+    Q20 2520 50 2640
+    Q80 2760 50 2880`;
+
+  const pathData2 = `M48 0 
+    Q18 120 48 240
+    Q78 360 48 480
+    Q18 600 48 720
+    Q78 840 48 960
+    Q18 1080 48 1200
+    Q78 1320 48 1440
+    Q18 1560 48 1680
+    Q78 1800 48 1920
+    Q18 2040 48 2160
+    Q78 2280 48 2400
+    Q18 2520 48 2640
+    Q78 2760 48 2880`;
+
+  const pathData3 = `M52 0 
+    Q22 120 52 240
+    Q82 360 52 480
+    Q22 600 52 720
+    Q82 840 52 960
+    Q22 1080 52 1200
+    Q82 1320 52 1440
+    Q22 1560 52 1680
+    Q82 1800 52 1920
+    Q22 2040 52 2160
+    Q82 2280 52 2400
+    Q22 2520 52 2640
+    Q82 2760 52 2880`;
+
+  return (
+    <section className="zigzag-timeline-section" id="schedule">
+      <h2 className="zigzag-title">Result & Schedule</h2>
+      <p className="zigzag-sub">Plan your day at the symposium</p>
+
+      <div className="zigzag-wrapper" ref={wrapperRef}>
+        {/* SVG LINE (BEHIND) */}
+        <div className="zigzag-lines">
+          {/* DEFINITIONS (ARROW MARKER) - Color changed to ff6700 */}
+          <svg width="0" height="0" style={{ position: "absolute" }}>
+            <defs>
+              <marker
+                id="arrow-down"
+                viewBox="0 0 10 10"
+                refX="5"
+                refY="5"
+                markerWidth="4"
+                markerHeight="4"
+                orient="auto-start-reverse"
+              >
+                <path d="M0,0 L10,5 L0,10 Z" fill="#ff6700" />
+              </marker>
+            </defs>
+          </svg>
+
+          {/* LINE 1 */}
+          <svg viewBox="0 0 100 2880" preserveAspectRatio="none">
+            <path
+              ref={(el) => (pathsRef.current[0] = el)}
+              d={pathData1}
+              className="zigzag-path line-1"
+              markerMid="url(#arrow-down)"
+            />
+          </svg>
+
+          {/* LINE 2 */}
+          <svg viewBox="0 0 100 2880" preserveAspectRatio="none">
+            <path
+              ref={(el) => (pathsRef.current[1] = el)}
+              d={pathData2}
+              className="zigzag-path line-2"
+              markerMid="url(#arrow-down)"
+            />
+          </svg>
+
+          {/* LINE 3 */}
+          <svg viewBox="0 0 100 2880" preserveAspectRatio="none">
+            <path
+              ref={(el) => (pathsRef.current[2] = el)}
+              d={pathData3}
+              className="zigzag-path line-3"
+              markerMid="url(#arrow-down)"
+            />
+          </svg>
+        </div>
+
+        {/* ITEMS */}
+        {scheduleItems.map((item, index) => (
+          <motion.div
+            className="zigzag-item"
+            key={index}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <div className="zigzag-card">
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              <span>{item.tag}</span>
+              <div className="time">{item.time}</div>
             </div>
-        </section>
-    );
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
 }
-
-export default Schedule;
