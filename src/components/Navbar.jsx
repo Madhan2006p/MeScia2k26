@@ -88,14 +88,14 @@ function Navbar() {
 
                             {eventsOpen && (
                                 <ul className="dropdown-menu">
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-1' : 'events', 1)}>Paper Presentation</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-2' : 'events', 2)}>Project Presentation</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-3' : 'events', 3)}>Technical Quiz</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-4' : 'events', 4)}>Coding Challenge</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-1' : 'events', 1)}>Paper Parade</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-2' : 'events', 2)}>Project Pitch</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-3' : 'events', 3)}>Tech Clash</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-4' : 'events', 4)}>Code Combat</li>
                                     <li onClick={() => scrollToSection(isMobile ? 'event-5' : 'events', 5)}>Marketing Insights</li>
                                     <li onClick={() => scrollToSection(isMobile ? 'event-6' : 'events', 6)}>Chaos Carnival</li>
                                     <li onClick={() => scrollToSection(isMobile ? 'event-7' : 'events', 7)}>IPL Auction</li>
-                                    <li onClick={() => scrollToSection(isMobile ? 'event-8' : 'events', 8)}>Free Fire</li>
+                                    <li onClick={() => scrollToSection(isMobile ? 'event-8' : 'events', 8)}>Esports(Battle royal)</li>
                                 </ul>
                             )}
                         </li>
