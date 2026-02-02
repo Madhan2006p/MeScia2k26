@@ -45,8 +45,8 @@ function Hero() {
             <ThreeScene />
             <div className="container" style={{ position: 'relative', zIndex: 2 }}>
                 <div className="hero-content">
-                    <div className="hero-title glitch" data-text="MeScia – 26">
-                        MeScia – 26
+                    <div className="hero-title glitch" data-text="MeScia – '26">
+                        MeScia – '26
                     </div>
 
                     <div 

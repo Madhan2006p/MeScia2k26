@@ -134,7 +134,7 @@ function Events() {
             time: '09:45 AM – 11:30 AM',
             teamSize: '3-5 members',
             shortDesc: 'Participants present original technical papers showcasing innovative research.',
-            guidelines: 'Paper must be original and plagiarism-free. Presentation time: 5 minutes + 2 minutes Q&A. PPT format only.',
+            guidelines: 'Paper must be original. Presentation time: 5 minutes + 2 minutes Q&A. PPT format only.',
             staffCoordinator: 'Dr.T.Maragatham, Ms.S.Varshini',
             studentCoordinator: 'Kavya P S – 3rd Yr, Meganath V – 3rd Yr'
         },

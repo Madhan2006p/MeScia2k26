@@ -44,8 +44,8 @@ function Navbar() {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="container">
                 <div className="nav-content">
-                    <div className="nav-logo glitch" data-text="MeScia 26">
-                        MeScia 26
+                    <div className="nav-logo glitch" data-text="MeScia '26">
+                        MeScia '26
                     </div>
 
                     <div
