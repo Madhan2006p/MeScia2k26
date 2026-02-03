@@ -251,9 +251,9 @@ h3 {
 }
 
 .nav-link {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  font-weight: 500;
+  color: #b0b0a0;
+  font-size: 1.05rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
@@ -509,7 +509,7 @@ h3 {
 .section-subtitle {
   text-align: center;
   font-size: 1.2rem;
-  color: var(--text-muted);
+  color: #d1d1c1;
   margin-bottom: 3rem;
   max-width: 600px;
   margin-left: auto;
@@ -698,7 +698,7 @@ h3 {
 }
 
 .card-text {
-  color: var(--text-muted);
+  color: #d1d1c1;
   font-size: 1rem;
   font-weight: 300;
 }
@@ -1753,7 +1753,7 @@ h3 {
   font-family: 'Orbitron', sans-serif;
   font-size: 0.8rem;
   color: var(--accent-primary);
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .module-status {
