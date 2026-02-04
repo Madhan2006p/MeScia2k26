@@ -62,7 +62,7 @@ function Footer() {
                 </div>
 
                 <div className="footer-bottom" style={{ textAlign: 'center', marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>© {currentYear} MeScia – 26. Designed with 🧪 by <span className="designer-name">Madhan P</span></p>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>© {currentYear} MeScia – 26. Designed with 🧪 by <span className="designer-name">Madhan P</span>&<span className="designer-name">Prathiksha D K</span></p>
                 </div>
             </div>
         </footer>
