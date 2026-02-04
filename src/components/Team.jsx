@@ -46,17 +46,52 @@ function Team() {
         },
         {
             name: 'Rithanya Paramashivam',
-            role: 'Student Coordinator',
+            role: 'Secretary',
             initial: 'R',
             email: 'mescia26@kongu.ac.in',
             phone: '+91 93457 48455'
         },
         {
             name: 'Naveen Kumar',
-            role: 'Student Coordinator',
+            role: 'Additional Secretary',
             initial: 'N',
             email: 'mescia26@kongu.ac.in',
             phone: '+91 824 878 8729'
+        },
+        {
+            name: 'Dharanesh',
+            role: 'Joint Secretary',
+            initial: 'D',
+            email: 'mescia26@kongu.ac.in',
+            phone: '+91 93429 92454'
+        },
+        {
+            name: 'Dharshini',
+            role: 'Treasurer',
+            initial: 'D',
+            email: 'mescia26@kongu.ac.in',
+            phone: '+91 82206 33723'
+        },
+        {
+            name: 'Suriya',
+            role: 'Treasurer',
+            initial: 'S',
+            email: 'mescia26@kongu.ac.in',
+            phone: '+91 88703 31488'
+        },
+        {
+            name: 'B.R. Pranesh',
+            role: 'Executive Head',
+            initial: 'P',
+            email: 'mescia26@kongu.ac.in',
+            phone: '+91 83004 53308'
+        },
+        {
+            name: 'Tanisha',
+            role: 'Executive Head',
+            initial: 'T',
+            email: 'mescia26@kongu.ac.in',
+            phone: '+91 63824 64950'
         }
     ];
 
