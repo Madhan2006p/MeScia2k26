@@ -741,7 +741,8 @@ h3 {
   }
 
   .zigzag-sub {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
+    font-weight: 700;
     margin-bottom: 60px;
   }
 }
@@ -1089,6 +1090,10 @@ h3 {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+  body {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
 
   /* DISABLE EXPENSIVE ANIMATIONS ON MOBILE */
   body::after {
@@ -2230,7 +2235,8 @@ h3 {
   .terminal-window {
     padding: 1rem;
     margin: 0 0.5rem;
-    font-size: 0.85rem;
+    font-size: 1rem;
+    font-weight: 700;
   }
 
   .terminal-content {
@@ -2238,13 +2244,15 @@ h3 {
   }
 
   .cmd-line {
-    font-size: 0.8rem;
+    font-size: 1rem;
+    font-weight: 700;
   }
 
 
 
   .typing-text.output {
-    font-size: 0.85rem;
+    font-size: 1rem;
+    font-weight: 700;
   }
 }
 
