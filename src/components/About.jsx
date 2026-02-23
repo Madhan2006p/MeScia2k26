@@ -67,7 +67,7 @@ function About() {
 
     const infoCards = [
         { id: 'ORG', status: 'CMD', title: 'DEPARTMENT', text: 'Computer Technology – PG' },
-        { id: 'T-MINUS', status: 'SYNC', title: 'DATE', text: 'February 27, 2026' },
+        { id: 'T-MINUS', status: 'SYNC', title: 'DATE', text: 'February 25, 2026' },
         { id: 'DUR', status: 'FULL', title: 'TIMEFRAME', text: '08:45 AM - 05:00 PM' }
     ];
 
