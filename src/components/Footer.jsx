@@ -27,29 +27,29 @@ function Footer() {
                     <div className="footer-section">
                         <h3>Connect</h3>
                         <div className="social-links" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                            <a 
-                                href="https://www.linkedin.com/in/kec-msc-ctpg/overlay/about-this-profile/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bl67%2BYKoDRwqhJDn%2FFrV7QQ%3D%3D" 
-                                target="_blank" 
-                                rel="noreferrer" 
-                                className="nav-link social-glitch-link" 
+                            <a
+                                href="https://www.linkedin.com/in/kec-msc-ctpg/overlay/about-this-profile/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bl67%2BYKoDRwqhJDn%2FFrV7QQ%3D%3D"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="nav-link social-glitch-link"
                                 style={{ display: 'flex', alignItems: 'center', gap: '10px', width: 'fit-content' }}
                             >
                                 <span>💼</span> LinkedIn
                             </a>
-                            <a 
-                                href="https://www.instagram.com/msc_ss_kec?igsh=MWd2a3V2Z3E1b2RrNQ==" 
-                                target="_blank" 
-                                rel="noreferrer" 
-                                className="nav-link social-glitch-link" 
+                            <a
+                                href="https://www.instagram.com/msc_ss_kec?igsh=MWd2a3V2Z3E1b2RrNQ=="
+                                target="_blank"
+                                rel="noreferrer"
+                                className="nav-link social-glitch-link"
                                 style={{ display: 'flex', alignItems: 'center', gap: '10px', width: 'fit-content' }}
                             >
                                 <span>📷</span> Instagram
                             </a>
-                             <a 
-                                href="https://kongu.ac.in/" 
-                                target="_blank" 
-                                rel="noreferrer" 
-                                className="nav-link social-glitch-link" 
+                            <a
+                                href="https://kongu.ac.in/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="nav-link social-glitch-link"
                                 style={{ display: 'flex', alignItems: 'center', gap: '10px', width: 'fit-content' }}
                             >
                                 <span>🏫</span> KEC
@@ -61,8 +61,30 @@ function Footer() {
                     </div>
                 </div>
 
-                <div className="footer-bottom" style={{ textAlign: 'center', marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                <div className="footer-bottom" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>© {currentYear} MeScia – 26. Designed with 🧪 by <span className="designer-name">Madhan P</span>&<span className="designer-name">Prathiksha D K</span></p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem', letterSpacing: '1.5px', textTransform: 'uppercase', opacity: 0.7 }}>Sponsor</span>
+                        <a
+                            href="https://pr3.in/"
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{ display: 'inline-block', transition: 'transform 0.3s ease, opacity 0.3s ease' }}
+                            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.opacity = '0.85'; }}
+                            onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.opacity = '1'; }}
+                        >
+                            <img
+                                src="/PR3.jpg"
+                                alt="PR3 - Sponsor"
+                                style={{
+                                    width: '60px',
+                                    borderRadius: '6px',
+                                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)'
+                                }}
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>
