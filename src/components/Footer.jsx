@@ -84,7 +84,7 @@ function Footer() {
                                 }}
                             />
                         </a>
-                        <a
+                        {/* <a
                             href="https://www.twincord.in/"
                             target="_blank"
                             rel="noreferrer"
@@ -102,7 +102,7 @@ function Footer() {
                                     border: '1px solid rgba(255, 255, 255, 0.1)'
                                 }}
                             />
-                        </a>
+                        </a> */}
                     </div>
                 </div>
             </div>
