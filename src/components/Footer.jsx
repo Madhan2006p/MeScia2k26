@@ -84,25 +84,7 @@ function Footer() {
                                 }}
                             />
                         </a>
-                        {/* <a
-                            href="https://www.twincord.in/"
-                            target="_blank"
-                            rel="noreferrer"
-                            style={{ display: 'inline-block', transition: 'transform 0.3s ease, opacity 0.3s ease' }}
-                            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.opacity = '0.85'; }}
-                            onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.opacity = '1'; }}
-                        >
-                            <img
-                                src="/TwinCord.jpeg"
-                                alt="TwinCord - Sponsor"
-                                style={{
-                                    width: '60px',
-                                    borderRadius: '6px',
-                                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
-                                    border: '1px solid rgba(255, 255, 255, 0.1)'
-                                }}
-                            />
-                        </a> */}
+
                     </div>
                 </div>
             </div>
