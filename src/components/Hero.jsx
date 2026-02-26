@@ -11,7 +11,7 @@ function Hero() {
     });
 
     useEffect(() => {
-        const targetDate = new Date('2026-02-25T00:00:00').getTime();
+        const targetDate = new Date('2026-02-26T23:59:59').getTime();
 
         const updateCountdown = () => {
             const now = new Date().getTime();
@@ -116,7 +116,7 @@ function Hero() {
                             boxShadow: '0 0 15px rgba(255, 103, 0, 0.1)'
                         }}>
                             <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.2rem' }}>Last Date</span>
-                            <span style={{ display: 'block', fontSize: '2.5rem', lineHeight: '1', color: '#fff', textShadow: '0 0 10px var(--accent-primary)', fontFamily: "'Bebas Neue', sans-serif" }}>25.02.2026</span>
+                            <span style={{ display: 'block', fontSize: '2.5rem', lineHeight: '1', color: '#fff', textShadow: '0 0 10px var(--accent-primary)', fontFamily: "'Bebas Neue', sans-serif" }}>26.02.2026</span>
                         </div>
                     </div>
 
@@ -139,6 +139,20 @@ function Hero() {
                             <span className="countdown-label">Seconds</span>
                         </div>
                     </div>
+
+                    <p style={{
+                        textAlign: 'center',
+                        fontSize: '1.8rem',
+                        color: 'var(--accent-primary)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '3px',
+                        marginTop: '1rem',
+                        marginBottom: '2.5rem',
+                        fontFamily: "'Bebas Neue', sans-serif",
+                        textShadow: '0 0 15px rgba(255, 103, 0, 0.4)'
+                    }}>
+                        On-Spot Registration Available!!
+                    </p>
 
                     <button className="cta-button pulse-effect" onClick={scrollToEvents}>
                         <span>Explore Events</span>
